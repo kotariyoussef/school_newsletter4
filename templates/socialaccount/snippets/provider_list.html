@@ -1,0 +1,89 @@
+{% load socialaccount %}
+{% load static %}
+
+{% get_providers as socialaccount_providers %}
+
+{% for provider in socialaccount_providers %}
+  {% if provider.id == "openid" %}
+    {% for brand in provider.get_brands %}
+      <div class="socialaccount-provider {{ provider.id }} {{ brand.id }}">
+        <a title="{{ brand.name }}" 
+           class="btn btn-outline-secondary mb-2 me-2 social-btn social-btn-{{ brand.id }}"
+           href="{% provider_login_url provider.id openid=brand.openid_url process=process %}">
+          <i class="bi bi-{{ brand.id|lower }}"></i>
+          {{ brand.name }}
+        </a>
+      </div>
+    {% endfor %}
+  {% endif %}
+  
+  <div class="socialaccount-provider {{ provider.id }}">
+    {% if provider.id == 'google' %}
+      <a title="{{ provider.name }}" 
+         class="btn btn-outline-danger mb-2 me-2 social-btn social-btn-google"
+         href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+        <i class="bi bi-google me-2"></i>
+        {% if process == "connect" %}
+          {% blocktrans %}Connect with {{ provider.name }}{% endblocktrans %}
+        {% else %}
+          {% blocktrans %}Sign in with {{ provider.name }}{% endblocktrans %}
+        {% endif %}
+      </a>
+    {% elif provider.id == 'facebook' %}
+      <a title="{{ provider.name }}" 
+         class="btn btn-outline-primary mb-2 me-2 social-btn social-btn-facebook"
+         href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+        <i class="bi bi-facebook me-2"></i>
+        {% if process == "connect" %}
+          {% blocktrans %}Connect with {{ provider.name }}{% endblocktrans %}
+        {% else %}
+          {% blocktrans %}Sign in with {{ provider.name }}{% endblocktrans %}
+        {% endif %}
+      </a>
+    {% elif provider.id == 'github' %}
+      <a title="{{ provider.name }}" 
+         class="btn btn-outline-dark mb-2 me-2 social-btn social-btn-github"
+         href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+        <i class="bi bi-github me-2"></i>
+        {% if process == "connect" %}
+          {% blocktrans %}Connect with {{ provider.name }}{% endblocktrans %}
+        {% else %}
+          {% blocktrans %}Sign in with {{ provider.name }}{% endblocktrans %}
+        {% endif %}
+      </a>
+    {% elif provider.id == 'twitter' %}
+      <a title="{{ provider.name }}" 
+         class="btn btn-outline-info mb-2 me-2 social-btn social-btn-twitter"
+         href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+        <i class="bi bi-twitter me-2"></i>
+        {% if process == "connect" %}
+          {% blocktrans %}Connect with {{ provider.name }}{% endblocktrans %}
+        {% else %}
+          {% blocktrans %}Sign in with {{ provider.name }}{% endblocktrans %}
+        {% endif %}
+      </a>
+    {% elif provider.id == 'linkedin' %}
+      <a title="{{ provider.name }}" 
+         class="btn btn-outline-primary mb-2 me-2 social-btn social-btn-linkedin"
+         href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+        <i class="bi bi-linkedin me-2"></i>
+        {% if process == "connect" %}
+          {% blocktrans %}Connect with {{ provider.name }}{% endblocktrans %}
+        {% else %}
+          {% blocktrans %}Sign in with {{ provider.name }}{% endblocktrans %}
+        {% endif %}
+      </a>
+    {% else %}
+      <a title="{{ provider.name }}" 
+         class="btn btn-outline-secondary mb-2 me-2 social-btn"
+         href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+        <i class="bi bi-app me-2"></i>
+        {% if process == "connect" %}
+          {% blocktrans %}Connect with {{ provider.name }}{% endblocktrans %}
+        {% else %}
+          {% blocktrans %}Sign in with {{ provider.name }}{% endblocktrans %}
+        {% endif %}
+      </a>
+    {% endif %}
+  </div>
+{% endfor %}

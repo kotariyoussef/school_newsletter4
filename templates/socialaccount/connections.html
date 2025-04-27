@@ -1,0 +1,85 @@
+
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Social Account Connections" %}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h2 class="h4 mb-0">{% trans "Social Account Connections" %}</h2>
+        </div>
+        <div class="card-body">
+          {% if form.accounts %}
+            <p>{% blocktrans %}You can sign in to your account using any of the following third-party accounts:{% endblocktrans %}</p>
+
+            <form method="post" action="{% url 'socialaccount_connections' %}">
+              {% csrf_token %}
+
+              <div class="list-group mb-4">
+                {% for base_account in form.accounts %}
+                  {% with base_account.get_provider_account as account %}
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                      <div>
+                        <div class="form-check">
+                          <input id="id_account_{{ base_account.id }}" type="radio" name="account" 
+                                value="{{ base_account.id }}" class="form-check-input">
+                          <label for="id_account_{{ base_account.id }}" class="form-check-label">
+                            <span class="provider-icon">
+                              <i class="bi bi-{{ account.get_brand.id|lower }}"></i>
+                            </span>
+                            <span class="provider-name">{{ account.get_brand.name }}</span>
+                            <span class="account-name text-muted">({{ account.to_str }})</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  {% endwith %}
+                {% endfor %}
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-danger" type="submit">{% trans 'Remove' %}</button>
+              </div>
+            </form>
+
+          {% else %}
+            <div class="alert alert-info">
+              <p>{% blocktrans %}You currently have no social network accounts connected to this account.{% endblocktrans %}</p>
+            </div>
+          {% endif %}
+
+          <hr class="my-4">
+
+          <h3 class="h5 mb-3">{% trans "Add a 3rd Party Account" %}</h3>
+
+          <div class="socialaccount_providers">
+            {% include "socialaccount/snippets/provider_list.html" with process="connect" %}
+          </div>
+
+          {% include "socialaccount/snippets/login_extra.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_JS %}
+<script type="text/javascript">
+(function() {
+  var message = "{% trans 'Do you really want to disconnect this account?' %}";
+  var actions = document.getElementsByName('action_remove');
+  if (actions.length) {
+    actions[0].addEventListener("click", function(e) {
+      if (! confirm(message)) {
+        e.preventDefault();
+      }
+    });
+  }
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h2 class="h4 mb-0">{% trans "Sign Up" %}</h2>
+        </div>
+        <div class="card-body">
+          <p class="mb-4">{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your <strong>{{ provider_name }}</strong> account to login to {{ site_name }}. As a final step, please complete the following form:{% endblocktrans %}</p>
+          
+          <form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+            <div class="alert alert-danger">
+              <p>{% trans "Please correct the errors below:" %}</p>
+              {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+            
+            <div class="mb-3">
+              <label for="{{ form.email.id_for_label }}" class="form-label">{% trans "Email" %}</label>
+              {{ form.email }}
+              {% if form.email.errors %}
+                <div class="text-danger small">{{ form.email.errors }}</div>
+              {% endif %}
+            </div>
+            
+            <div class="mb-3">
+              <label for="{{ form.username.id_for_label }}" class="form-label">{% trans "Username" %}</label>
+              {{ form.username }}
+              {% if form.username.errors %}
+                <div class="text-danger small">{{ form.username.errors }}</div>
+              {% endif %}
+            </div>
+            
+            {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

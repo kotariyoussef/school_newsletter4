@@ -1,0 +1,3739 @@
+[
+    {
+        "model": "accounts.studentprofile",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "bio": "Always performance fact film them rate.\nMiddle head left outside girl decide. Coach purpose then discussion owner believe pass practice. Fast involve power process behavior language.",
+            "profile_picture": "",
+            "slug": "susan-chavez-dds",
+            "created_at": "2025-04-27 12:09:39.390852",
+            "updated_at": "2025-04-27 12:09:39.390852"
+        }
+    },
+    {
+        "model": "news.category",
+        "pk": 1,
+        "fields": {
+            "name": "BBC News",
+            "slug": "bbc-news",
+            "description": "News from BBC"
+        }
+    },
+    {
+        "model": "taggit.tag",
+        "pk": 1,
+        "fields": {
+            "name": "news",
+            "slug": "news"
+        }
+    },
+    {
+        "model": "taggit.tag",
+        "pk": 2,
+        "fields": {
+            "name": "bbc",
+            "slug": "bbc"
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 101,
+        "fields": {
+            "title": "The story behind Simon and Garfunkel's most famous album",
+            "slug": "the-story-behind-simon-and-garfunkels-most-famous-album",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-story-behind-simon-and-garfunkels-most-famous-album.jpg",
+            "summary": "Paul Simon, Art Garfunkel and their collaborators look back over what is widely considered their greatest work, Bridge over Troubled Water, using never-before-seen film, photos and memorabilia.",
+            "content": "Paul Simon, Art Garfunkel and their collaborators look back over what is widely considered their greatest work, Bridge over Troubled Water, using never-before-seen film, photos and memorabilia.\u00a0More",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.912754",
+            "updated_at": "2025-04-27 12:09:39.912754",
+            "publish_date": "2025-04-12T21:29:51Z",
+            "views": 239
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 102,
+        "fields": {
+            "title": "Assisted Dying: The Final Choice",
+            "slug": "assisted-dying-the-final-choice",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/assisted-dying-the-final-choice.jpg",
+            "summary": "Meet the patients in Canada and California legally choosing assisted dying, including Wayne, whose death we witness. And hear from those who feel it puts the most vulnerable at risk.",
+            "content": "Contains upsetting scenes.\r\nMeet the patients in Canada and California legally choosing assisted dying, including Wayne, whose death we witness. And hear from those who feel it puts the most vulnerab\u2026 [+15 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.912754",
+            "updated_at": "2025-04-27 12:09:39.912754",
+            "publish_date": "2025-04-02T23:01:00Z",
+            "views": 458
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 103,
+        "fields": {
+            "title": "Viktoria's story: Three years on",
+            "slug": "viktorias-story-three-years-on",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/viktorias-story-three-years-on.jpg",
+            "summary": "Life after loss, and views on Trump.",
+            "content": "An old friend of the podcast, Viktoria Kovalenko, joins us in the studio. Viktoria has experienced the horrors of war first hand. Her husband and elder daughter were killed in front of her when they \u2026 [+968 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.912754",
+            "updated_at": "2025-04-27 12:09:39.912754",
+            "publish_date": "2025-04-15T17:40:00Z",
+            "views": 428
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 104,
+        "fields": {
+            "title": "Match of the Day",
+            "slug": "match-of-the-day",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/match-of-the-day.jpg",
+            "summary": "Highlights from nine midweek Premier League matches, including the Merseyside derby between Liverpool and Everton and Manchester City\u2019s game with Leicester.",
+            "content": "Highlights from nine midweek Premier League matches, including the Merseyside derby between Liverpool and Everton and Manchester Citys game with Leicester.\u00a0More",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.912754",
+            "updated_at": "2025-04-27 12:09:39.912754",
+            "publish_date": "2025-04-02T22:59:00Z",
+            "views": 180
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 105,
+        "fields": {
+            "title": "Emma Stone and Stanley Tucci star in this teen rom com",
+            "slug": "emma-stone-and-stanley-tucci-star-in-this-teen-rom-com",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/emma-stone-and-stanley-tucci-star-in-this-teen-rom-com.jpg",
+            "summary": "An off-hand lie to avoid an unwanted camping weekend leads 17-year-old Olive into a spiral of unintended consequences.",
+            "content": "Contains some strong language.\r\nAn off-hand lie to avoid an unwanted camping weekend leads 17-year-old Olive into a spiral of unintended consequences. \u00a0More",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.912754",
+            "updated_at": "2025-04-27 12:09:39.912754",
+            "publish_date": "2025-04-02T21:30:26Z",
+            "views": 274
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 106,
+        "fields": {
+            "title": "Watch Netball Super League: Loughborough Lightning v Cardiff Dragons",
+            "slug": "watch-netball-super-league-loughborough-lightning-v-cardiff-dragons",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/watch-netball-super-league-loughborough-lightning-v-cardiff-dragons.jpg",
+            "summary": "Two-time reigning champions Loughborough take on Cardiff Dragons, the only Welsh side in netball\u2019s top flight.",
+            "content": "Two-time reigning champions Loughborough take on Cardiff Dragons, the only Welsh side in netballs top flight.",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.928362",
+            "updated_at": "2025-04-27 12:09:39.928362",
+            "publish_date": "2025-04-12T17:07:34Z",
+            "views": 460
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 107,
+        "fields": {
+            "title": "Tech Life",
+            "slug": "tech-life",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/tech-life.jpg",
+            "summary": "UN agencies are worried about rising cases of satellite navigation signal interference.",
+            "content": "UN agencies are worried about rising cases of satellite navigation signal interference.Read more",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.928362",
+            "updated_at": "2025-04-27 12:09:39.928362",
+            "publish_date": "2025-04-01T19:32:00Z",
+            "views": 322
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 108,
+        "fields": {
+            "title": "The Football News Show",
+            "slug": "the-football-news-show",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-football-news-show.jpg",
+            "summary": "We look ahead to the weekend's action in the Premier League and get the latest from the manager press confrences",
+            "content": "We look ahead to the weekend's action in the Premier League and get the latest from the manager press confrences",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.928362",
+            "updated_at": "2025-04-27 12:09:39.928362",
+            "publish_date": "2025-04-11T12:18:32Z",
+            "views": 179
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 109,
+        "fields": {
+            "title": "Football News Show: De Bruyne reaction and weekend preview",
+            "slug": "football-news-show-de-bruyne-reaction-and-weekend-preview",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/football-news-show-de-bruyne-reaction-and-weekend-preview.jpg",
+            "summary": "We look ahead to the weekend's action in the Premier League including the Manchester derby, and get the latest from the manager press confrences",
+            "content": "We look ahead to the weekend's action in the Premier League including the Manchester derby, and get the latest from the manager press confrences",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.928362",
+            "updated_at": "2025-04-27 12:09:39.928362",
+            "publish_date": "2025-04-04T12:22:38Z",
+            "views": 484
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 110,
+        "fields": {
+            "title": "A compilation of songs that became bigger hits as covers",
+            "slug": "a-compilation-of-songs-that-became-bigger-hits-as-covers",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/a-compilation-of-songs-that-became-bigger-hits-as-covers.jpg",
+            "summary": "A compilation of songs that became bigger hits for the artists who covered them. These are the incredible original versions, with artists including Gladys Knight and Dolly Parton.",
+            "content": "A compilation of songs that became bigger hits for the artists who covered them. These are the incredible original versions, with artists including Gladys Knight and Dolly Parton.\u00a0More",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.928362",
+            "updated_at": "2025-04-27 12:09:39.928362",
+            "publish_date": "2025-04-05T21:41:58Z",
+            "views": 34
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 111,
+        "fields": {
+            "title": "Tech Now",
+            "slug": "tech-now",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/tech-now.jpg",
+            "summary": "Marc Cieslak has the highlights from the Game Developer Conference in San Francisco, where thousands in the industry come together to share the latest innovation and emerging trends.",
+            "content": "Marc Cieslak has the highlights from the Game Developer Conference in San Francisco, where thousands in the industry come together to share the latest innovation and emerging trends.\u00a0More",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.931568",
+            "updated_at": "2025-04-27 12:09:39.931568",
+            "publish_date": "2025-04-05T01:00:00Z",
+            "views": 318
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 112,
+        "fields": {
+            "title": "Tech Now",
+            "slug": "tech-now-1",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/tech-now.jpg",
+            "summary": "Can we clean up air travel? Adrienne Murray takes to the skies in Sweden to explore developments in electric flight. Joe Tidy visits Zambia to see how Bitcoin is helping electricity projects.",
+            "content": "Can we clean up air travel? Adrienne Murray takes to the skies in Sweden to explore developments in electric flight. Joe Tidy visits Zambia to see how Bitcoin is helping electricity projects.\u00a0More",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.931568",
+            "updated_at": "2025-04-27 12:09:39.931568",
+            "publish_date": "2025-03-29T01:00:00Z",
+            "views": 366
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 113,
+        "fields": {
+            "title": "Tech Now",
+            "slug": "tech-now-2",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/tech-now.jpg",
+            "summary": "Could nuclear fusion supply endless clean energy? Nick Kwek visits the Fuse testing lab in Montreal - a startup with the goal of using nuclear fusion to solve the world's energy problems.",
+            "content": "Could nuclear fusion supply endless clean energy? Nick Kwek visits the Fuse testing lab in Montreal - a startup with the goal of using nuclear fusion to solve the world's energy problems.\u00a0More",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.932566",
+            "updated_at": "2025-04-27 12:09:39.932566",
+            "publish_date": "2025-04-12T01:00:00Z",
+            "views": 446
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 114,
+        "fields": {
+            "title": "The monthly AI or real quiz: April 2025",
+            "slug": "the-monthly-ai-or-real-quiz-april-2025",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-monthly-ai-or-real-quiz-april-2025.jpg",
+            "summary": "Challenge yourself with this edition of our monthly AI or real quiz and see if you can get top marks!",
+            "content": "Jack Black, Aimee Lou Wood and Usher are just a few celebrities that have hit the headlines recently, and these famous faces also feature in this months quiz. But can you spot which of the images are\u2026 [+280 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.932566",
+            "updated_at": "2025-04-27 12:09:39.932566",
+            "publish_date": "2025-04-16T10:13:06Z",
+            "views": 84
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 115,
+        "fields": {
+            "title": "SPFL Challenge Cup",
+            "slug": "spfl-challenge-cup",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/spfl-challenge-cup.jpg",
+            "summary": "The SPFL Trust Trophy Cup final is live on BBC ALBA from the Falkirk Stadium.",
+            "content": "SPFL Challenge Cup Final Queens Park v Livingston\r\nCuairt dheireannach Cupa Urrais an SPFL be\u00f2 air BBC ALBA \u00e0 Ph\u00e0irce na h-Eaglaise Brice. D\u00e0 sgioba \u00e0s an Championship a cluiche an aghaidh a ch\u00e8ile. \u2026 [+599 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.932566",
+            "updated_at": "2025-04-27 12:09:39.933564",
+            "publish_date": "2025-03-30T17:30:00Z",
+            "views": 460
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 116,
+        "fields": {
+            "title": "Monday Night Club",
+            "slug": "monday-night-club",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/monday-night-club.jpg",
+            "summary": "Mark Chapman and guests react to the weekend's football.",
+            "content": "Mark Chapman and guests react to the weekend's football.",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.933564",
+            "updated_at": "2025-04-27 12:09:39.933564",
+            "publish_date": "2025-04-14T18:39:30Z",
+            "views": 214
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 117,
+        "fields": {
+            "title": "The Football News Show",
+            "slug": "the-football-news-show-1",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-football-news-show.jpg",
+            "summary": "We look ahead to the quarter-finals of the Champions League as Arsenal host Real Madrid and Aston Villa travel to PSG",
+            "content": "We look ahead to the quarter-finals of the Champions League as Arsenal host Real Madrid and Aston Villa travel to PSG",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.940564",
+            "updated_at": "2025-04-27 12:09:39.940564",
+            "publish_date": "2025-04-08T09:33:49Z",
+            "views": 68
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 118,
+        "fields": {
+            "title": "The Football News Show",
+            "slug": "the-football-news-show-2",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-football-news-show.jpg",
+            "summary": "We preview the weekend's action in the Premier League, as Liverpool look to secure the title and Leicester and Ipswich could be relegated",
+            "content": "We preview the weekend's action in the Premier League, as Liverpool look to secure the title and Leicester and Ipswich could be relegated",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.941560",
+            "updated_at": "2025-04-27 12:09:39.941560",
+            "publish_date": "2025-04-18T12:17:30Z",
+            "views": 154
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 119,
+        "fields": {
+            "title": "Watch Open All Mics - updates from around the grounds",
+            "slug": "watch-open-all-mics-updates-from-around-the-grounds",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/watch-open-all-mics-updates-from-around-the-grounds.jpg",
+            "summary": "Join Kenny Macintyre and the pundits for all the latest Scottish football scores.",
+            "content": "Join Kenny Macintyre as he goes around the grounds with the Open All Mics pundits for all the latest Scottish football scores.",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.943559",
+            "updated_at": "2025-04-27 12:09:39.943559",
+            "publish_date": "2025-04-12T16:30:45Z",
+            "views": 346
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 120,
+        "fields": {
+            "title": "The Football News Show",
+            "slug": "the-football-news-show-3",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-football-news-show.jpg",
+            "summary": "We preview the Champions League quarter-finals second legs - can Aston Villa come back against PSG and can Arsenal hold onto their lead against Real Madrid?",
+            "content": "We preview the Champions League quarter-finals second legs - can Aston Villa come back against PSG and can Arsenal hold onto their lead against Real Madrid?",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.946281",
+            "updated_at": "2025-04-27 12:09:39.946281",
+            "publish_date": "2025-04-15T09:18:13Z",
+            "views": 1
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 121,
+        "fields": {
+            "title": "The Football News Show",
+            "slug": "the-football-news-show-4",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-football-news-show.jpg",
+            "summary": "Reaction to Arne Slot's press conference ahead of the Merseyside derby and the latest on Trent Alexander-Arnold's future",
+            "content": "Reaction to Arne Slot's press conference ahead of the Merseyside derby and the latest on Trent Alexander-Arnold's future",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.947280",
+            "updated_at": "2025-04-27 12:09:39.947280",
+            "publish_date": "2025-04-01T08:54:15Z",
+            "views": 463
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 122,
+        "fields": {
+            "title": "Watch: Sportscene Open All Mics",
+            "slug": "watch-sportscene-open-all-mics",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/watch-sportscene-open-all-mics.jpg",
+            "summary": "Join Kenny Macintyre and guests for all the latest Scottish football scores.",
+            "content": "Catch up on the latest football action, news and chat.",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.949279",
+            "updated_at": "2025-04-27 12:09:39.949279",
+            "publish_date": "2025-03-29T17:19:30Z",
+            "views": 101
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 123,
+        "fields": {
+            "title": "Watch: Sportscene highlights from Sunday's Premiership action",
+            "slug": "watch-sportscene-highlights-from-sundays-premiership-action",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/watch-sportscene-highlights-from-sundays-premiership-action.jpg",
+            "summary": "Extended highlights of Aberdeen v Rangers and Hibernian v Dundee.",
+            "content": "Extended highlights of Aberdeen v Rangers and Hibernian v Dundee.",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.951278",
+            "updated_at": "2025-04-27 12:09:39.951278",
+            "publish_date": "2025-04-13T19:11:33Z",
+            "views": 79
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 124,
+        "fields": {
+            "title": "The Football News Show",
+            "slug": "the-football-news-show-5",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-football-news-show.jpg",
+            "summary": "Ben Croucher and Michael Brown look ahead to the FA Cup semi-finals between Crystal Palace and Aston Villa and Nottingham Forest and Manchester City",
+            "content": "Ben Croucher and Michael Brown look ahead to the FA Cup semi-finals between Crystal Palace and Aston Villa and Nottingham Forest and Manchester City",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.952277",
+            "updated_at": "2025-04-27 12:09:39.952277",
+            "publish_date": "2025-04-25T12:17:01Z",
+            "views": 258
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 125,
+        "fields": {
+            "title": "Watch: The Monday Night Club",
+            "slug": "watch-the-monday-night-club",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/watch-the-monday-night-club.jpg",
+            "summary": "Mark Chapman and guests react to the weekend's football.",
+            "content": "Mark Chapman and guests react to the weekend's football.",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.954276",
+            "updated_at": "2025-04-27 12:09:39.954276",
+            "publish_date": "2025-04-07T17:38:20Z",
+            "views": 167
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 126,
+        "fields": {
+            "title": "The Football News Show",
+            "slug": "the-football-news-show-6",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-football-news-show.jpg",
+            "summary": "We look ahead to the quarter-finals of the FA Cup this weekend",
+            "content": "We look ahead to the quarter-finals of the FA Cup this weekend",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.956274",
+            "updated_at": "2025-04-27 12:09:39.957274",
+            "publish_date": "2025-03-28T13:28:15Z",
+            "views": 139
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 127,
+        "fields": {
+            "title": "Watch highlights of weekend's Scottish Premiership action",
+            "slug": "watch-highlights-of-weekends-scottish-premiership-action",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/watch-highlights-of-weekends-scottish-premiership-action.jpg",
+            "summary": "Extended highlights of Ross County v Dundee United, plus the best of the action from Saturday\u2019s matches.",
+            "content": "Extended highlights of Ross County v Dundee United, plus the best of the action from Saturdays matches.",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.958272",
+            "updated_at": "2025-04-27 12:09:39.958272",
+            "publish_date": "2025-03-30T18:44:55Z",
+            "views": 459
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 128,
+        "fields": {
+            "title": "Watch: Saturday's Scottish Premiership highlights",
+            "slug": "watch-saturdays-scottish-premiership-highlights",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/watch-saturdays-scottish-premiership-highlights.jpg",
+            "summary": "Steven Thompson presents highlights from the afternoon's fixtures in the Scottish Premiership, including Celtic v Hearts, Dundee v Rangers, Aberdeen v Motherwell and Hibernian v St Johnstone.",
+            "content": "Steven Thompson presents highlights from the afternoon's fixtures in the Scottish Premiership, including Celtic v Hearts, Dundee v Rangers, Aberdeen v Motherwell and Hibernian v St Johnstone.\u00a0More",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.961425",
+            "updated_at": "2025-04-27 12:09:39.961425",
+            "publish_date": "2025-03-29T20:25:55Z",
+            "views": 375
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 129,
+        "fields": {
+            "title": "Monday Night Club",
+            "slug": "monday-night-club-1",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/monday-night-club.jpg",
+            "summary": "Mark Chapman and guests react to the weekend's football.",
+            "content": "Mark Chapman and guests react to the weekend's football.",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.962425",
+            "updated_at": "2025-04-27 12:09:39.962425",
+            "publish_date": "2025-04-21T17:33:36Z",
+            "views": 53
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 130,
+        "fields": {
+            "title": "Watch Sportscene highlights of Saturday's Premiership action",
+            "slug": "watch-sportscene-highlights-of-saturdays-premiership-action",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/watch-sportscene-highlights-of-saturdays-premiership-action.jpg",
+            "summary": "Steven Thompson and Michael Stewart present highlights from the afternoon's fixtures in the Scottish Premiership.",
+            "content": "Steven Thompson and Michael Stewart present highlights from the afternoon's fixtures in the Scottish Premiership.",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-04-12T19:14:30Z",
+            "views": 238
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 131,
+        "fields": {
+            "title": "Monday Night Club",
+            "slug": "monday-night-club-2",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/monday-night-club.jpg",
+            "summary": "Mark Chapman, Chris Sutton, Rory Smith, and Joe Hart react to the weekend's football.",
+            "content": "Mark Chapman, Chris Sutton, Rory Smith, and Joe Hart react to the weekend's football.",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-03-31T17:36:40Z",
+            "views": 422
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 132,
+        "fields": {
+            "title": "How to Win the Champions League",
+            "slug": "how-to-win-the-champions-league",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/how-to-win-the-champions-league.jpg",
+            "summary": "How Jurgen Klopp galvanised a team \u2013 and the red half of the city \u2013 to deliver a sixth European title.",
+            "content": "How Jurgen Klopp galvanised a team and the red half of the city to deliver a sixth European title.\u00a0More",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-04-02T04:55:00Z",
+            "views": 409
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 133,
+        "fields": {
+            "title": "Watch Sportscene highlights",
+            "slug": "watch-sportscene-highlights",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/watch-sportscene-highlights.jpg",
+            "summary": "All the action and reaction to the afternoon\u2019s Scottish Premiership matches.",
+            "content": "News, live scores, results, tables, video, blogs and analysis.",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-04-05T19:14:30Z",
+            "views": 440
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 134,
+        "fields": {
+            "title": "Watch: Arbroath eye title at home to Stenhousemuir",
+            "slug": "watch-arbroath-eye-title-at-home-to-stenhousemuir",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/watch-arbroath-eye-title-at-home-to-stenhousemuir.jpg",
+            "summary": "Football coverage as Arbroath welcome Stenhousemuir to Gayfield Park.",
+            "content": "Tha Obar-Bhrothaig a cur f\u00e0ilte air Stenhousemuir gu P\u00e0irce Gayfield sa ceathramh geama eadar na sgiobaidhean ann L\u00ecog a h-Aon an t-seusan-sa. Am pr\u00f2gram air a l\u00ecbhrigeadh le preasantair Micheal Stee\u2026 [+243 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-04-12T18:30:15Z",
+            "views": 136
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 135,
+        "fields": {
+            "title": "The Football News Show",
+            "slug": "the-football-news-show-7",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-football-news-show.jpg",
+            "summary": "Anita Asante joins us ahead of the Women's Champions League semi-final 2nd legs. So can Chelsea overturn a 4-1 defeat to Barcelona and can Arsenal comeback from 2-1 down to Lyon?",
+            "content": "Anita Asante joins us ahead of the Women's Champions League semi-final 2nd legs. So can Chelsea overturn a 4-1 defeat to Barcelona and can Arsenal comeback from 2-1 down to Lyon?",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-04-23T14:00:00Z",
+            "views": 253
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 136,
+        "fields": {
+            "title": "The true story of Britain's biggest bullion heist",
+            "slug": "the-true-story-of-britains-biggest-bullion-heist",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-true-story-of-britains-biggest-bullion-heist.jpg",
+            "summary": "Told from the inside by the police who were there, this is the true story of Britain's biggest bullion heist.",
+            "content": "Contains some strong language.\r\nThis programme has been edited since broadcast: There are a number of reasons why a programme may have been edited including legal, contractual or technical issues.\r\nT\u2026 [+112 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-04-01T05:00:00Z",
+            "views": 373
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 137,
+        "fields": {
+            "title": "A retired MI6 agent must track down a Soviet mole",
+            "slug": "a-retired-mi6-agent-must-track-down-a-soviet-mole",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/a-retired-mi6-agent-must-track-down-a-soviet-mole.jpg",
+            "summary": "Film adaptation of John Le Carre's Cold War novel about a retired MI6 agent who must track down a Soviet mole within the British intelligence service's ranks.",
+            "content": "Contains some strong language, some sexual content and some violence.\r\nFilm adaptation of John Le Carre's Cold War novel about a retired MI6 agent who must track down a Soviet mole within the British\u2026 [+29 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-04-06T23:00:54Z",
+            "views": 279
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 138,
+        "fields": {
+            "title": "The English We Speak: The name of the game",
+            "slug": "the-english-we-speak-the-name-of-the-game",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-english-we-speak-the-name-of-the-game.jpg",
+            "summary": "Learn an expression to talk about the most important aspect of something. TRANSCRIPT Find a full transcript for this episode \n\u2714\ufe0f https://www.bbc.co.uk/learningenglish/english/features/the-english-we-speak_2025/ep-250414 FIND BBC LEARNING ENGLISH HERE: Visit o\u2026",
+            "content": "Learn an expression to talk about the most important aspect of something. \r\nTRANSCRIPT \r\nFind a full transcript for this episode https://www.bbc.co.uk/learningenglish/english/features/the-english-we-\u2026 [+569 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-04-15T07:59:00Z",
+            "views": 371
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 139,
+        "fields": {
+            "title": "The English We Speak: dial down",
+            "slug": "the-english-we-speak-dial-down",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-english-we-speak-dial-down.jpg",
+            "summary": "Here's an expression we use to talk about reducing the intensity of something. TRANSCRIPT \nFind a full transcript for this episode \u2714\ufe0f https://www.bbc.co.uk/learningenglish/english/features/the-english-we-speak_2025/ep-2504210 FIND BBC LEARNING ENGLISH HERE: \n\u2026",
+            "content": "Here's an expression we use to talk about reducing the intensity of something. \r\nTRANSCRIPT Find a full transcript for this episode https://www.bbc.co.uk/learningenglish/english/features/the-english-\u2026 [+567 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-04-22T10:35:00Z",
+            "views": 329
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 140,
+        "fields": {
+            "title": "Trump Tariffs Trigger Stock Market Tumble",
+            "slug": "trump-tariffs-trigger-stock-market-tumble",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/trump-tariffs-trigger-stock-market-tumble.jpg",
+            "summary": "Trump tariffs trigger steepest US stocks drop since 2020 as China, EU vow to hit back",
+            "content": "Trump tariffs trigger steepest US stocks drop since 2020 as China, EU vow to hit back",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-04-03T07:07:22Z",
+            "views": 175
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 141,
+        "fields": {
+            "title": "How Will Trump's Tariffs Impact You?",
+            "slug": "how-will-trumps-tariffs-impact-you",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/how-will-trumps-tariffs-impact-you.jpg",
+            "summary": "The BBC's team of experts answer your questions on Trump's new tariffs",
+            "content": "The BBC's team of experts answer your questions on Trump's new tariffs",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-04-03T11:28:19Z",
+            "views": 247
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 142,
+        "fields": {
+            "title": "Police Raid Shops Suspected Of Money Laundering",
+            "slug": "police-raid-shops-suspected-of-money-laundering",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/police-raid-shops-suspected-of-money-laundering.jpg",
+            "summary": "Police raid hundreds of barber shops, vape stores and mini-marts suspected of being fronts for crime gangs - the BBC follows the operation",
+            "content": "Police raid hundreds of barber shops, vape stores and mini-marts suspected of being fronts for crime gangs - the BBC follows the operation",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.963340",
+            "updated_at": "2025-04-27 12:09:39.963340",
+            "publish_date": "2025-04-10T22:25:25Z",
+            "views": 31
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 143,
+        "fields": {
+            "title": "Can AI solve crime?",
+            "slug": "can-ai-solve-crime",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/can-ai-solve-crime.jpg",
+            "summary": "Could artificial intelligence be used to solve a murder? Find a full transcript, worksheet and interactive quiz for this episode at: https://www.bbc.co.uk/learningenglish/english/features/6-minute-english_2025/250417SUBSCRIBE TO OUR NEWSLETTER:\n\u2714\ufe0f https://www\u2026",
+            "content": "Could artificial intelligence be used to solve a murder? \r\nFind a full transcript, worksheet and interactive quiz for this episode at: https://www.bbc.co.uk/learningenglish/english/features/6-minute-\u2026 [+453 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.967915",
+            "updated_at": "2025-04-27 12:09:39.967915",
+            "publish_date": "2025-04-17T08:05:00Z",
+            "views": 366
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 144,
+        "fields": {
+            "title": "Can we boost the immune system?",
+            "slug": "can-we-boost-the-immune-system",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/can-we-boost-the-immune-system.jpg",
+            "summary": "Can ginger shots, turmeric and cold water swimming boost your immune system? Georgie and Neil hear from experts and teach you some vocabulary.Find a full transcript, worksheet and interactive quiz for this episode at: https://www.bbc.co.uk/learningenglish/eng\u2026",
+            "content": "Can ginger shots, turmeric and cold water swimming boost your immune system? Georgie and Neil hear from experts and teach you some vocabulary.\r\nFind a full transcript, worksheet and interactive quiz \u2026 [+658 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.967915",
+            "updated_at": "2025-04-27 12:09:39.967915",
+            "publish_date": "2025-03-27T11:12:00Z",
+            "views": 297
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 145,
+        "fields": {
+            "title": "The English We Speak: Let something slide",
+            "slug": "the-english-we-speak-let-something-slide",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-english-we-speak-let-something-slide.jpg",
+            "summary": "You're late! I'll let it slide just this once... This phrase has two meanings. Learn them and hear some examples in this episode.TRANSCRIPT Find a full transcript for this episode \u2714\ufe0f https://www.bbc.co.uk/learningenglish/english/features/the-english-we-speak_\u2026",
+            "content": "You're late! I'll let it slide just this once... This phrase has two meanings. Learn them and hear some examples in this episode.\r\nTRANSCRIPT Find a full transcript for this episode https://www.bbc.c\u2026 [+616 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.967915",
+            "updated_at": "2025-04-27 12:09:39.967915",
+            "publish_date": "2025-04-01T10:22:00Z",
+            "views": 149
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 146,
+        "fields": {
+            "title": "The English We Speak: Do it for the plot",
+            "slug": "the-english-we-speak-do-it-for-the-plot",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-english-we-speak-do-it-for-the-plot.jpg",
+            "summary": "An expression for when you make spontaneous life decisions for entertainment. TRANSCRIPT Find a full transcript for this episode \u2714\ufe0f https://www.bbc.co.uk/learningenglish/english/features/the-english-we-speak_2025/ep-250407FIND BBC LEARNING ENGLISH HERE:\nVisit\u2026",
+            "content": "An expression for when you make spontaneous life decisions for entertainment. \r\nTRANSCRIPT Find a full transcript for this episode https://www.bbc.co.uk/learningenglish/english/features/the-english-w\u2026 [+552 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.968721",
+            "updated_at": "2025-04-27 12:09:39.968721",
+            "publish_date": "2025-04-08T08:04:00Z",
+            "views": 431
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 147,
+        "fields": {
+            "title": "How climate change affects animal migration",
+            "slug": "how-climate-change-affects-animal-migration",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/how-climate-change-affects-animal-migration.jpg",
+            "summary": "Climate change can affect the way animals migrate, but did you know that some animal migration could be used to fight climate change? Neil and Beth discuss this and teach you some new vocabulary.Find a full transcript, worksheet and interactive quiz for this \u2026",
+            "content": "Climate change can affect the way animals migrate, but did you know that some animal migration could be used to fight climate change? Neil and Beth discuss this and teach you some new vocabulary.\r\nFi\u2026 [+602 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.968721",
+            "updated_at": "2025-04-27 12:09:39.969117",
+            "publish_date": "2025-04-24T09:59:00Z",
+            "views": 125
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 148,
+        "fields": {
+            "title": "Learning multiple languages",
+            "slug": "learning-multiple-languages",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/learning-multiple-languages.jpg",
+            "summary": "Is learning languages good for you? Hannah from the What in the World podcast joins us to discuss.Listen to Hannah\u2019s podcast What in the World https://www.bbc.co.uk/programmes/w3ct67x6 TRANSCRIPT \nFind a full transcript for this episode and more programmes to\u2026",
+            "content": "Is learning languages good for you? Hannah from the What in the World podcast joins us to discuss.\r\nListen to Hannahs podcast What in the World https://www.bbc.co.uk/programmes/w3ct67x6 \r\nTRANSCRIPT \u2026 [+620 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.969117",
+            "updated_at": "2025-04-27 12:09:39.969117",
+            "publish_date": "2025-04-10T07:53:00Z",
+            "views": 167
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 149,
+        "fields": {
+            "title": "Are we getting more allergic to things?",
+            "slug": "are-we-getting-more-allergic-to-things",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/are-we-getting-more-allergic-to-things.jpg",
+            "summary": "Do you know anyone who has 50+ allergies? Neil and Beth discuss allergies and teach you some new vocabulary. Find a full transcript, worksheet and interactive quiz for this episode at: https://www.bbc.co.uk/learningenglish/english/features/6-minute-english_20\u2026",
+            "content": "Do you know anyone who has 50+ allergies? Neil and Beth discuss allergies and teach you some new vocabulary. \r\nFind a full transcript, worksheet and interactive quiz for this episode at: https://www.\u2026 [+610 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.969117",
+            "updated_at": "2025-04-27 12:09:39.969117",
+            "publish_date": "2025-04-03T08:04:00Z",
+            "views": 115
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 150,
+        "fields": {
+            "title": "Pollination",
+            "slug": "pollination",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/pollination.jpg",
+            "summary": "Since plants have to mate and produce offspring while rooted to the spot, they have to be pollinated \u2013 by wind, water, or animals \u2013 most commonly insects. They use a surprising array of tricks to attract pollinators: striking colours, iridescent light effects\u2026",
+            "content": "Since plants have to mate and produce offspring while rooted to the spot, they have to be pollinated by wind, water, or animals most commonly insects. They use a surprising array of tricks to attract\u2026 [+1724 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.969117",
+            "updated_at": "2025-04-27 12:09:39.969117",
+            "publish_date": "2025-04-03T09:15:00Z",
+            "views": 108
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 151,
+        "fields": {
+            "title": "Thomas Middleton",
+            "slug": "thomas-middleton",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/thomas-middleton.jpg",
+            "summary": "Melvyn Bragg and guests discuss one of the most energetic, varied and innovative playwrights of his time. Thomas Middleton (1580-1627) worked across the London stages both alone and with others from Dekker and Rowley to Shakespeare and more. Middleton\u2019s range\u2026",
+            "content": "Melvyn Bragg and guests discuss one of the most energetic, varied and innovative playwrights of his time. Thomas Middleton (1580-1627) worked across the London stages both alone and with others from \u2026 [+1821 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.970116",
+            "updated_at": "2025-04-27 12:09:39.970116",
+            "publish_date": "2025-04-17T09:15:00Z",
+            "views": 314
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 152,
+        "fields": {
+            "title": "Maurice Merleau-Ponty",
+            "slug": "maurice-merleau-ponty",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/maurice-merleau-ponty.jpg",
+            "summary": "Melvyn Bragg and guests discuss the French philosopher Maurice Merleau-Ponty (1908-1961), who was part of the movement known as phenomenology. While less well-known than his contemporaries Jean-Paul Sartre and Simone de Beauvoir, his popularity has increased \u2026",
+            "content": "Melvyn Bragg and guests discuss the French philosopher Maurice Merleau-Ponty (1908-1961), who was part of the movement known as phenomenology. While less well-known than his contemporaries Jean-Paul \u2026 [+3404 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.970116",
+            "updated_at": "2025-04-27 12:09:39.970116",
+            "publish_date": "2025-04-24T09:15:00Z",
+            "views": 404
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 153,
+        "fields": {
+            "title": "Cyrus the Great",
+            "slug": "cyrus-the-great",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/cyrus-the-great.jpg",
+            "summary": "Melvyn Bragg and guests explore the history and reputation of the Persian ruler Cyrus the Great. Cyrus the Second of Persia as he was known then was born in the sixth century BCE in Persis which is now in Iran. He was the founder of the first Persian Empire, \u2026",
+            "content": "Melvyn Bragg and guests explore the history and reputation of the Persian ruler Cyrus the Great. Cyrus the Second of Persia as he was known then was born in the sixth century BCE in Persis which is n\u2026 [+2252 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.970116",
+            "updated_at": "2025-04-27 12:09:39.970116",
+            "publish_date": "2025-04-10T09:15:00Z",
+            "views": 308
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 154,
+        "fields": {
+            "title": "Kali",
+            "slug": "kali",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/kali.jpg",
+            "summary": "Melvyn Bragg and guests discuss the Hindu goddess Kali, often depicted as dark blue, fierce, defiant, revelling in her power, and holding in her four or more arms a curved sword and a severed head with a cup underneath to catch the blood. She may have her ton\u2026",
+            "content": "Melvyn Bragg and guests discuss the Hindu goddess Kali, often depicted as dark blue, fierce, defiant, revelling in her power, and holding in her four or more arms a curved sword and a severed head wi\u2026 [+1756 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.970116",
+            "updated_at": "2025-04-27 12:09:39.970116",
+            "publish_date": "2025-03-27T10:15:00Z",
+            "views": 325
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 155,
+        "fields": {
+            "title": "The Covid generation revisited",
+            "slug": "the-covid-generation-revisited",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-covid-generation-revisited.jpg",
+            "summary": "Five years on from the global lockdown we catch up with the \"Covid Generation\", the class of 2020 - school leavers and graduates from around the world, to find out how the coronavirus pandemic affected their lives and studies as well as employment prospects. \u2026",
+            "content": "Five years on from the global lockdown we catch up with the \"Covid Generation\", the class of 2020 - school leavers and graduates from around the world, to find out how the coronavirus pandemic affect\u2026 [+334 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.970116",
+            "updated_at": "2025-04-27 12:09:39.970116",
+            "publish_date": "2025-03-30T01:30:00Z",
+            "views": 137
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 156,
+        "fields": {
+            "title": "In the Studio: Lindy Lee\u2019s Ouroboros",
+            "slug": "in-the-studio-lindy-lees-ouroboros",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/in-the-studio-lindy-lees-ouroboros.jpg",
+            "summary": "Lindy Lee\u2019s Ouroboros is the most expensive single artwork commission in Australian history. A $14 million, three-tonne, 10-metre wide freestanding shell of mirror-polished stainless steel with 48,000 individually cut plasma-cut perforations: Lindy calls the \u2026",
+            "content": "Lindy Lees Ouroboros is the most expensive single artwork commission in Australian history. A $14 million, three-tonne, 10-metre wide freestanding shell of mirror-polished stainless steel with 48,000\u2026 [+241 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.971116",
+            "updated_at": "2025-04-27 12:09:39.971116",
+            "publish_date": "2025-03-31T00:30:00Z",
+            "views": 484
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 157,
+        "fields": {
+            "title": "Living in a bubble: The headphone revolution",
+            "slug": "living-in-a-bubble-the-headphone-revolution",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/living-in-a-bubble-the-headphone-revolution.jpg",
+            "summary": "Headphones and earbuds have experienced a phenomenal rise in popularity worldwide, transforming how people consume audio content and impacting on various aspects of daily life. Per Sennstr\u00f6m, one of the creators of Swedish company Earin, shares insights into \u2026",
+            "content": "Headphones and earbuds have experienced a phenomenal rise in popularity worldwide, transforming how people consume audio content and impacting on various aspects of daily life. Per Sennstr\u00f6m, one of \u2026 [+577 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.971116",
+            "updated_at": "2025-04-27 12:09:39.971116",
+            "publish_date": "2025-04-02T00:30:00Z",
+            "views": 291
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 158,
+        "fields": {
+            "title": "The subsea war",
+            "slug": "the-subsea-war",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-subsea-war.jpg",
+            "summary": "The 'accidental' severing of undersea cables or pipelines seem an almost daily occurrence these days but how reliant are we on this infrastructure, how much of it is there, and what steps are being taken to protect it? Business and economics editor Douglas Fr\u2026",
+            "content": "The 'accidental' severing of undersea cables or pipelines seem an almost daily occurrence these days but how reliant are we on this infrastructure, how much of it is there, and what steps are being t\u2026 [+451 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.971116",
+            "updated_at": "2025-04-27 12:09:39.971116",
+            "publish_date": "2025-04-03T00:30:00Z",
+            "views": 230
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 159,
+        "fields": {
+            "title": "Heart and Soul: Guns, grief and god",
+            "slug": "heart-and-soul-guns-grief-and-god",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/heart-and-soul-guns-grief-and-god.jpg",
+            "summary": "On 4 September 2024, the town of Winder in the US state of Georgia became the latest scene of a school mass shooting. Two students and two teachers were killed. The suspect was 14 years old. The deadly attack at Apalachee High School left a community torn apa\u2026",
+            "content": "On 4 September 2024, the town of Winder in the US state of Georgia became the latest scene of a school mass shooting. Two students and two teachers were killed. The suspect was 14 years old. The dead\u2026 [+542 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.972116",
+            "updated_at": "2025-04-27 12:09:39.972116",
+            "publish_date": "2025-04-11T00:30:00Z",
+            "views": 76
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 160,
+        "fields": {
+            "title": "Adolescence",
+            "slug": "adolescence",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/adolescence.jpg",
+            "summary": "The hit Netflix show, Adolescence, has prompted a global conversation on toxic masculinity. The series is based in the north of England and centres on a 13-year-old boy, Jamie, accused of murdering a teenage girl. In our conversations we explore some of the i\u2026",
+            "content": "The hit Netflix show, Adolescence, has prompted a global conversation on toxic masculinity. The series is based in the north of England and centres on a 13-year-old boy, Jamie, accused of murdering a\u2026 [+396 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.972116",
+            "updated_at": "2025-04-27 12:09:39.972116",
+            "publish_date": "2025-04-05T00:30:00Z",
+            "views": 252
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 161,
+        "fields": {
+            "title": "BBC OS Conversations: Protests in Turkey",
+            "slug": "bbc-os-conversations-protests-in-turkey",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/bbc-os-conversations-protests-in-turkey.jpg",
+            "summary": "Across Turkey, hundreds of thousands of people have been taking to the streets after the arrest of President Erdogan\u2019s main political rival, the Mayor of Istanbul Ekrem Imamoglu. It is the worst unrest for more than a decade and police have fired tear gas and\u2026",
+            "content": "Across Turkey, hundreds of thousands of people have been taking to the streets after the arrest of President Erdogans main political rival, the Mayor of Istanbul Ekrem Imamoglu. It is the worst unres\u2026 [+396 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.972116",
+            "updated_at": "2025-04-27 12:09:39.972116",
+            "publish_date": "2025-03-29T01:30:00Z",
+            "views": 271
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 162,
+        "fields": {
+            "title": "The Cultural Frontline: The Los Angeles fires",
+            "slug": "the-cultural-frontline-the-los-angeles-fires",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-cultural-frontline-the-los-angeles-fires.jpg",
+            "summary": "The fires that devastated parts of Los Angeles in January this year killed at least 29 people and destroyed thousands of homes. Angelino Laura Hubber talks to those affected by the fires and looks at the ongoing impact on the artistic and cultural life of the\u2026",
+            "content": "The fires that devastated parts of Los Angeles in January this year killed at least 29 people and destroyed thousands of homes. Angelino Laura Hubber talks to those affected by the fires and looks at\u2026 [+760 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.972116",
+            "updated_at": "2025-04-27 12:09:39.972116",
+            "publish_date": "2025-03-27T01:30:00Z",
+            "views": 219
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 163,
+        "fields": {
+            "title": "The Fifth Floor: Inside the Taliban's surveillance network",
+            "slug": "the-fifth-floor-inside-the-talibans-surveillance-network",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-fifth-floor-inside-the-talibans-surveillance-network.jpg",
+            "summary": "There are over 90,000 hi-definition CCTV cameras in Kabul, watching everyone\u2019s movements. What are the Taliban using this footage for? BBC Afghan Services' journalist Mahjooba Nowrouzi was granted exclusive access into the country\u2019s top security control room.\u2026",
+            "content": "There are over 90,000 hi-definition CCTV cameras in Kabul, watching everyones movements. What are the Taliban using this footage for? BBC Afghan Services' journalist Mahjooba Nowrouzi was granted exc\u2026 [+398 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.972116",
+            "updated_at": "2025-04-27 12:09:39.973114",
+            "publish_date": "2025-04-19T12:30:00Z",
+            "views": 92
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 164,
+        "fields": {
+            "title": "Assignment: Dicing with democracy? Romania\u2019s cancelled election",
+            "slug": "assignment-dicing-with-democracy-romanias-cancelled-election",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/assignment-dicing-with-democracy-romanias-cancelled-election.jpg",
+            "summary": "A cancelled election, a cancelled candidate and a divided country \u2013 is Romania\u2019s democracy under threat?Last December the country\u2019s Constitutional Court cancelled the presidential election two days before the final vote, citing outside interference, with the \u2026",
+            "content": "A cancelled election, a cancelled candidate and a divided country is Romanias democracy under threat?\r\nLast December the countrys Constitutional Court cancelled the presidential election two days bef\u2026 [+696 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.973114",
+            "updated_at": "2025-04-27 12:09:39.973114",
+            "publish_date": "2025-04-22T00:30:00Z",
+            "views": 117
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 165,
+        "fields": {
+            "title": "Assignment: New Zealand - what counts as Maori equality",
+            "slug": "assignment-new-zealand-what-counts-as-maori-equality",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/assignment-new-zealand-what-counts-as-maori-equality.jpg",
+            "summary": "Maori have been protesting in large numbers, in a 9-day hikoi or march of defiance, walking from the top of New Zealand down to the capital Wellington, joined by non-Maori supporters too. They\u2019re demonstrating against the current right-of-centre New Zealand g\u2026",
+            "content": "Maori have been protesting in large numbers, in a 9-day hikoi or march of defiance, walking from the top of New Zealand down to the capital Wellington, joined by non-Maori supporters too. Theyre demo\u2026 [+843 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.973114",
+            "updated_at": "2025-04-27 12:09:39.973114",
+            "publish_date": "2025-04-15T00:30:00Z",
+            "views": 78
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 166,
+        "fields": {
+            "title": "Make me perfect: Manufacturing beauty in China",
+            "slug": "make-me-perfect-manufacturing-beauty-in-china",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/make-me-perfect-manufacturing-beauty-in-china.jpg",
+            "summary": "In China today, looking good is seen as key to career success. With beauty videos promoting extreme weight-loss flooding social media, beauty apps making booking surgery click of a button away, China\u2019s cosmetic surgery industry is booming. But the surge in de\u2026",
+            "content": "In China today, looking good is seen as key to career success. With beauty videos promoting extreme weight-loss flooding social media, beauty apps making booking surgery click of a button away, China\u2026 [+599 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.973114",
+            "updated_at": "2025-04-27 12:09:39.973114",
+            "publish_date": "2025-04-20T00:30:00Z",
+            "views": 303
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 167,
+        "fields": {
+            "title": "Heart and Soul: I was shot at school and wouldn\u2019t change a thing",
+            "slug": "heart-and-soul-i-was-shot-at-school-and-wouldnt-change-a-thing",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/heart-and-soul-i-was-shot-at-school-and-wouldnt-change-a-thing.jpg",
+            "summary": "School shootings in the USA continue to be a far too common tragedy. In January 2017, 16-year-old Logan Cole, who lives in a small town in the American mid-west was shot in the bathroom of his high school by a fellow student. His injuries were extensive. Afra\u2026",
+            "content": "School shootings in the USA continue to be a far too common tragedy. In January 2017, 16-year-old Logan Cole, who lives in a small town in the American mid-west was shot in the bathroom of his high s\u2026 [+559 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.973114",
+            "updated_at": "2025-04-27 12:09:39.973114",
+            "publish_date": "2025-04-04T00:30:00Z",
+            "views": 338
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 168,
+        "fields": {
+            "title": "BBC OS Conversations: Remembering the life of Pope Francis",
+            "slug": "bbc-os-conversations-remembering-the-life-of-pope-francis",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/bbc-os-conversations-remembering-the-life-of-pope-francis.jpg",
+            "summary": "Mark Lowen in Rome brings people together to share their memories of the Pope, who died on Easter Monday. In our conversations, Mark hears from Catholics in Argentina, including one of Pope Francis\u2019 friends who knew him when he was a priest in Buenos Aires. W\u2026",
+            "content": "Mark Lowen in Rome brings people together to share their memories of the Pope, who died on Easter Monday. In our conversations, Mark hears from Catholics in Argentina, including one of Pope Francis f\u2026 [+346 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.974114",
+            "updated_at": "2025-04-27 12:09:39.974114",
+            "publish_date": "2025-04-26T00:30:00Z",
+            "views": 241
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 169,
+        "fields": {
+            "title": "Assignment: Lebanon - Hezbollah in trouble",
+            "slug": "assignment-lebanon-hezbollah-in-trouble",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/assignment-lebanon-hezbollah-in-trouble.jpg",
+            "summary": "Hezbollah, the militia and political movement in Lebanon, has been battered by the war with Israel. Its leaders were assassinated, hundreds of fighters killed, and many of its communities now lie in ruins. Until recently a formidable power with the ability to\u2026",
+            "content": "Hezbollah, the militia and political movement in Lebanon, has been battered by the war with Israel. Its leaders were assassinated, hundreds of fighters killed, and many of its communities now lie in \u2026 [+318 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.974114",
+            "updated_at": "2025-04-27 12:09:39.974114",
+            "publish_date": "2025-03-31T23:01:00Z",
+            "views": 432
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 170,
+        "fields": {
+            "title": "The Cultural Frontline: South East Asian cinema - a love story",
+            "slug": "the-cultural-frontline-south-east-asian-cinema-a-love-story",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-cultural-frontline-south-east-asian-cinema-a-love-story.jpg",
+            "summary": "In South East Asia, cinema attendances are growing, thanks to a renewed interest in local product. For instance, the Thai movie How to Make Millions Before Grandma Dies, broke box office records this year. We hear from director Pat Boonnitipat about the reaso\u2026",
+            "content": "In South East Asia, cinema attendances are growing, thanks to a renewed interest in local product. For instance, the Thai movie How to Make Millions Before Grandma Dies, broke box office records this\u2026 [+570 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.974114",
+            "updated_at": "2025-04-27 12:09:39.974114",
+            "publish_date": "2025-04-09T00:30:00Z",
+            "views": 467
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 171,
+        "fields": {
+            "title": "BBC OS Conversations: The impact of Trump's tariffs",
+            "slug": "bbc-os-conversations-the-impact-of-trumps-tariffs",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/bbc-os-conversations-the-impact-of-trumps-tariffs.jpg",
+            "summary": "Donald Trump\u2019s decision to slap tariffs on global trade has sent the world reeling. Stock markets have tanked. Gloomy economists have hit the airwaves. Governments, their backs against the wall, have responded with either stoic resignation or threats of reven\u2026",
+            "content": "Donald Trumps decision to slap tariffs on global trade has sent the world reeling. Stock markets have tanked. Gloomy economists have hit the airwaves. Governments, their backs against the wall, have \u2026 [+460 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.974114",
+            "updated_at": "2025-04-27 12:09:39.974114",
+            "publish_date": "2025-04-12T00:30:00Z",
+            "views": 324
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 172,
+        "fields": {
+            "title": "Olympique Lyonnais: The Champions League trailblazers",
+            "slug": "olympique-lyonnais-the-champions-league-trailblazers",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/olympique-lyonnais-the-champions-league-trailblazers.jpg",
+            "summary": "Olympique Lyonnais is the most successful club in women\u2019s football, dominating Europe over the last 15 years winning eight Champions League titles. Only Barcelona have recently been able to compete. Lyon's success is the vision of club president Jean-Michel A\u2026",
+            "content": "Olympique Lyonnais is the most successful club in womens football, dominating Europe over the last 15 years winning eight Champions League titles. Only Barcelona have recently been able to compete. L\u2026 [+1053 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.975114",
+            "updated_at": "2025-04-27 12:09:39.975114",
+            "publish_date": "2025-04-16T00:30:00Z",
+            "views": 16
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 173,
+        "fields": {
+            "title": "In the Studio: Amin Gulgee - Heavy metal",
+            "slug": "in-the-studio-amin-gulgee-heavy-metal",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/in-the-studio-amin-gulgee-heavy-metal.jpg",
+            "summary": "Amin Gulgee defies easy categorisation: he\u2019s a metal sculptor, a curator, and one of Pakistan\u2019s most innovative and cherished artists, the beating heart of his home city of Karachi\u2019s creative scene. His metalwork is as dramatic and eccentric as Amin is. He\u2019s \u2026",
+            "content": "Amin Gulgee defies easy categorisation: hes a metal sculptor, a curator, and one of Pakistans most innovative and cherished artists, the beating heart of his home city of Karachis creative scene. His\u2026 [+1650 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.975114",
+            "updated_at": "2025-04-27 12:09:39.975114",
+            "publish_date": "2025-04-21T00:30:00Z",
+            "views": 471
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 174,
+        "fields": {
+            "title": "Francis, The Rebel Pope",
+            "slug": "francis-the-rebel-pope",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/francis-the-rebel-pope.jpg",
+            "summary": "Following the death of Pope Francis, Edward Stourton looks at the life and legacy of the spiritual leader of more than a billion Catholics worldwide. He was elected at a time of crisis for his Church, but quickly transformed its reputation. He urged Christian\u2026",
+            "content": "Following the death of Pope Francis, Edward Stourton looks at the life and legacy of the spiritual leader of more than a billion Catholics worldwide. He was elected at a time of crisis for his Church\u2026 [+449 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.975114",
+            "updated_at": "2025-04-27 12:09:39.975114",
+            "publish_date": "2025-04-22T09:00:00Z",
+            "views": 153
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 175,
+        "fields": {
+            "title": "Bonus: Bridgerton actor\u2019s interview on Dear Daughter",
+            "slug": "bonus-bridgerton-actors-interview-on-dear-daughter",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/bonus-bridgerton-actors-interview-on-dear-daughter.jpg",
+            "summary": "A bonus episode from Dear Daughter - the award-winning podcast from the BBC World Service. You can find more episodes by searching for \u2018Dear Daughter\u2019 wherever you get your BBC podcasts.Bridgerton actor Adjoa Andoh joins Namulanta in the studio to share the l\u2026",
+            "content": "A bonus episode from Dear Daughter - the award-winning podcast from the BBC World Service. You can find more episodes by searching for Dear Daughter wherever you get your BBC podcasts.\r\nBridgerton ac\u2026 [+1385 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.975114",
+            "updated_at": "2025-04-27 12:09:39.975114",
+            "publish_date": "2025-04-25T00:30:00Z",
+            "views": 368
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 176,
+        "fields": {
+            "title": "The Naked Week: Ep6. Tariffs, Theme Parks, and Twister.",
+            "slug": "the-naked-week-ep6-tariffs-theme-parks-and-twister",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-naked-week-ep6-tariffs-theme-parks-and-twister.jpg",
+            "summary": "The Naked Week team are back to place satirical news-tariffs on current events with a mix of correspondents, guests and, occasionally, live animals.This week we mourn the death of globalisation, take a tour of Keir's new theme park, and play a game of BBC Bal\u2026",
+            "content": "The Naked Week team are back to place satirical news-tariffs on current events with a mix of correspondents, guests and, occasionally, live animals.\r\nThis week we mourn the death of globalisation, ta\u2026 [+869 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.975114",
+            "updated_at": "2025-04-27 12:09:39.975114",
+            "publish_date": "2025-04-18T18:00:00Z",
+            "views": 428
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 177,
+        "fields": {
+            "title": "The Fifth Floor: Tales from Tbilisi",
+            "slug": "the-fifth-floor-tales-from-tbilisi",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-fifth-floor-tales-from-tbilisi.jpg",
+            "summary": "Faranak Amidi visits three places in Tbilisi, Georgia to find out more about its history and what's behind the current political turmoil in the country. The Parliament building has been the site of the recent protests, where people have been gathering for mor\u2026",
+            "content": "Faranak Amidi visits three places in Tbilisi, Georgia to find out more about its history and what's behind the current political turmoil in the country. \r\nThe Parliament building has been the site of\u2026 [+578 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.976112",
+            "updated_at": "2025-04-27 12:09:39.976112",
+            "publish_date": "2025-03-29T13:30:00Z",
+            "views": 402
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 178,
+        "fields": {
+            "title": "Heart and Soul: Kai H\u00f6ss",
+            "slug": "heart-and-soul-kai-hoss",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/heart-and-soul-kai-hoss.jpg",
+            "summary": "In a cinema in south-west Germany, an audience is gathered to watch an Oscar-winning film, The Zone of Interest, about the life of Rudolf H\u00f6ss, commandant of Auschwitz. Those present comprise Jewish people from around the world, and the special guest is Rudol\u2026",
+            "content": "In a cinema in south-west Germany, an audience is gathered to watch an Oscar-winning film, The Zone of Interest, about the life of Rudolf H\u00f6ss, commandant of Auschwitz. Those present comprise Jewish \u2026 [+1214 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.976112",
+            "updated_at": "2025-04-27 12:09:39.976112",
+            "publish_date": "2025-03-28T01:30:00Z",
+            "views": 217
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 179,
+        "fields": {
+            "title": "BBC OS Conversations: Colourism",
+            "slug": "bbc-os-conversations-colourism",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/bbc-os-conversations-colourism.jpg",
+            "summary": "The issue of colourism was highlighted in a recent BBC news report about a Nigerian woman who bleached the skin of her six young children leaving them with discoloured skin, burns and scars. It is a form of racism where light skin is more highly valued than d\u2026",
+            "content": "The issue of colourism was highlighted in a recent BBC news report about a Nigerian woman who bleached the skin of her six young children leaving them with discoloured skin, burns and scars. It is a \u2026 [+1020 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.976112",
+            "updated_at": "2025-04-27 12:09:39.976112",
+            "publish_date": "2025-04-19T00:30:00Z",
+            "views": 79
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 180,
+        "fields": {
+            "title": "Assignment: Unidentified flying drones in Denmark",
+            "slug": "assignment-unidentified-flying-drones-in-denmark",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/assignment-unidentified-flying-drones-in-denmark.jpg",
+            "summary": "When mysterious orb-like lights were recorded in the sky above Koge, a small port town in Denmark, the UFO scene took notice. But it wasn't just believers who wanted to know what these unidentified flying objects were.Danish police and the Danish security ser\u2026",
+            "content": "When mysterious orb-like lights were recorded in the sky above Koge, a small port town in Denmark, the UFO scene took notice. But it wasn't just believers who wanted to know what these unidentified f\u2026 [+381 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.976112",
+            "updated_at": "2025-04-27 12:09:39.976112",
+            "publish_date": "2025-04-08T00:30:00Z",
+            "views": 410
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 181,
+        "fields": {
+            "title": "Defeated: How ordinary Germans experienced the end of WW2",
+            "slug": "defeated-how-ordinary-germans-experienced-the-end-of-ww2",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/defeated-how-ordinary-germans-experienced-the-end-of-ww2.jpg",
+            "summary": "On 8 May 1945 Britain, the US and many other countries were rejoicing. Germany had surrendered, and World War Two was over, at least in Europe. Yet it was not a day of celebration for everyone - for the vanquished Germans, it marked the end of bombings and of\u2026",
+            "content": "On 8 May 1945 Britain, the US and many other countries were rejoicing. Germany had surrendered, and World War Two was over, at least in Europe. Yet it was not a day of celebration for everyone - for \u2026 [+393 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.977113",
+            "updated_at": "2025-04-27 12:09:39.977113",
+            "publish_date": "2025-04-13T00:30:00Z",
+            "views": 489
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 182,
+        "fields": {
+            "title": "Braille and Me",
+            "slug": "braille-and-me",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/braille-and-me.jpg",
+            "summary": "Built around a game of Braille Scrabble, Emma Tracey presents a celebration of Braille, 200 years after it was invented. Emma, who\u2019s been blind since birth, talks to others who love the six tiny dots: Geerat Vermeij, one of the world\u2019s leading experts in moll\u2026",
+            "content": "Built around a game of Braille Scrabble, Emma Tracey presents a celebration of Braille, 200 years after it was invented. Emma, whos been blind since birth, talks to others who love the six tiny dots:\u2026 [+809 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.977113",
+            "updated_at": "2025-04-27 12:09:39.977113",
+            "publish_date": "2025-04-17T00:30:00Z",
+            "views": 280
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 183,
+        "fields": {
+            "title": "The Fifth Floor: Stranded in Panama",
+            "slug": "the-fifth-floor-stranded-in-panama",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-fifth-floor-stranded-in-panama.jpg",
+            "summary": "On his first day as president, Donald Trump signed an executive order shutting down the asylum system at the US-Mexico border. He also promised huge changes to the US immigration system, including arrests and mass deportations of undocumented migrants. \nSanti\u2026",
+            "content": "On his first day as president, Donald Trump signed an executive order shutting down the asylum system at the US-Mexico border. He also promised huge changes to the US immigration system, including ar\u2026 [+562 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.977113",
+            "updated_at": "2025-04-27 12:09:39.977113",
+            "publish_date": "2025-04-12T12:30:00Z",
+            "views": 426
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 184,
+        "fields": {
+            "title": "The Fifth Floor: India's 'godwoman'",
+            "slug": "the-fifth-floor-indias-godwoman",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-fifth-floor-indias-godwoman.jpg",
+            "summary": "Delhi correspondent Divya Arya recently met a woman who claims to perform miracles. She\u2019s called Radhe Maa and her devotees see her as a God. She\u2019s not the only person in India who claims to have god-like powers, but she is unusual as mostly these people are \u2026",
+            "content": "Delhi correspondent Divya Arya recently met a woman who claims to perform miracles. Shes called Radhe Maa and her devotees see her as a God. Shes not the only person in India who claims to have god-l\u2026 [+328 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.977740",
+            "updated_at": "2025-04-27 12:09:39.977740",
+            "publish_date": "2025-04-05T12:30:00Z",
+            "views": 348
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 185,
+        "fields": {
+            "title": "Donald Trump\u2019s new world order",
+            "slug": "donald-trumps-new-world-order",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/donald-trumps-new-world-order.jpg",
+            "summary": "President Trump has upended the international order to promote his \u201cAmerica First\u201d agenda. He has thrown countries and their leaders around the world off balance with his radical departure from decades-old United States foreign policy. With so many changes go\u2026",
+            "content": "President Trump has upended the international order to promote his America First agenda. He has thrown countries and their leaders around the world off balance with his radical departure from decades\u2026 [+262 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.977740",
+            "updated_at": "2025-04-27 12:09:39.977740",
+            "publish_date": "2025-04-06T00:30:00Z",
+            "views": 472
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 186,
+        "fields": {
+            "title": "In the Studio: Anna Clyne and Jody Elff",
+            "slug": "in-the-studio-anna-clyne-and-jody-elff",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/in-the-studio-anna-clyne-and-jody-elff.jpg",
+            "summary": "Contemporary classical music composer Anna Clyne is one of the most performed and in demand composers in the world.For her next commission, she is working on a new concerto for the St Louis Symphony Orchestra in Missouri, US. The piece is called PALETTE, and \u2026",
+            "content": "Contemporary classical music composer Anna Clyne is one of the most performed and in demand composers in the world.\r\nFor her next commission, she is working on a new concerto for the St Louis Symphon\u2026 [+731 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.977740",
+            "updated_at": "2025-04-27 12:09:39.977740",
+            "publish_date": "2025-04-07T00:30:00Z",
+            "views": 353
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 187,
+        "fields": {
+            "title": "Heart and Soul: Our Sacred Harp",
+            "slug": "heart-and-soul-our-sacred-harp",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/heart-and-soul-our-sacred-harp.jpg",
+            "summary": "Sacred Harp pioneer and former punk frontman, Tim Eriksen, takes us into the hair-raising sound of shape note singing \u2013 an American choral tradition experiencing a resurgence across the US and in Europe. All people and all faiths are welcome. As a new edition\u2026",
+            "content": "Sacred Harp pioneer and former punk frontman, Tim Eriksen, takes us into the hair-raising sound of shape note singing an American choral tradition experiencing a resurgence across the US and in Europ\u2026 [+1329 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.978445",
+            "updated_at": "2025-04-27 12:09:39.978445",
+            "publish_date": "2025-04-18T00:30:00Z",
+            "views": 232
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 188,
+        "fields": {
+            "title": "Witness History: The Environment Movement",
+            "slug": "witness-history-the-environment-movement",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/witness-history-the-environment-movement.jpg",
+            "summary": "To mark Earth Day, we bring you remarkable stories of the history of the environmental movement, told by the people who were there. Selected from the BBC\u2019s Witness History program, we hear about the major moments that changed our understanding of the planet w\u2026",
+            "content": "To mark Earth Day, we bring you remarkable stories of the history of the environmental movement, told by the people who were there. Selected from the BBCs Witness History program, we hear about the m\u2026 [+68 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.978445",
+            "updated_at": "2025-04-27 12:09:39.978445",
+            "publish_date": "2025-04-23T00:30:00Z",
+            "views": 193
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 189,
+        "fields": {
+            "title": "The call of Anastasia",
+            "slug": "the-call-of-anastasia",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-call-of-anastasia.jpg",
+            "summary": "Members of the new age Anastasia movement espouse strong family values, farm small plots of land and try to educate their own children outside the public school system. Originating in Russia, the quasi-religious group has now spread to Germany, where there ar\u2026",
+            "content": "Members of the new age Anastasia movement espouse strong family values, farm small plots of land and try to educate their own children outside the public school system. Originating in Russia, the qua\u2026 [+479 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.978445",
+            "updated_at": "2025-04-27 12:09:39.978445",
+            "publish_date": "2025-04-24T00:30:00Z",
+            "views": 2
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 190,
+        "fields": {
+            "title": "In the Studio: Steve Reich",
+            "slug": "in-the-studio-steve-reich",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/in-the-studio-steve-reich.jpg",
+            "summary": "For 60 years, New York composer Steve Reich has been one of classical music\u2019s most celebrated revolutionaries. Pioneering minimalism in the 1960s, a musical style based on repetition and shifting rhythms, his strange experiments with cassette tape led to orch\u2026",
+            "content": "For 60 years, New York composer Steve Reich has been one of classical musics most celebrated revolutionaries. Pioneering minimalism in the 1960s, a musical style based on repetition and shifting rhyt\u2026 [+663 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.980443",
+            "updated_at": "2025-04-27 12:09:39.980443",
+            "publish_date": "2025-04-14T00:30:00Z",
+            "views": 250
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 191,
+        "fields": {
+            "title": "Heart and Soul: Violence, children and Cambodia\u2019s monks",
+            "slug": "heart-and-soul-violence-children-and-cambodias-monks",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/heart-and-soul-violence-children-and-cambodias-monks.jpg",
+            "summary": "***This programme contains descriptions of genocide and violence against children*** \nFifty years ago the fall of Cambodia\u2019s capital, Phnom Penh, to the Khmer Rouge sparked a modern-day genocide that saw millions murdered in just four years. Today, a group th\u2026",
+            "content": "***This programme contains descriptions of genocide and violence against children*** Fifty years ago the fall of Cambodias capital, Phnom Penh, to the Khmer Rouge sparked a modern-day genocide that s\u2026 [+560 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.981443",
+            "updated_at": "2025-04-27 12:09:39.981443",
+            "publish_date": "2025-04-10T00:30:00Z",
+            "views": 305
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 192,
+        "fields": {
+            "title": "The Naked Week: Ep4. Performing, Potholes, and Paddington.",
+            "slug": "the-naked-week-ep4-performing-potholes-and-paddington",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-naked-week-ep4-performing-potholes-and-paddington.jpg",
+            "summary": "The Naked Week team are back to place satirical news-tariffs on current events with a mix of correspondents, guests and, occasionally, live animals.This week we Spring (Statement) into action with a timely tune for - and by - Rachel Reeves, explore a pothole \u2026",
+            "content": "The Naked Week team are back to place satirical news-tariffs on current events with a mix of correspondents, guests and, occasionally, live animals.\r\nThis week we Spring (Statement) into action with \u2026 [+948 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.981443",
+            "updated_at": "2025-04-27 12:09:39.981443",
+            "publish_date": "2025-04-04T18:00:00Z",
+            "views": 62
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 193,
+        "fields": {
+            "title": "The Naked Week: Ep 3. Benefits, Borders, and a game of Truss or Towers.",
+            "slug": "the-naked-week-ep-3-benefits-borders-and-a-game-of-truss-or-towers",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-naked-week-ep-3-benefits-borders-and-a-game-of-truss-or-towers.jpg",
+            "summary": "The Naked Week team are back to place satirical news-tariffs on current events with a mix of correspondents, guests and, occasionally, live animals.This week we apply for a job in the parliamentary Work and Pensions office, play a game of 'Liz Truss or new ri\u2026",
+            "content": "The Naked Week team are back to place satirical news-tariffs on current events with a mix of correspondents, guests and, occasionally, live animals.\r\nThis week we apply for a job in the parliamentary\u2026 [+936 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.981443",
+            "updated_at": "2025-04-27 12:09:39.981443",
+            "publish_date": "2025-03-28T19:00:00Z",
+            "views": 207
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 194,
+        "fields": {
+            "title": "The Naked Week: Ep5. Tariffic Trump retaliation, and Woop Woop - it's the sound of the Thought Police.",
+            "slug": "the-naked-week-ep5-tariffic-trump-retaliation-and-woop-woop-its-the-sound-of-the-thought-police",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-naked-week-ep5-tariffic-trump-retaliation-and-woop-woop-its-the-sound-of-the-thought-police.jpg",
+            "summary": "The Naked Week team are back to place satirical news-tariffs on current events with a mix of correspondents, guests and, occasionally, live animals.This week we 'woop woop' at the sound of the Thought Police, enjoy a spot of 'tariffic' retaliation, and bang a\u2026",
+            "content": "The Naked Week team are back to place satirical news-tariffs on current events with a mix of correspondents, guests and, occasionally, live animals.\r\nThis week we 'woop woop' at the sound of the Thou\u2026 [+916 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.982442",
+            "updated_at": "2025-04-27 12:09:39.982442",
+            "publish_date": "2025-04-11T18:00:00Z",
+            "views": 493
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 195,
+        "fields": {
+            "title": "The News Quiz: Ep 1. Space, Steel and Strikes",
+            "slug": "the-news-quiz-ep-1-space-steel-and-strikes",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-news-quiz-ep-1-space-steel-and-strikes.jpg",
+            "summary": "Andy Zaltzman is joined by Zoe Lyons, Mark Steel, Athena Kugblenu and Hugo Rifkind to unpack bin workers strikes in Birmingham, pop stars popping to the stars, talks of tariffs, steeling oneself in Scunthorpe, and how Toby took his carvery one step too far.Wr\u2026",
+            "content": "Andy Zaltzman is joined by Zoe Lyons, Mark Steel, Athena Kugblenu and Hugo Rifkind to unpack bin workers strikes in Birmingham, pop stars popping to the stars, talks of tariffs, steeling oneself in S\u2026 [+380 chars]",
+            "is_featured": true,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.983442",
+            "updated_at": "2025-04-27 12:09:39.983442",
+            "publish_date": "2025-04-25T18:00:00Z",
+            "views": 412
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 196,
+        "fields": {
+            "title": "The inside story of Twitter's growth and difficulties",
+            "slug": "the-inside-story-of-twitters-growth-and-difficulties",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/the-inside-story-of-twitters-growth-and-difficulties.jpg",
+            "summary": "The inside story of the tech entrepreneurs who created the social media app Twitter. They hope to build a digital utopia but are unable to control the dark side of their creation.",
+            "content": "Contains some strong language.\r\nContains discriminatory language.\r\nThe inside story of the tech entrepreneurs who created the social media app Twitter. They hope to build a digital utopia but are una\u2026 [+51 chars]",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.984441",
+            "updated_at": "2025-04-27 12:09:39.984441",
+            "publish_date": "2025-03-31T05:00:00Z",
+            "views": 187
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 197,
+        "fields": {
+            "title": "Mary Beard\u2019s quest to uncover the real Julius Caesar",
+            "slug": "mary-beards-quest-to-uncover-the-real-julius-caesar",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/mary-beards-quest-to-uncover-the-real-julius-caesar.jpg",
+            "summary": "Mary Beard is on a mission to uncover the real Julius Caesar, and to challenge public perception, exploring Caesar's surprising legacy.",
+            "content": "Mary Beard is on a mission to uncover the real Julius Caesar, and to challenge public perception, exploring Caesar's surprising legacy.\u00a0More",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.985441",
+            "updated_at": "2025-04-27 12:09:39.985441",
+            "publish_date": "2025-04-01T05:00:00Z",
+            "views": 296
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 198,
+        "fields": {
+            "title": "Curling",
+            "slug": "curling",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/curling.jpg",
+            "summary": "World Curling Champions Team Mouat face Team Whyte as Scotland's top curling teams go head to head at the Grand Slam of Curling: Players Championship live from Toronto, Canada.",
+            "content": "World Curling Champions Team Mouat face Team Whyte as Scotland's top curling teams go head to head at the Grand Slam of Curling: Players Championship live from Toronto, Canada.",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.986440",
+            "updated_at": "2025-04-27 12:09:39.986440",
+            "publish_date": "2025-04-10T19:02:27Z",
+            "views": 177
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 199,
+        "fields": {
+            "title": "Watch: Sportscene - SWPL highlights",
+            "slug": "watch-sportscene-swpl-highlights",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/watch-sportscene-swpl-highlights.jpg",
+            "summary": "Jane Lewis presents highlights from the weekend's fixtures in the SWPL.",
+            "content": "Jane Lewis presents highlights from the weekend's fixtures in the SWPL.",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.986440",
+            "updated_at": "2025-04-27 12:09:39.986440",
+            "publish_date": "2025-04-21T18:46:00Z",
+            "views": 122
+        }
+    },
+    {
+        "model": "news.news",
+        "pk": 200,
+        "fields": {
+            "title": "27/03/2025 13:01 GMT",
+            "slug": "27032025-1301-gmt",
+            "author": 1,
+            "category": 1,
+            "featured_image": "news/images/27032025-1301-gmt.jpg",
+            "summary": "The latest five minute news bulletin from BBC World Service.",
+            "content": "The latest five minute news bulletin from BBC World Service.",
+            "is_featured": false,
+            "status": "published",
+            "created_at": "2025-04-27 12:09:39.987439",
+            "updated_at": "2025-04-27 12:09:39.987439",
+            "publish_date": "2025-03-27T13:06:00Z",
+            "views": 467
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1000,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 101
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1001,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 101
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1002,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 102
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1003,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 102
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1004,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 103
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1005,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 103
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1006,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 104
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1007,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 104
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1008,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 105
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1009,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 105
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1010,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 106
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1011,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 106
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1012,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 107
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1013,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 107
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1014,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 108
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1015,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 108
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1016,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 109
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1017,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 109
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1018,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 110
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1019,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 110
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1020,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 111
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1021,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 111
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1022,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 112
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1023,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 112
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1024,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 113
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1025,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 113
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1026,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 114
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1027,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 114
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1028,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 115
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1029,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 115
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1030,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 116
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1031,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 116
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1032,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 117
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1033,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 117
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1034,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 118
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1035,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 118
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1036,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 119
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1037,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 119
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1038,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 120
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1039,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 120
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1040,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 121
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1041,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 121
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1042,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 122
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1043,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 122
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1044,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 123
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1045,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 123
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1046,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 124
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1047,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 124
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1048,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 125
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1049,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 125
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1050,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 126
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1051,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 126
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1052,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 127
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1053,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 127
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1054,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 128
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1055,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 128
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1056,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 129
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1057,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 129
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1058,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 130
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1059,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 130
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1060,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 131
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1061,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 131
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1062,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 132
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1063,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 132
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1064,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 133
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1065,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 133
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1066,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 134
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1067,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 134
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1068,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 135
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1069,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 135
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1070,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 136
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1071,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 136
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1072,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 137
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1073,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 137
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1074,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 138
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1075,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 138
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1076,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 139
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1077,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 139
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1078,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 140
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1079,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 140
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1080,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 141
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1081,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 141
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1082,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 142
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1083,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 142
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1084,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 143
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1085,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 143
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1086,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 144
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1087,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 144
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1088,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 145
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1089,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 145
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1090,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 146
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1091,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 146
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1092,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 147
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1093,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 147
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1094,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 148
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1095,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 148
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1096,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 149
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1097,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 149
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1098,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 150
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1099,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 150
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1100,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 151
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1101,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 151
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1102,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 152
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1103,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 152
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1104,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 153
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1105,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 153
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1106,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 154
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1107,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 154
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1108,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 155
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1109,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 155
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1110,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 156
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1111,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 156
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1112,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 157
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1113,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 157
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1114,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 158
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1115,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 158
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1116,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 159
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1117,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 159
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1118,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 160
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1119,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 160
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1120,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 161
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1121,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 161
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1122,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 162
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1123,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 162
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1124,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 163
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1125,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 163
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1126,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 164
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1127,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 164
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1128,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 165
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1129,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 165
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1130,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 166
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1131,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 166
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1132,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 167
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1133,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 167
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1134,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 168
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1135,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 168
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1136,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 169
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1137,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 169
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1138,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 170
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1139,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 170
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1140,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 171
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1141,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 171
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1142,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 172
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1143,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 172
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1144,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 173
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1145,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 173
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1146,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 174
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1147,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 174
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1148,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 175
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1149,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 175
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1150,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 176
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1151,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 176
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1152,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 177
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1153,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 177
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1154,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 178
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1155,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 178
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1156,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 179
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1157,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 179
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1158,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 180
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1159,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 180
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1160,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 181
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1161,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 181
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1162,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 182
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1163,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 182
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1164,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 183
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1165,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 183
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1166,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 184
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1167,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 184
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1168,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 185
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1169,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 185
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1170,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 186
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1171,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 186
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1172,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 187
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1173,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 187
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1174,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 188
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1175,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 188
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1176,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 189
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1177,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 189
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1178,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 190
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1179,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 190
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1180,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 191
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1181,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 191
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1182,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 192
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1183,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 192
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1184,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 193
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1185,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 193
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1186,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 194
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1187,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 194
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1188,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 195
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1189,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 195
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1190,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 196
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1191,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 196
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1192,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 197
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1193,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 197
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1194,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 198
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1195,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 198
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1196,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 199
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1197,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 199
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1198,
+        "fields": {
+            "tag": 1,
+            "content_type": 13,
+            "object_id": 200
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1199,
+        "fields": {
+            "tag": 2,
+            "content_type": 13,
+            "object_id": 200
+        }
+    }
+]
