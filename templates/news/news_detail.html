@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load static cache %}
+
+{% block title %}{{ news.title }} | Newsletter{% endblock %}
+
+
+{% block extra_seo %}
+    <!-- OpenGraph -->
+    <meta property="og:title" content="{{ news.title }}">
+    <meta property="og:description" content="{{ news.summary }}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="{{ news.featured_image.url }}">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ news.title }}">
+    <meta name="twitter:description" content="{{ news.summary }}">
+    <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:image" content="{{ news.featured_image.url }}">
+    <meta name="twitter:site" content="@yourtwitterhandle">
+    <meta name="twitter:creator" content="@yourtwitterhandle">
+
+    <!-- Schema Markup (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{ news.title }}",
+      "description": "{{ news.summary }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ news.author.get_full_name }}"
+      },
+      "datePublished": "{{ news.created_at|date:"Y-m-d" }}",
+      "dateModified": "{{ news.updated_at|date:"Y-m-d" }}",
+      "image": "{{ news.image_url }}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{site_mame}}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{% static 'logo.png' %}"
+        }
+      }
+    }
+    </script>
+{% endblock %}
+    
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-lg-8">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'news:news_list' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'news:news_by_category' news.category.slug %}">{{ news.category.name }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ news.title|truncatechars:40 }}</li>
+                </ol>
+            </nav>
+            
+            <!-- Article Header -->
+            <article class="blog-post">
+                <h1 class="mb-3">{{ news.title }}</h1>
+                
+                <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="badge bg-primary me-2">{{ news.category.name }}</span>
+                        <span class="text-muted"><i class="far fa-calendar-alt me-1"></i> {{ news.publish_date|date:"F d, Y" }}</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-muted me-3"><i class="fas fa-eye me-1"></i> {{ news.views }} views</span>
+                        <span class="text-muted"><i class="far fa-comments me-1"></i> {{ comments.count }} comments</span>
+                    </div>
+                </div>
+                
+                <!-- Author Info -->
+                <div class="d-flex align-items-center mb-4">
+                    <div class="author-img me-3">
+                        {% comment %}Replace with actual author image if available{% endcomment %}
+                        <img src="https://via.placeholder.com/50" class="rounded-circle" alt="Author" width="50" height="50">
+                    </div>
+                    <div>
+                        <h6 class="mb-0">{{ news.author.user.get_full_name|default:news.author.user.username }}</h6>
+                        <small class="text-muted">Author</small>
+                    </div>
+                </div>
+                
+                <!-- Featured Image -->
+                <div class="mb-4">
+                    <img src="{{ news.featured_image.url }}" class="img-fluid rounded" alt="{{ news.title }}" style="width: 100%; max-height: 500px; object-fit: cover;">
+                </div>
+                
+                <!-- Summary -->
+                <div class="lead mb-4">
+                    {{ news.summary }}
+                </div>
+                
+                <!-- Content -->
+                <div class="news-content mb-5 p-4 bg-light rounded shadow-sm">
+                    <div class="fs-5 lh-lg">
+                        {{ news.content|safe }}
+                    </div>
+                </div>
+                
+                <style>
+                .news-content img {
+                    max-width: 100%;
+                    height: auto;
+                    display: block;
+                    margin: 1rem auto; /* Optional: centers images nicely */
+                }
+                </style>
+                
+                <!-- Tags -->
+                <div class="mb-4">
+                    <h5>Tags:</h5>
+                    <div class="tags">
+                        {% for tag in news.tags.all %}
+                        <a href="#" class="badge bg-secondary text-decoration-none me-1">{{ tag.name }}</a>
+                        {% empty %}
+                        <span class="text-muted">No tags</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <!-- Social Share -->
+                <div class="mb-5">
+                    <h5>Share this:</h5>
+                    <div class="social-share">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-primary me-2">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ news.title }}" target="_blank" class="btn btn-outline-info me-2">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-secondary me-2">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                        <a href="https://api.whatsapp.com/send?text={{ news.title }} {{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-success">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Related Articles -->
+                {% cache 600 related_news %}
+                {% if related_news %}
+                <div class="mb-5">
+                    <h3 class="mb-4 border-bottom pb-2">Related Articles</h3>
+                    <div class="row">
+                        {% for related in related_news %}
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100 shadow-sm">
+                                <img src="{{ related.featured_image.url }}" class="card-img-top" alt="{{ related.title }}" style="height: 150px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h6 class="card-title"><a href="{{ related.get_absolute_url }}" class="text-decoration-none text-dark">{{ related.title }}</a></h6>
+                                    <small class="text-muted"><i class="far fa-calendar-alt me-1"></i> {{ related.publish_date|date:"M d, Y" }}</small>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {% endcache %}
+                
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h3 class="mb-4 border-bottom pb-2">Comments ({{ comments.count }})</h3>
+                    
+                    <!-- Comment List -->
+                    {% if comments %}
+                    <div class="comment-list mb-4">
+                        {% for comment in comments %}
+                        <div class="comment mb-4">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    {% comment %}Replace with actual user image if available{% endcomment %}
+                                    <img src="https://via.placeholder.com/50" class="rounded-circle" alt="{{ comment.user.username }}" width="50" height="50">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="bg-light p-3 rounded">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <h6 class="mb-0">{{ comment.user.get_full_name|default:comment.user.username }}</h6>
+                                            <small class="text-muted">{{ comment.created_at|date:"M d, Y H:i" }}</small>
+                                        </div>
+                                        <p class="mb-0">{{ comment.content }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="alert alert-info mb-4">
+                        No comments yet. Be the first to comment!
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Comment Form -->
+                    {% if user.is_authenticated %}
+                    <div class="comment-form">
+                        <h4 class="mb-3">Leave a Comment</h4>
+                        <form action="{% url 'news:add_comment' news.slug %}" method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                {{ comment_form.content }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Post Comment</button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-warning">
+                        Please <a href="#">log in</a> to leave a comment.
+                    </div>
+                    {% endif %}
+                </div>
+            </article>
+        </div>
+        {% include 'partitials\news_sidebar.html' %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-5">Meet Our Writers</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for profile in profiles %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                {% if profile.profile_picture %}
+                    <img src="{{ profile.profile_picture.url }}" class="card-img-top" alt="{{ profile.name }}">
+                {% else %}
+                    <img src="{% static 'default_profile.jpg' %}" class="card-img-top" alt="{{ profile.name }}">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ profile.full_name }}</h5>
+                    <div class="mt-auto">
+                        <a href="{% url 'profile_detail' slug=profile.slug %}" class="btn btn-primary btn-sm">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p class="text-center">No writers found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

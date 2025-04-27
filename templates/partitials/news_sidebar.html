@@ -1,0 +1,74 @@
+<div class="col-lg-4">
+    <!-- Categories -->
+    {% load cache %}
+    {% cache 600 categories_sidebar %}
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Categories</h5>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                {% for category in categories %}
+                <li class="list-group-item d-flex justify-content-between align-items-center {% if category.slug == news.category.slug %}active bg-primary text-white{% endif %}">
+                    <a href="{% url 'news:news_by_category' category.slug %}" class="text-decoration-none {% if category.slug == news.category.slug %}text-white{% else %}text-dark{% endif %}">
+                        {{ category.name }}
+                    </a>
+                    <span class="badge {% if category.slug == news.category.slug %}bg-white text-primary{% else %}bg-primary text-white{% endif %} rounded-pill">
+                        {{ category.news.count }}
+                    </span>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No categories available</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endcache %}
+    
+    <!-- Popular News -->
+    {% cache 600 popular_news_sidebar %}
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Popular News</h5>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                {% for news_item in popular_news %}
+                <li class="list-group-item">
+                    <div class="row g-0">
+                        <div class="col-3">
+                            <img src="{{ news_item.featured_image.url }}" class="img-fluid rounded" alt="{{ news_item.title }}" style="height: 60px; object-fit: cover;">
+                        </div>
+                        <div class="col-9 ps-3">
+                            <h6 class="mb-1"><a href="{{ news_item.get_absolute_url }}" class="text-decoration-none text-dark">{{ news_item.title }}</a></h6>
+                            <small class="text-muted">
+                                <i class="fas fa-eye me-1"></i> {{ news_item.views }} views
+                            </small>
+                        </div>
+                    </div>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No popular news available</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endcache %}
+    
+    <!-- Newsletter Subscription -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Subscribe to Newsletter</h5>
+        </div>
+        <div class="card-body">
+            <p>Stay updated with our latest news and updates!</p>
+            <form action="#" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <input type="email" class="form-control" placeholder="Your Email Address" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+            </form>
+        </div>
+    </div>
+</div>

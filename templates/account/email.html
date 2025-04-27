@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Email Addresses" %}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h2 class="h4 mb-0">{% trans "Email Addresses" %}</h2>
+        </div>
+        <div class="card-body">
+          {% if user.emailaddress_set.all %}
+          <p>{% trans 'The following email addresses are associated with your account:' %}</p>
+          
+          <form action="{% url 'account_email' %}" method="post">
+            {% csrf_token %}
+            
+            <div class="list-group mb-4">
+              {% for emailaddress in user.emailaddress_set.all %}
+              <div class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="form-check">
+                    <input id="email_radio_{{ forloop.counter }}" type="radio" name="email" 
+                           {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{% endif %} 
+                           value="{{ emailaddress.email }}"
+                           class="form-check-input">
+                    <label for="email_radio_{{ forloop.counter }}" class="form-check-label {% if emailaddress.primary %}fw-bold{% endif %}">
+                      {{ emailaddress.email }}
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  {% if emailaddress.verified %}
+                  <span class="badge bg-success rounded-pill">{% trans "Verified" %}</span>
+                  {% else %}
+                  <span class="badge bg-warning text-dark rounded-pill">{% trans "Unverified" %}</span>
+                  {% endif %}
+                  {% if emailaddress.primary %}<span class="badge bg-primary rounded-pill ms-1">{% trans "Primary" %}</span>{% endif %}
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            
+            <div class="btn-group" role="group">
+              <button class="btn btn-outline-primary" type="submit" name="action_primary">{% trans 'Make Primary' %}</button>
+              <button class="btn btn-outline-danger" type="submit" name="action_remove">{% trans 'Remove' %}</button>
+            </div>
+          </form>
+          
+          <hr class="my-4">
+          {% endif %}
+          
+          <h3 class="h5 mb-3">{% trans "Add Email Address" %}</h3>
+          
+          <form method="post" action="{% url 'account_email' %}" class="add_email">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+            <div class="alert alert-danger">
+              <p>{% trans "Please correct the errors below:" %}</p>
+              {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+            
+            <div class="row g-3 align-items-center">
+              <div class="col-md-8">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                  {{ form.email }}
+                  {% if form.email.errors %}
+                    <div class="text-danger small">{{ form.email.errors }}</div>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <button name="action_add" type="submit" class="btn btn-primary w-100">{% trans "Add Email" %}</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+(function() {
+  var message = "{% trans 'Do you really want to remove the selected email address?' %}";
+  var actions = document.getElementsByName('action_remove');
+  if (actions.length) {
+    actions[0].addEventListener("click", function(e) {
+      if (! confirm(message)) {
+        e.preventDefault();
+      }
+    });
+  }
+})();
+</script>
+{% endblock %}
