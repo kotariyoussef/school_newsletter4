@@ -21,6 +21,19 @@
             {% endif %}
         </div>
     </div>
+    {% comment %} <h2>Recent News</h2>
+    {% if student_news %}
+        <ul>
+            {% for news in student_news %}
+                <li>
+                    <a href="{% url 'news:news_detail' news.slug %}">{{ news.title }}</a> - 
+                    {{ news.created_at }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No news posts available.</p>
+    {% endif %} {% endcomment %}
 </div>
 
 {% endblock %}

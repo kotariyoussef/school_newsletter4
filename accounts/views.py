@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
+from news.models import News
 from .models import StudentRequest, StudentProfile
 from .forms import StudentRequestForm, StudentProfileForm
 from django.views.generic import ListView, DetailView
+
 
 
 @login_required
@@ -110,3 +113,18 @@ class ProfileDetailView(DetailView):
     context_object_name = 'profile'
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
+
+    # def get_context_data(self, **kwargs):
+    #     # Get the context from the parent class
+    #     context = super().get_context_data(**kwargs)
+
+    #     # Get the current student profile instance
+    #     profile = context['profile']
+
+    #     # Filter news by this student profile
+    #     student_news = News.objects.filter(author=profile)
+
+    #     # Add the filtered news to the context
+    #     context['student_news'] = student_news
+
+    #     return context

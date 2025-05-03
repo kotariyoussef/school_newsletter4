@@ -7,7 +7,8 @@ from django.utils.text import slugify
 from datetime import datetime
 
 # Settings
-API_URL = 'https://newsapi.org/v2/everything?sortBy=popularity&apiKey=0020da03e9b44fa1b8396f187c21fd2b&sources=bbc-news'
+API_KEY = '0020da03e9b44fa1b8396f187c21fd2b'
+SOURCES = ['bbc-news', 'cnn', 'al-jazeera-english', 'argaam', 'ars-technica', 'bloomberg']  # List of source IDs
 MEDIA_DIR = 'media/news/images/'
 FIXTURE_FILE = 'fixtures.json'
 NEWS_LIMIT = 100
@@ -22,7 +23,7 @@ profile = {
     "model": "accounts.studentprofile",
     "pk": 1,
     "fields": {
-        "user": 1,
+        "user": 2,
         "bio": fake.text(),
         "profile_picture": "",
         "slug": slugify(fake.name()),
@@ -31,18 +32,6 @@ profile = {
     }
 }
 fixtures.append(profile)
-
-# Category
-category = {
-    "model": "news.category",
-    "pk": 1,
-    "fields": {
-        "name": "BBC News",
-        "slug": "bbc-news",
-        "description": "News from BBC"
-    }
-}
-fixtures.append(category)
 
 # Tags setup
 tags_used = {"bbc", "news"}
@@ -65,8 +54,7 @@ for tag_pk, tag_name in enumerate(tags_used, start=tag_pk_start):
 
 # Helper to download and save image
 def download_image(url, title):
-    # Slugify the title to generate the image file name
-    filename = f"{slugify(title)}.jpg"  # Assuming .jpg, can adjust if needed
+    filename = f"{slugify(title)}.jpg"
     filepath = os.path.join(MEDIA_DIR, filename)
     
     # Check if the image already exists
@@ -100,49 +88,70 @@ def generate_unique_slug(base_slug):
     generated_slugs.add(slug)  # Add the generated slug to the set
     return slug
 
-# Fetch articles
-news_data = requests.get(API_URL).json()
-articles = news_data.get('articles', [])[:NEWS_LIMIT]
+st = 1
 
-# News fixtures
-for i, article in enumerate(articles, start=1):
-    title = article['title']
-    slug = generate_unique_slug(slugify(title))
-    image_path = download_image(article.get('urlToImage'), title) if article.get('urlToImage') else ""
-
-    news = {
-        "model": "news.news",
-        "pk": i,
+# Loop through each source
+for source in SOURCES:
+    API_URL = f'https://newsapi.org/v2/everything?sortBy=popularity&apiKey={API_KEY}&sources={source}'
+    news_data = requests.get(API_URL).json()
+    articles = news_data.get('articles', [])[:NEWS_LIMIT]
+    
+    # Create a category for each source
+    category_name = source.replace('-', ' ').title()  # Example: 'bbc-news' becomes 'BBC News'
+    category_slug = slugify(category_name)
+    category_description = f"News from {category_name}"
+    
+    category = {
+        "model": "news.category",
+        "pk": SOURCES.index(source) + 1,
         "fields": {
-            "title": title,
-            "slug": slug,
-            "author": 1,
-            "category": 1,
-            "featured_image": image_path,
-            "summary": article.get('description') or "",
-            "content": article.get('content') or "",
-            "is_featured": random.choice([True, False]),
-            "status": "published",
-            "created_at": str(datetime.now()),
-            "updated_at": str(datetime.now()),
-            "publish_date": article.get('publishedAt'),
-            "views": random.randint(0, 500)
+            "name": category_name,
+            "slug": category_slug,
+            "description": category_description
         }
     }
-    fixtures.append(news)
+    fixtures.append(category)
 
-    # TaggedItems for this news
-    for tag_name in tags_used:
-        tagged_items.append({
-            "model": "taggit.taggeditem",
-            "pk": tagged_pk_start,
+    # News fixtures for each source
+    for i, article in enumerate(articles, start=st):
+        title = article['title']
+        slug = generate_unique_slug(slugify(title))
+        image_path = download_image(article.get('urlToImage'), title) if article.get('urlToImage') else ""
+
+        news = {
+            "model": "news.news",
+            "pk": i,
             "fields": {
-                "tag": tag_id_map[tag_name],
-                "content_type": CONTENT_TYPE_ID,
-                "object_id": i
+                "title": title,
+                "slug": slug,
+                "author": 1,
+                "category": SOURCES.index(source) + 1,  # Assign the source's category to the article
+                "featured_image": image_path,
+                "summary": article.get('description') or "",
+                "content": article.get('content') or "",
+                "is_featured": random.choice([True, False]),
+                "status": "published",
+                "created_at": str(datetime.now()),
+                "updated_at": str(datetime.now()),
+                "publish_date": article.get('publishedAt'),
+                "views": random.randint(0, 500)
             }
-        })
-        tagged_pk_start += 1
+        }
+        fixtures.append(news)
+
+        # TaggedItems for this news
+        for tag_name in tags_used:
+            tagged_items.append({
+                "model": "taggit.taggeditem",
+                "pk": tagged_pk_start,
+                "fields": {
+                    "tag": tag_id_map[tag_name],
+                    "content_type": CONTENT_TYPE_ID,
+                    "object_id": i
+                }
+            })
+            tagged_pk_start += 1
+    st = st + 100
 
 # Add tagged items at the end
 fixtures.extend(tagged_items)
@@ -151,4 +160,4 @@ fixtures.extend(tagged_items)
 with open(FIXTURE_FILE, "w", encoding="utf-8") as f:
     json.dump(fixtures, f, indent=4)
 
-print(f"✅ Generated {len(articles)} news articles and saved to {FIXTURE_FILE}")
+print(f"✅ Generated news articles with categories for each source and saved to {FIXTURE_FILE}")

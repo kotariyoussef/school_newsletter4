@@ -1,6 +1,6 @@
-{% load static tag_filters nav_active cache %}
+{% load static tag_filters nav_active cache i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ language_code }}" dir="{% if language_code == 'ar' %}rtl{% else %}ltr{% endif %}">
 
 <head>
     <meta charset="utf-8">
@@ -98,17 +98,15 @@
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
                 <h5 class="mb-4 text-white text-uppercase font-weight-bold">Popular News</h5>
-                {% cache 3600 my_fragment %}
                 {% for new in popular_news|slice:":3" %}
                 <div class="mb-3">
                     <div class="mb-2">
                         <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="{% if news.category.slug %}{% url 'news:news_by_category' news.category.slug %}{% endif %}">{{new.category.name}}</a>
                         <a class="text-body" href=""><small>{{new.publish_date|date:"F d, Y"}}</small></a>
                     </div>
-                    <a class="small text-body text-uppercase font-weight-medium" href="{{ news.get_absolute_url }}">{{new.title}}</a>
+                    <a class="small text-body text-uppercase font-weight-medium" href="{% url 'news:news_detail' new.slug %}">{{new.title}}</a>
                 </div>
                 {% endfor %}
-                {% endcache %}
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
                 <h5 class="mb-4 text-white text-uppercase font-weight-bold">Categories</h5>
