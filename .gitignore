@@ -1,0 +1,49 @@
+# Ignore Python bytecode
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore Django migrations (optional; only if you don't want to track them)
+*/migrations/*
+
+# Ignore the virtual environment
+venv/
+env/
+ENV/
+*.env
+
+# Ignore SQLite database file (if using SQLite)
+db.sqlite3
+
+# Ignore log files
+*.log
+
+# Ignore media files
+media/
+
+# Ignore static files (if you don’t want to commit them)
+static/
+staticfiles/
+
+# Ignore the .env file (for environment variables)
+.env
+
+# Ignore IDE and editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore coverage reports (if you run tests with coverage)
+.coverage
+*.cover
+
+# Ignore pytest cache
+.pytest_cache/
+
+# Ignore Django secret key file (if you store it in a separate file)
+secret_key.txt

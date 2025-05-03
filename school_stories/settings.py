@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-6vayrb7qk26m@&ze^jm
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG') == 'True'
+DEBUG = os.getenv('DEBUG', True)
 
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
@@ -294,6 +294,7 @@ SITE_DESCRIPTION = "Description"
 ADMIN_EMAIL = "ko.youssef.public@gmail.com"
 KEYWORDS = ",".join(("keyword1", "news", "students"))
 AUTHOR = "Youssef Kotari"
+CKEDITOR_5_FILE_UPLOAD_PERMISSION = "authenticated"
 
 
 # news api key : 0020da03e9b44fa1b8396f187c21fd2b

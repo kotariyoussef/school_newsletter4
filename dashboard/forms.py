@@ -22,7 +22,7 @@ class NewsForm(forms.ModelForm):
     )
     
     # Use CKEditor for content
-    content = forms.CharField(widget=CKEditor5Widget(config_name='default'), required=False)
+    content = forms.CharField(widget=CKEditor5Widget(config_name='extends'), required=False)
     
     # Add publish date field with calendar widget
     publish_date = forms.DateTimeField(
