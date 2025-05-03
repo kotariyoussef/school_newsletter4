@@ -22,7 +22,6 @@ db.sqlite3
 media/
 
 # Ignore static files (if you don’t want to commit them)
-static/
 staticfiles/
 
 # Ignore the .env file (for environment variables)
