@@ -4,137 +4,226 @@
 {% block title %}Manage Posts{% endblock %}
 
 {% block content %}
-<div class="posts-container">
-    <div class="row mb-4">
+<div class="container-fluid py-4">
+    <!-- Header Section with Gradient -->
+    <div class="row mb-4 align-items-center">
         <div class="col-md-8">
-            <h1>Manage Posts</h1>
+            <h1 class="font-weight-bold text-primary mb-0">Manage Posts</h1>
+            <p class="text-muted">View, filter and manage all your blog posts</p>
         </div>
-        <div class="col-md-4 text-end">
-            <a href="{% url 'dashboard:create_post' %}" class="btn btn-primary">Create New Post</a>
+        <div class="col-md-4 text-right">
+            <a href="{% url 'dashboard:create_post' %}" class="btn btn-primary rounded-pill px-4 shadow-sm">
+                <i class="fas fa-plus-circle mr-2"></i>Create New Post
+            </a>
         </div>
     </div>
 
-    <!-- Filter Section -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <form method="get" class="row g-3">
-                <div class="col-md-3">
-                    <label for="status" class="form-label">Status</label>
-                    <select name="status" id="status" class="form-select">
-                        <option value="">All</option>
-                        <option value="published" {% if current_status == 'published' %}selected{% endif %}>Published</option>
-                        <option value="draft" {% if current_status == 'draft' %}selected{% endif %}>Draft</option>
-                    </select>
+    <!-- Filter Section with Improved Design -->
+    <div class="card shadow-sm mb-4 rounded">
+        <div class="card-header bg-light py-3">
+            <h5 class="mb-0"><i class="fas fa-filter mr-2"></i>Filter Posts</h5>
+        </div>
+        <div class="card-body bg-white">
+            <form method="get" class="row">
+                <div class="col-md-3 form-group">
+                    <label for="status" class="form-label font-weight-medium">Status</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light border-right-0">
+                                <i class="fas fa-tag"></i>
+                            </span>
+                        </div>
+                        <select name="status" id="status" class="form-control border-left-0">
+                            <option value="">All</option>
+                            <option value="published" {% if current_status == 'published' %}selected{% endif %}>Published</option>
+                            <option value="draft" {% if current_status == 'draft' %}selected{% endif %}>Draft</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <label for="category" class="form-label">Category</label>
-                    <select name="category" id="category" class="form-select">
-                        <option value="">All Categories</option>
-                        {% for cat in categories %}
-                        <option value="{{ cat.slug }}" {% if current_category == cat.slug %}selected{% endif %}>{{ cat.name }}</option>
-                        {% endfor %}
-                    </select>
+                <div class="col-md-3 form-group">
+                    <label for="category" class="form-label font-weight-medium">Category</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light border-right-0">
+                                <i class="fas fa-folder"></i>
+                            </span>
+                        </div>
+                        <select name="category" id="category" class="form-control border-left-0">
+                            <option value="">All Categories</option>
+                            {% for cat in categories %}
+                            <option value="{{ cat.slug }}" {% if current_category == cat.slug %}selected{% endif %}>{{ cat.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <label for="sort" class="form-label">Sort By</label>
-                    <select name="sort" id="sort" class="form-select">
-                        <option value="-created_at" {% if current_sort == '-created_at' %}selected{% endif %}>Newest First</option>
-                        <option value="created_at" {% if current_sort == 'created_at' %}selected{% endif %}>Oldest First</option>
-                        <option value="-views" {% if current_sort == '-views' %}selected{% endif %}>Most Views</option>
-                        <option value="title" {% if current_sort == 'title' %}selected{% endif %}>Title (A-Z)</option>
-                    </select>
+                <div class="col-md-3 form-group">
+                    <label for="sort" class="form-label font-weight-medium">Sort By</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light border-right-0">
+                                <i class="fas fa-sort-amount-down"></i>
+                            </span>
+                        </div>
+                        <select name="sort" id="sort" class="form-control border-left-0">
+                            <option value="-created_at" {% if current_sort == '-created_at' %}selected{% endif %}>Newest First</option>
+                            <option value="created_at" {% if current_sort == 'created_at' %}selected{% endif %}>Oldest First</option>
+                            <option value="-views" {% if current_sort == '-views' %}selected{% endif %}>Most Views</option>
+                            <option value="title" {% if current_sort == 'title' %}selected{% endif %}>Title (A-Z)</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-md-3 d-flex align-items-end">
-                    <button type="submit" class="btn btn-primary mb-3">Apply Filters</button>
-                    <a href="{% url 'dashboard:post_list' %}" class="btn btn-outline-secondary mb-3 ms-2">Reset</a>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4">
+                        <i class="fas fa-search mr-2"></i>Apply Filters
+                    </button>
+                    <a href="{% url 'dashboard:post_list' %}" class="btn btn-outline-secondary rounded-pill px-3 ml-2">
+                        <i class="fas fa-sync-alt mr-1"></i>Reset
+                    </a>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Posts Table -->
-    <div class="card">
-        <div class="card-body">
+    <!-- Posts Table with Enhanced Design -->
+    <div class="card shadow-sm rounded">
+        <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+            <h5 class="mb-0"><i class="fas fa-file-alt mr-2"></i>Your Posts</h5>
+            <span class="badge badge-primary badge-pill">{{ page_obj.paginator.count }} Total</span>
+        </div>
+        <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
                         <tr>
-                            <th>Title</th>
-                            <th>Category</th>
-                            <th>Status</th>
-                            <th>Views</th>
-                            <th>Created</th>
-                            <th>Actions</th>
+                            <th class="py-3">Title</th>
+                            <th class="py-3">Category</th>
+                            <th class="py-3">Status</th>
+                            <th class="py-3"><i class="fas fa-eye mr-1"></i>Views</th>
+                            <th class="py-3"><i class="fas fa-calendar mr-1"></i>Created</th>
+                            <th class="py-3 text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for post in page_obj %}
                         <tr>
-                            <td>{{ post.title }}</td>
-                            <td>{{ post.category.name }}</td>
+                            <td class="font-weight-medium ">{{ post.title }}</td>
                             <td>
-                                <span class="badge {% if post.status == 'published' %}bg-success{% else %}bg-secondary{% endif %}">
+                                <span class="badge badge-light text-dark px-3 py-2">
+                                    {{ post.category.name }}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge {% if post.status == 'published' %}badge-success{% else %}badge-secondary{% endif %} px-3 py-2">
+                                    {% if post.status == 'published' %}
+                                    <i class="fas fa-check-circle mr-1"></i>
+                                    {% else %}
+                                    <i class="fas fa-pencil-alt mr-1"></i>
+                                    {% endif %}
                                     {{ post.status|title }}
                                 </span>
                             </td>
-                            <td>{{ post.views }}</td>
-                            <td>{{ post.created_at|date:"M d, Y" }}</td>
                             <td>
-                                <div class="btn-group" role="group">
-                                    <a href="{% url 'dashboard:edit_post' post.slug %}" class="btn btn-sm btn-outline-primary">Edit</a>
-                                    <a href="{% url 'dashboard:post_analytics' post.slug %}" class="btn btn-sm btn-outline-info">Analytics</a>
-                                    <a href="{{ post.get_absolute_url }}" class="btn btn-sm btn-outline-secondary" target="_blank">View</a>
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-2 text-muted">{{ post.views }}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-calendar-day mr-2 text-muted"></i>
+                                    <div>{{ post.created_at|date:"M d, Y" }}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{% url 'dashboard:edit_post' post.slug %}" class="btn btn-sm btn-outline-primary rounded-pill mr-1" data-toggle="tooltip" title="Edit Post">
+                                        <i class="fas fa-pencil-alt"></i> Edit
+                                    </a>
+                                    <a href="{% url 'dashboard:post_analytics' post.slug %}" class="btn btn-sm btn-outline-info rounded-pill mr-1" data-toggle="tooltip" title="View Analytics">
+                                        <i class="fas fa-chart-line"></i> Analytics
+                                    </a>
+                                    <a href="{{ post.get_absolute_url }}" class="btn btn-sm btn-outline-secondary rounded-pill" target="_blank" data-toggle="tooltip" title="View Post">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
                                 </div>
                             </td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="6">No posts found matching the selected filters.</td>
+                            <td colspan="6" class="text-center py-5">
+                                <div class="py-5">
+                                    <i class="fas fa-book-open fa-4x text-muted"></i>
+                                    <h5 class="mt-3">No posts found</h5>
+                                    <p class="text-muted">No posts match your current filter settings.</p>
+                                    <a href="{% url 'dashboard:post_list' %}" class="btn btn-outline-primary rounded-pill mt-2">
+                                        <i class="fas fa-sync-alt mr-1"></i>Reset Filters
+                                    </a>
+                                </div>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
 
-            <!-- Pagination -->
+            <!-- Enhanced Pagination -->
             {% if page_obj.has_other_pages %}
-            <nav aria-label="Page navigation" class="mt-4">
-                <ul class="pagination justify-content-center">
-                    {% if page_obj.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}&status={{ current_status }}&category={{ current_category }}&sort={{ current_sort }}">Previous</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <span class="page-link">Previous</span>
-                    </li>
-                    {% endif %}
-
-                    {% for num in page_obj.paginator.page_range %}
-                        {% if page_obj.number == num %}
-                        <li class="page-item active">
-                            <span class="page-link">{{ num }}</span>
+            <div class="p-3 border-top">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination pagination-sm justify-content-center mb-0">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}&status={{ current_status }}&category={{ current_category }}&sort={{ current_sort }}">
+                                <i class="fas fa-chevron-left"></i> Previous
+                            </a>
                         </li>
                         {% else %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ num }}&status={{ current_status }}&category={{ current_category }}&sort={{ current_sort }}">{{ num }}</a>
+                        <li class="page-item disabled">
+                            <span class="page-link"><i class="fas fa-chevron-left"></i> Previous</span>
                         </li>
                         {% endif %}
-                    {% endfor %}
 
-                    {% if page_obj.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}&status={{ current_status }}&category={{ current_category }}&sort={{ current_sort }}">Next</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <span class="page-link">Next</span>
-                    </li>
-                    {% endif %}
-                </ul>
-            </nav>
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}&status={{ current_status }}&category={{ current_category }}&sort={{ current_sort }}">{{ num }}</a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}&status={{ current_status }}&category={{ current_category }}&sort={{ current_sort }}">
+                                Next <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">Next <i class="fas fa-chevron-right"></i></span>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
             {% endif %}
         </div>
     </div>
+    
+    <!-- Additional Info Footer -->
+    <div class="mt-4 text-center text-muted small">
+        <p>Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ page_obj.paginator.count }} posts</p>
+    </div>
 </div>
+
+{% block extra_js %}
+<script>
+    // Initialize tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+{% endblock %}
 {% endblock %}

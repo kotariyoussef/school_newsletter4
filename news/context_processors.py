@@ -18,11 +18,6 @@ def news_context(request):
     if settings.DEBUG:
         cache.clear()
     context = {}
-
-    context['site_name'] = settings.SITE_NAME
-    context['site_description'] = settings.SITE_DESCRIPTION
-    context['keywords'] = settings.KEYWORDS
-    context['author'] = settings.AUTHOR
     
     # Current user context
     if request.user.is_authenticated:

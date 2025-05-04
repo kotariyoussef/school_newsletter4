@@ -33,25 +33,6 @@ profile = {
 }
 fixtures.append(profile)
 
-# Tags setup
-tags_used = {"bbc", "news"}
-tag_id_map = {}
-tagged_items = []
-tag_pk_start = 1
-tagged_pk_start = 1000
-
-# Tag fixtures
-for tag_pk, tag_name in enumerate(tags_used, start=tag_pk_start):
-    tag_id_map[tag_name] = tag_pk
-    fixtures.append({
-        "model": "taggit.tag",
-        "pk": tag_pk,
-        "fields": {
-            "name": tag_name,
-            "slug": slugify(tag_name)
-        }
-    })
-
 # Helper to download and save image
 def download_image(url, title):
     filename = f"{slugify(title)}.jpg"
@@ -138,23 +119,7 @@ for source in SOURCES:
             }
         }
         fixtures.append(news)
-
-        # TaggedItems for this news
-        for tag_name in tags_used:
-            tagged_items.append({
-                "model": "taggit.taggeditem",
-                "pk": tagged_pk_start,
-                "fields": {
-                    "tag": tag_id_map[tag_name],
-                    "content_type": CONTENT_TYPE_ID,
-                    "object_id": i
-                }
-            })
-            tagged_pk_start += 1
     st = st + 100
-
-# Add tagged items at the end
-fixtures.extend(tagged_items)
 
 # Save fixture file
 with open(FIXTURE_FILE, "w", encoding="utf-8") as f:

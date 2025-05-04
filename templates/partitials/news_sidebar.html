@@ -1,6 +1,6 @@
 <div class="col-lg-4">
     <!-- Categories -->
-    {% load cache %}
+    {% load cache path_tags %}
     {% cache 600 categories_sidebar %}
     <div class="card mb-4 shadow-sm">
         <div class="card-header bg-dark text-white">
@@ -9,11 +9,11 @@
         <div class="card-body">
             <ul class="list-group list-group-flush">
                 {% for category in categories %}
-                <li class="list-group-item d-flex justify-content-between align-items-center {% if category.slug == news.category.slug %}active bg-primary text-white{% endif %}">
-                    <a href="{% url 'news:news_by_category' category.slug %}" class="text-decoration-none {% if category.slug == news.category.slug %}text-white{% else %}text-dark{% endif %}">
+                <li class="list-group-item d-flex justify-content-between align-items-center {% if category.slug == news.category.slug or request|path_contains:category.slug %}active bg-primary text-white{% endif %}">
+                    <a href="{% url 'news:news_by_category' category.slug %}" class="text-decoration-none {% if category.slug == news.category.slug or request|path_contains:category.slug %}text-white{% else %}text-dark{% endif %}">
                         {{ category.name }}
                     </a>
-                    <span class="badge {% if category.slug == news.category.slug %}bg-white text-primary{% else %}bg-primary text-white{% endif %} rounded-pill">
+                    <span class="badge {% if category.slug == news.category.slug or request|path_contains:category.slug %}bg-white text-primary{% else %}bg-primary text-white{% endif %} rounded-pill">
                         {{ category.news.count }}
                     </span>
                 </li>

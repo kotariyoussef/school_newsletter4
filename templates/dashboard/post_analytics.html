@@ -4,58 +4,169 @@
 {% block title %}Analytics: {{ post.title }}{% endblock %}
 
 {% block content %}
-<div class="post-analytics-container">
-    <div class="row mb-4">
+<div class="post-analytics-container container-fluid py-4">
+    <!-- Header with Back Button -->
+    <div class="row mb-4 align-items-center">
         <div class="col-md-8">
-            <h1>Analytics: {{ post.title }}</h1>
+            <h1 class="mb-1">
+                <i class="fas fa-chart-bar text-primary mr-2"></i>Analytics
+            </h1>
+            <p class="text-muted">
+                <i class="fas fa-file-alt mr-1"></i> {{ post.title|truncatechars:60 }}
+            </p>
         </div>
-        <div class="col-md-4 text-end">
-            <a href="{% url 'dashboard:post_list' %}" class="btn btn-outline-secondary">Back to Posts</a>
+        <div class="col-md-4 text-right">
+            <a href="{% url 'dashboard:post_list' %}" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left mr-1"></i> Back to Posts
+            </a>
+            <a href="{{ post.get_absolute_url }}" target="_blank" class="btn btn-outline-primary ml-2">
+                <i class="fas fa-external-link-alt mr-1"></i> View Post
+            </a>
+        </div>
+    </div>
+
+    <!-- Stats Overview Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm border-left-primary">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Views</div>
+                            <div class="h1 mb-0 font-weight-bold">{{ post.views }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-eye fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm border-left-success">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Comments</div>
+                            <div class="h1 mb-0 font-weight-bold">{{ comment_count }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm border-left-info">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Approved Comments</div>
+                            <div class="h1 mb-0 font-weight-bold">{{ approved_comment_count }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Post Details Card -->
-    <div class="card mb-4">
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-light">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-info-circle text-primary mr-2"></i>
+                <span class="font-weight-bold">Post Details</span>
+            </div>
+        </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-8">
-                    <h5>Post Details</h5>
-                    <table class="table table-sm">
-                        <tr>
-                            <th style="width: 150px;">Title:</th>
-                            <td>{{ post.title }}</td>
-                        </tr>
-                        <tr>
-                            <th>Category:</th>
-                            <td>{{ post.category.name }}</td>
-                        </tr>
-                        <tr>
-                            <th>Status:</th>
-                            <td>
-                                <span class="badge {% if post.status == 'published' %}bg-success{% else %}bg-secondary{% endif %}">
-                                    {{ post.status|title }}
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Published:</th>
-                            <td>{% if post.publish_date %}{{ post.publish_date|date:"F j, Y, g:i a" }}{% else %}Not published yet{% endif %}</td>
-                        </tr>
-                        <tr>
-                            <th>Last Updated:</th>
-                            <td>{{ post.updated_at|date:"F j, Y, g:i a" }}</td>
-                        </tr>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-hover">
+                            <tbody>
+                                <tr>
+                                    <th class="text-muted" style="width: 150px;">
+                                        <i class="fas fa-heading mr-2"></i>Title:
+                                    </th>
+                                    <td>{{ post.title }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">
+                                        <i class="fas fa-folder mr-2"></i>Category:
+                                    </th>
+                                    <td>
+                                        <span class="badge badge-pill badge-light">
+                                            {{ post.category.name }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">
+                                        <i class="fas fa-bookmark mr-2"></i>Status:
+                                    </th>
+                                    <td>
+                                        {% if post.status == 'published' %}
+                                        <span class="badge badge-success">
+                                            <i class="fas fa-check-circle mr-1"></i> Published
+                                        </span>
+                                        {% else %}
+                                        <span class="badge badge-secondary">
+                                            <i class="fas fa-pencil-alt mr-1"></i> Draft
+                                        </span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">
+                                        <i class="fas fa-calendar-check mr-2"></i>Published:
+                                    </th>
+                                    <td>
+                                        {% if post.publish_date %}
+                                        <i class="far fa-calendar-alt text-muted mr-1"></i>{{ post.publish_date|date:"F j, Y, g:i a" }}
+                                        {% else %}
+                                        <span class="text-muted"><i class="fas fa-hourglass-half mr-1"></i>Not published yet</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted">
+                                        <i class="fas fa-edit mr-2"></i>Last Updated:
+                                    </th>
+                                    <td>
+                                        <i class="far fa-clock text-muted mr-1"></i>{{ post.updated_at|date:"F j, Y, g:i a" }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="analytics-summary text-center">
-                        <div class="analytics-card">
-                            <h2>{{ post.views }}</h2>
-                            <p>Total Views</p>
+                        <div class="analytics-card p-3 mb-3 bg-light rounded">
+                            <div class="display-4 text-primary mb-0">
+                                <i class="fas fa-eye mr-2"></i>
+                                {{ post.views }}
+                            </div>
+                            <p class="mb-0 text-uppercase font-weight-bold text-muted small">Total Views</p>
+                            <div class="progress mt-2" style="height: 5px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"></div>
+                            </div>
                         </div>
-                        <div class="analytics-card mt-3">
-                            <h2>{{ comment_count }}</h2>
-                            <p>Comments</p>
+                        
+                        <div class="analytics-card p-3 bg-light rounded">
+                            <div class="display-4 text-success mb-0">
+                                <i class="fas fa-comments mr-2"></i>
+                                {{ comment_count }}
+                            </div>
+                            <p class="mb-0 text-uppercase font-weight-bold text-muted small">Comments</p>
+                            <div class="progress mt-2" style="height: 5px;">
+                                <div class="progress-bar bg-success" role="progressbar" 
+                                     style="width: {% if comment_count > 0 %}100{% else %}0{% endif %}%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,112 +176,303 @@
 
     <div class="row">
         <!-- Views Chart -->
-        <div class="col-md-8">
-            <div class="card mb-4">
+        <div class="col-lg-8 col-md-7 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-light">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-chart-line text-primary mr-2"></i>
+                            <span class="font-weight-bold">Views Over Time</span>
+                        </div>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Time period">
+                            <button type="button" class="btn btn-outline-secondary active time-filter" data-period="week">Week</button>
+                            <button type="button" class="btn btn-outline-secondary time-filter" data-period="month">Month</button>
+                            <button type="button" class="btn btn-outline-secondary time-filter" data-period="year">Year</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title">Views Over Time</h5>
-                    <canvas id="viewsChart"></canvas>
-                    <div class="text-center mt-3">
-                        <small class="text-muted">Note: This is simulated data for demonstration. Implement a view tracking model for actual data.</small>
+                    <div class="chart-container" style="position: relative; height:300px;">
+                        <canvas id="viewsChart"></canvas>
+                    </div>
+                </div>
+                <div class="card-footer bg-light">
+                    <div class="text-center small text-muted">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Note: This is simulated data for demonstration. Implement a view tracking model for actual data.
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Comments Section -->
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Comments</h5>
-                    <div class="comments-summary">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span>Total Comments:</span>
-                            <span class="badge bg-primary">{{ comment_count }}</span>
+        <div class="col-lg-4 col-md-5 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-light">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-comments text-success mr-2"></i>
+                            <span class="font-weight-bold">Comments</span>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span>Approved Comments:</span>
-                            <span class="badge bg-success">{{ approved_comment_count }}</span>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="recent-comments mt-3">
-                        <h6>Recent Comments</h6>
-                        {% for comment in post.comments.all|slice:":5" %}
-                        <div class="comment-item mb-2">
-                            <div class="d-flex justify-content-between">
-                                <strong>{{ comment.user.username }}</strong>
-                                <small>{{ comment.created_at|date:"M d" }}</small>
-                            </div>
-                            <p class="mb-1 small">{{ comment.content|truncatechars:100 }}</p>
-                            <small class="{% if comment.is_approved %}text-success{% else %}text-warning{% endif %}">
-                                {{ comment.is_approved|yesno:"Approved,Pending Approval" }}
-                            </small>
-                        </div>
-                        {% if not forloop.last %}<hr class="my-2">{% endif %}
-                        {% empty %}
-                        <p class="text-muted">No comments yet.</p>
-                        {% endfor %}
+                        <a href="{% url 'dashboard:manage_comments' %}" class="btn btn-sm btn-outline-success">
+                            <i class="fas fa-external-link-alt mr-1"></i> Manage
+                        </a>
                     </div>
                 </div>
+                <div class="card-body p-0">
+                    <div class="comments-summary p-3 bg-light border-bottom">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="text-center mb-3">
+                                    <div class="h4 mb-0">{{ comment_count }}</div>
+                                    <div class="small text-muted">Total</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-center">
+                                    <div class="h4 mb-0">{{ approved_comment_count }}</div>
+                                    <div class="small text-muted">Approved</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress" style="height: 5px;">
+                            {% if comment_count > 0 %}
+                            <div class="progress-bar bg-success" role="progressbar" 
+                                style="width: {{ approved_comment_count|default:0|floatformat:0 }}%"></div>
+                            {% else %}
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="recent-comments">
+                        <h6 class="pl-3 pt-3 pb-2 border-bottom">
+                            <i class="fas fa-comment-dots mr-1"></i> Recent Comments
+                        </h6>
+                        <div class="comment-list p-0">
+                            {% for comment in post.comments.all|slice:":5" %}
+                            <div class="comment-item p-3 {% if not forloop.last %}border-bottom{% endif %}">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div>
+                                        <i class="fas fa-user-circle text-secondary mr-1"></i>
+                                        <strong>{{ comment.user.username }}</strong>
+                                    </div>
+                                    <small class="text-muted">
+                                        <i class="far fa-clock mr-1"></i>{{ comment.created_at|date:"M d" }}
+                                    </small>
+                                </div>
+                                <p class="mb-2 small">{{ comment.content|truncatechars:100 }}</p>
+                                {% if comment.is_approved %}
+                                <span class="badge badge-success">
+                                    <i class="fas fa-check mr-1"></i> Approved
+                                </span>
+                                {% else %}
+                                <span class="badge badge-warning text-dark">
+                                    <i class="fas fa-hourglass-half mr-1"></i> Pending Approval
+                                </span>
+                                {% endif %}
+                            </div>
+                            {% empty %}
+                            <div class="text-center py-5">
+                                <div class="empty-state">
+                                    <i class="far fa-comment-dots fa-3x text-muted mb-3"></i>
+                                    <p>No comments yet.</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% if comment_count > 5 %}
+                <div class="card-footer bg-light text-center">
+                    <a href="{% url 'dashboard:manage_comments' %}" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-list mr-1"></i> View All Comments
+                    </a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
+
+<!-- Custom Styles -->
+<style>
+    .border-left-primary {
+        border-left: 4px solid #4e73df !important;
+    }
+    .border-left-success {
+        border-left: 4px solid #1cc88a !important;
+    }
+    .border-left-info {
+        border-left: 4px solid #36b9cc !important;
+    }
+    .analytics-card {
+        border-radius: 0.25rem;
+        transition: transform 0.3s ease;
+    }
+    .analytics-card:hover {
+        transform: translateY(-3px);
+    }
+    .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #6c757d;
+    }
+    .comment-item {
+        transition: background-color 0.2s ease;
+    }
+    .comment-item:hover {
+        background-color: #f8f9fa;
+    }
+    .chart-container {
+        min-height: 300px;
+    }
+</style>
 {% endblock %}
 
 {% block extra_js %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    // Initialize tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
     // Simulate view data for the chart
     // In a real application, you would fetch this data from your backend
     document.addEventListener('DOMContentLoaded', function() {
         const viewsCtx = document.getElementById('viewsChart').getContext('2d');
+        let viewsChart;
         
-        // Simulate 30 days of data
-        const labels = [];
-        const viewsData = [];
-        
-        const endDate = new Date();
-        for (let i = 29; i >= 0; i--) {
-            const date = new Date();
-            date.setDate(endDate.getDate() - i);
-            labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+        function generateChartData(days) {
+            // Simulate data
+            const labels = [];
+            const viewsData = [];
             
-            // Generate some random data that trends upward
-            if (i === 29) {
-                viewsData.push(Math.floor(Math.random() * 10)); // Start with a low number
-            } else {
-                // Each day has a chance to increase from previous day
-                const prevValue = viewsData[viewsData.length - 1];
-                const change = Math.floor(Math.random() * 8) - 2; // Random change between -2 and +5
-                const newValue = Math.max(0, prevValue + change); // Ensure value doesn't go below 0
-                viewsData.push(newValue);
-            }
-        }
-        
-        const viewsChart = new Chart(viewsCtx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Daily Views',
-                    data: viewsData,
-                    fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            precision: 0
-                        }
-                    }
+            const endDate = new Date();
+            for (let i = days - 1; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(endDate.getDate() - i);
+                labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+                
+                // Generate some random data that trends upward
+                if (i === days - 1) {
+                    viewsData.push(Math.floor(Math.random() * 10)); // Start with a low number
+                } else {
+                    // Each day has a chance to increase from previous day
+                    const prevValue = viewsData[viewsData.length - 1];
+                    const change = Math.floor(Math.random() * 8) - 2; // Random change between -2 and +5
+                    const newValue = Math.max(0, prevValue + change); // Ensure value doesn't go below 0
+                    viewsData.push(newValue);
                 }
             }
+            
+            return { labels, viewsData };
+        }
+        
+        function createChart(days) {
+            const { labels, viewsData } = generateChartData(days);
+            
+            if (viewsChart) {
+                viewsChart.destroy();
+            }
+            
+            viewsChart = new Chart(viewsCtx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Daily Views',
+                        data: viewsData,
+                        fill: {
+                            target: 'origin',
+                            above: 'rgba(75, 192, 192, 0.1)'
+                        },
+                        borderColor: 'rgb(75, 192, 192)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgb(75, 192, 192)',
+                        pointRadius: 3,
+                        pointHoverRadius: 5,
+                        tension: 0.2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            padding: 10,
+                            titleFont: {
+                                size: 14
+                            },
+                            bodyFont: {
+                                size: 13
+                            },
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    return tooltipItems[0].label;
+                                },
+                                label: function(context) {
+                                    return `Views: ${context.raw}`;
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+        }
+        
+        // Initial chart creation - 30 days (month view)
+        createChart(30);
+        
+        // Time period filters
+        document.querySelectorAll('.time-filter').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.time-filter').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get period and update chart
+                const period = this.getAttribute('data-period');
+                
+                if (period === 'week') {
+                    createChart(7);
+                } else if (period === 'month') {
+                    createChart(30);
+                } else if (period === 'year') {
+                    createChart(365);
+                }
+            });
         });
     });
 </script>

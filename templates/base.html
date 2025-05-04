@@ -3,16 +3,32 @@
 <html lang="{{ language_code }}" dir="{% if language_code == 'ar' %}rtl{% else %}ltr{% endif %}">
 
 <head>
-    <meta charset="utf-8">
-    <title>{% block title %}{{site_name}}{% endblock %}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta name="keywords" content="{{keywords}}">
-    <meta name="description" content="{{site_description}}">
-    <meta name="author" content="{{author}}">
-    <meta property="og:site_name" content="{{ site_name }}">
+    <title>{% block title %}LBC: Let's Be Creative – Student-Run Newspaper{% endblock %}</title>
+    
 
-    {% block extra_seo %}{% endblock %}
+    <!-- SEO Meta -->
+    <meta name="description" content="{% block meta_description %}LBC: Let's Be Creative is a student-led newspaper featuring original stories, news, and opinions from Afnane.{% endblock %}" />
+    <meta name="keywords" content="student newspaper, school news, LBC, Let's Be Creative, student journalism, creative writing, Afnane" />
+    <meta name="author" content="Students of Afnane" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% block og_title %}LBC: Let's Be Creative – Student Voices in Action{% endblock %}" />
+    <meta property="og:description" content="{% block og_description %}Explore creative stories, opinion pieces, and campus news written by students.{% endblock %}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}" />
+    <meta property="og:image" content="{% block og_image %}{{ STATIC_URL }}images/og-default.jpg{% endblock %}" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{% block twitter_title %}LBC: Let's Be Creative{% endblock %}" />
+    <meta name="twitter:description" content="{% block twitter_description %}News, creativity, and expression from the students of Afnane.{% endblock %}" />
+    <meta name="twitter:image" content="{% block twitter_image %}{{ STATIC_URL }}images/twitter-card.jpg{% endblock %}" />
+
+    <meta name="twitter:site" content="@afnane">
+    <meta name="twitter:creator" content="@afnane">
 
     <!-- Favicon -->
     <link href="{% static "img/favicon.ico" %}" rel="icon">
@@ -59,13 +75,13 @@
                     <a href="{% url "account_login" %}" class="nav-item nav-link {% active 'account_login' %}">Login</a>
                     {% endif %}
                 </div>
-                <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
-                    <form method="GET" action="{% url 'news:news_search' %}">
-                        <input type="text" method="GET" class="form-control border-0" placeholder="Search for..."
-                            name="q" value="{{ search_query|default:'' }}">
-                        <div class="input-group-append">
-                            <button type="submit" class="input-group-text bg-primary text-dark border-0 px-3"><i
-                                    class="fa fa-search"></i></button>
+                <div class="input-group d-none d-lg-flex ml-auto" style="max-width: 300px;">
+                    <form action="{% url 'news:news_search' %}" method="get" class="w-100">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search again..." name="q" value="{{ query }}" required>
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
                         </div>
                     </form>
                 </div>

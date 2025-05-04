@@ -1,43 +1,37 @@
 {% extends 'base.html' %}
 {% load static cache %}
 
-{% block title %}{{ news.title }} | Newsletter{% endblock %}
+{% block title %}{{ news.title }} | LBC{% endblock %}
+
+{% block meta_description %}{{ news.summary|default:news.content|truncatewords:25 }}{% endblock %}
+
+{% block og_title %}{{ news.title }}{% endblock %}
+{% block og_description %}{{ news.summary }}{% endblock %}
+{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}
+{% block og_image %}{{ news.featured_image.url }}{% endblock %}
+
+{% block twitter_title %}{{ news.title }}{% endblock %}
+{% block twitter_description %}{{ news.summary }}{% endblock %}
+{% block twitter_image %}{{ news.featured_image.url }}{% endblock %}
 
 
 {% block extra_seo %}
-    <!-- OpenGraph -->
-    <meta property="og:title" content="{{ news.title }}">
-    <meta property="og:description" content="{{ news.summary }}">
-    <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:type" content="article">
-    <meta property="og:image" content="{{ news.featured_image.url }}">
-
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ news.title }}">
-    <meta name="twitter:description" content="{{ news.summary }}">
-    <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
-    <meta name="twitter:image" content="{{ news.featured_image.url }}">
-    <meta name="twitter:site" content="@yourtwitterhandle">
-    <meta name="twitter:creator" content="@yourtwitterhandle">
-
-    <!-- Schema Markup (JSON-LD) -->
-    <script type="application/ld+json">
+<script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "{{ news.title }}",
-      "description": "{{ news.summary }}",
+      "headline": "{{ news.title|escapejs }}",
+      "description": "{{ news.summary|escapejs }}",
       "author": {
         "@type": "Person",
         "name": "{{ news.author.get_full_name }}"
       },
       "datePublished": "{{ news.created_at|date:"Y-m-d" }}",
       "dateModified": "{{ news.updated_at|date:"Y-m-d" }}",
-      "image": "{{ news.image_url }}",
+      "image": "{{ news.featured_image.url }}",
       "publisher": {
         "@type": "Organization",
-        "name": "{{site_mame}}",
+        "name": "LBC",
         "logo": {
           "@type": "ImageObject",
           "url": "{% static 'logo.png' %}"
@@ -146,7 +140,7 @@
                 </div>
                 
                 <!-- Related Articles -->
-                {% cache 600 related_news %}
+                {% cache 600 related_articles_section news.slug %}
                 {% if related_news %}
                 <div class="mb-5">
                     <h3 class="mb-4 border-bottom pb-2">Related Articles</h3>

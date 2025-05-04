@@ -4,101 +4,320 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block extra_css %}
-    {{form.media}}
+    {{ form.media }}
+    <style>
+        .custom-file-label::after {
+            content: "Browse";
+        }
+        .ck-editor__editable {
+            min-height: 300px;
+        }
+        .select2-container--default .select2-selection--multiple {
+            border-color: #ced4da;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
-<div class="post-form-container">
-    <div class="row mb-4">
+<div class="container-fluid py-4">
+    <!-- Header Section -->
+    <div class="row mb-4 align-items-center">
         <div class="col-md-8">
-            <h1>{{ title }}</h1>
+            <h1 class="font-weight-bold text-primary mb-0">{{ title }}</h1>
+            <p class="text-muted">{% if post %}Edit your existing post{% else %}Create a new blog post{% endif %}</p>
         </div>
-        <div class="col-md-4 text-end">
-            <a href="{% url 'dashboard:post_list' %}" class="btn btn-outline-secondary">Back to Posts</a>
+        <div class="col-md-4 text-right">
+            <a href="{% url 'dashboard:post_list' %}" class="btn btn-outline-secondary rounded-pill">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Posts
+            </a>
         </div>
     </div>
 
-    <div class="card">
+    <!-- Form Card -->
+    <div class="card shadow-sm rounded">
+        <div class="card-header bg-white py-3">
+            <h5 class="mb-0">
+                <i class="fas fa-edit mr-2"></i>
+                {% if post %}Edit Post Details{% else %}Post Details{% endif %}
+            </h5>
+        </div>
         <div class="card-body">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 
                 {% if form.non_field_errors %}
-                <div class="alert alert-danger">
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
                     {% for error in form.non_field_errors %}
                     {{ error }}
                     {% endfor %}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 {% endif %}
                 
+                <!-- Title and Category Row -->
                 <div class="row">
                     <div class="col-md-8">
-                        <div class="mb-3">
-                            <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
-                            {{ form.title.errors }}
-                            <input type="text" class="form-control {% if form.title.errors %}is-invalid{% endif %}" 
-                                   id="{{ form.title.id_for_label }}" name="{{ form.title.name }}" 
-                                   value="{{ form.title.value|default:'' }}">
+                        <div class="form-group">
+                            <label for="{{ form.title.id_for_label }}" class="form-label font-weight-medium">
+                                <i class="fas fa-heading mr-1 text-muted"></i> Title
+                            </label>
+                            {% if form.title.errors %}
+                            <div class="text-danger small mb-2">
+                                {% for error in form.title.errors %}
+                                <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-light border-right-0">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control border-left-0 {% if form.title.errors %}is-invalid{% endif %}" 
+                                       id="{{ form.title.id_for_label }}" name="{{ form.title.name }}" 
+                                       value="{{ form.title.value|default:'' }}" placeholder="Enter post title">
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="mb-3">
-                            <label for="{{ form.category.id_for_label }}" class="form-label">Category</label>
-                            {{ form.category.errors }}
-                            {{ form.category }}
+                        <div class="form-group">
+                            <label for="{{ form.category.id_for_label }}" class="form-label font-weight-medium">
+                                <i class="fas fa-folder mr-1 text-muted"></i> Category
+                            </label>
+                            {% if form.category.errors %}
+                            <div class="text-danger small mb-2">
+                                {% for error in form.category.errors %}
+                                <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-light border-right-0">
+                                        <i class="fas fa-th-list"></i>
+                                    </span>
+                                </div>
+                                {{ form.category }}
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="mb-3">
-                    <label for="{{ form.summary.id_for_label }}" class="form-label">Summary</label>
-                    {{ form.summary.errors }}
-                    <textarea class="form-control {% if form.summary.errors %}is-invalid{% endif %}" 
-                              id="{{ form.summary.id_for_label }}" name="{{ form.summary.name }}" 
-                              rows="3">{{ form.summary.value|default:'' }}</textarea>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="{{ form.featured_image.id_for_label }}" class="form-label">Featured Image</label>
-                    {{ form.featured_image.errors }}
-                    {{ form.featured_image }}
-                    {% if post and post.featured_image %}
-                    <div class="mt-2">
-                        <p>Current image: <a href="{{ post.featured_image.url }}" target="_blank">View</a></p>
+                <!-- Summary Section -->
+                <div class="form-group">
+                    <label for="{{ form.summary.id_for_label }}" class="form-label font-weight-medium">
+                        <i class="fas fa-align-left mr-1 text-muted"></i> Summary
+                    </label>
+                    {% if form.summary.errors %}
+                    <div class="text-danger small mb-2">
+                        {% for error in form.summary.errors %}
+                        <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                        {% endfor %}
                     </div>
                     {% endif %}
+                    <textarea class="form-control {% if form.summary.errors %}is-invalid{% endif %}" 
+                              id="{{ form.summary.id_for_label }}" name="{{ form.summary.name }}" 
+                              rows="3" placeholder="Brief description of your post">{{ form.summary.value|default:'' }}</textarea>
+                    <small class="form-text text-muted">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        A good summary helps readers understand what your post is about and improves SEO.
+                    </small>
                 </div>
                 
-                <div class="mb-4">
-                    <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
-                    {{ form.content.errors }}
-                    {{ form.content }}
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <label for="{{ form.status.id_for_label }}" class="form-label">Status</label>
-                            {{ form.status.errors }}
-                            {{ form.status }}
+                <!-- Featured Image Section -->
+                <div class="form-group">
+                    <label for="{{ form.featured_image.id_for_label }}" class="form-label font-weight-medium">
+                        <i class="fas fa-image mr-1 text-muted"></i> Featured Image
+                    </label>
+                    {% if form.featured_image.errors %}
+                    <div class="text-danger small mb-2">
+                        {% for error in form.featured_image.errors %}
+                        <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="custom-file">
+                        {{ form.featured_image }}
+                        <label class="custom-file-label" for="{{ form.featured_image.id_for_label }}">
+                            Choose file...
+                        </label>
+                    </div>
+                    
+                    {% if post and post.featured_image %}
+                    <div class="mt-3 d-flex align-items-center">
+                        <div class="mr-3">
+                            <img src="{{ post.featured_image.url }}" alt="Featured image" class="img-thumbnail" style="max-height: 100px;">
+                        </div>
+                        <div>
+                            <p class="mb-1">Current image</p>
+                            <a href="{{ post.featured_image.url }}" target="_blank" class="btn btn-sm btn-outline-info">
+                                <i class="fas fa-external-link-alt mr-1"></i>View full size
+                            </a>
                         </div>
                     </div>
+                    {% endif %}
+                    <small class="form-text text-muted mt-2">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Recommended size: 1200×630 pixels. Maximum file size: 2MB.
+                    </small>
+                </div>
+                
+                <!-- Content Editor Section -->
+                <div class="form-group">
+                    <label for="{{ form.content.id_for_label }}" class="form-label font-weight-medium">
+                        <i class="fas fa-newspaper mr-1 text-muted"></i> Content
+                    </label>
+                    {% if form.content.errors %}
+                    <div class="text-danger small mb-2">
+                        {% for error in form.content.errors %}
+                        <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <div class="border rounded p-2 bg-light">
+                        {{ form.content }}
+                    </div>
+                </div>
+                
+                <!-- Status and Tags Row -->
+                <div class="row mb-3">
                     <div class="col-md-4">
-                        <div class="mb-3">
-                            <label for="{{ form.tags.id_for_label }}" class="form-label">Tags</label>
-                            {{ form.tags.errors }}
+                        <div class="form-group">
+                            <label for="{{ form.status.id_for_label }}" class="form-label font-weight-medium">
+                                <i class="fas fa-toggle-on mr-1 text-muted"></i> Status
+                            </label>
+                            {% if form.status.errors %}
+                            <div class="text-danger small mb-2">
+                                {% for error in form.status.errors %}
+                                <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-light border-right-0">
+                                        <i class="fas fa-tag"></i>
+                                    </span>
+                                </div>
+                                {{ form.status }}
+                            </div>
+                            <small class="form-text text-muted">
+                                Draft posts are not visible to readers.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="{{ form.tags.id_for_label }}" class="form-label font-weight-medium">
+                                <i class="fas fa-tags mr-1 text-muted"></i> Tags
+                            </label>
+                            {% if form.tags.errors %}
+                            <div class="text-danger small mb-2">
+                                {% for error in form.tags.errors %}
+                                <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
                             {{ form.tags }}
+                            <small class="form-text text-muted">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Add relevant tags to help readers find your content.
+                            </small>
                         </div>
                     </div>
                 </div>
                 
-                <div class="d-flex justify-content-between mt-4">
-                    <a href="{% url 'dashboard:post_list' %}" class="btn btn-outline-secondary">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Save Post</button>
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-between mt-4 border-top pt-4">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill" onclick="window.location.href='{% url 'dashboard:post_list' %}'">
+                        <i class="fas fa-times mr-2"></i>Cancel
+                    </button>
+                    
+                    <div>
+                        <button type="submit" class="btn btn-primary">Save Post</button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
+    
+    <!-- Help Tips Section -->
+    {% if not post %}
+    <div class="card mt-4 border-left-0 border-right-0 border-bottom-0 border-top-4 border-info shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">
+                <i class="fas fa-lightbulb text-warning mr-2"></i>
+                Tips for Writing Great Posts
+            </h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="d-flex mb-2">
+                        <div class="mr-3 text-info">
+                            <i class="fas fa-check-circle fa-lg"></i>
+                        </div>
+                        <div>
+                            <strong>Engage with a strong headline</strong>
+                            <p class="small text-muted mb-0">Make it clear and compelling.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex mb-2">
+                        <div class="mr-3 text-info">
+                            <i class="fas fa-check-circle fa-lg"></i>
+                        </div>
+                        <div>
+                            <strong>Use subheadings to organize</strong>
+                            <p class="small text-muted mb-0">Break up long content into sections.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex mb-2">
+                        <div class="mr-3 text-info">
+                            <i class="fas fa-check-circle fa-lg"></i>
+                        </div>
+                        <div>
+                            <strong>Include relevant images</strong>
+                            <p class="small text-muted mb-0">Visual content improves engagement.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </div>
-{% endblock %}
 
+{% block extra_js %}
+<script>
+    // Initialize tooltips
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+        
+        // Update custom file input label with filename
+        $('.custom-file-input').on('change', function() {
+            var fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').html(fileName || 'Choose file...');
+        });
+        
+        // Style any Select2 elements if present
+        if($.fn.select2) {
+            $('.select2').select2({
+                theme: 'bootstrap4',
+                placeholder: 'Select options',
+                allowClear: true
+            });
+        }
+        
+        // Add form-control class to category and status selects if not already styled
+        $('#{{ form.category.id_for_label }}, #{{ form.status.id_for_label }}').addClass('form-control border-left-0');
+    });
+</script>
+{% endblock %}
+{% endblock %}

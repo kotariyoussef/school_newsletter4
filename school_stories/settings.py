@@ -25,14 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'h7n$wkl(k7hx_031@*vvd$!v2vaj7_d+%@n*c(erm%@e7-!fkd')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG') == 'True'
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
 
 # Application definition
@@ -60,7 +60,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -290,12 +289,8 @@ CKEDITOR_5_CONFIGS = {
 }
 
 
-SITE_NAME = "News Letter"
-SITE_DESCRIPTION = "Description"
-ADMIN_EMAIL = "ko.youssef.public@gmail.com"
-KEYWORDS = ",".join(("keyword1", "news", "students"))
-AUTHOR = "Youssef Kotari"
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "authenticated"
 
+ADMIN_EMAIL = "ko.youssef.public@gmail.com"
 
 # news api key : 0020da03e9b44fa1b8396f187c21fd2b
