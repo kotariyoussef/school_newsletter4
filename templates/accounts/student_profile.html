@@ -1,33 +1,135 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Student Profile{% endblock %}
-    
+{% block title %}Student Profile | {{ profile.full_name }}{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                <h4 class="mb-0">Student Profile</h4>
-                <a href="{% url 'accounts:edit_student_profile' %}" class="btn btn-light btn-sm">Edit Profile</a>
-            </div>
-            <div class="card-body">
-                <div class="text-center mb-4">
-                    <h2>{{ profile.full_name }}</h2>
-                    <p class="text-muted">{{ user.email }}</p>
-                </div>
-                
-                <div class="card mt-3">
-                    <div class="card-header">About Me</div>
-                    <div class="card-body">
-                        {% if profile.bio %}
-                            <p>{{ profile.bio|safe }}</p>
-                        {% else %}
-                            <p class="text-muted">No bio provided yet. <a href="{% url 'accounts:edit_student_profile' %}">Add one now</a>.</p>
-                        {% endif %}
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2 class="font-weight-bold text-primary">
+                <i class="fas fa-user-graduate mr-2"></i>Student Profile
+            </h2>
+            <p class="text-muted">View and manage your student information</p>
+        </div>
+        <div class="col-md-4 text-md-right">
+            <a href="{% url 'accounts:edit_student_profile' %}" class="btn btn-primary">
+                <i class="fas fa-edit mr-1"></i> Edit Profile
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Left Column - Profile Photo and Basic Info -->
+        <div class="col-lg-4 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-body text-center">
+                    {% if profile.profile_picture %}
+                        <img src="{{ profile.profile_picture.url }}" alt="{{ profile.full_name }}" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                    {% else %}
+                        <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 150px; height: 150px;">
+                            <i class="fas fa-user fa-4x text-secondary"></i>
+                        </div>
+                    {% endif %}
+                    
+                    <h4 class="font-weight-bold">{{ profile.full_name }}</h4>
+                    <p class="text-muted">
+                        <i class="fas fa-user mr-2"></i>{{ profile.user.username }}
+                    </p>
+                    
+                    <div class="mt-3">
+                        <h6 class="text-primary font-weight-bold">Contact Information</h6>
+                        <p class="mb-2">
+                            <i class="fas fa-envelope mr-2"></i>{{ profile.user.email }}
+                        </p>
+                    </div>
+                    
+                    <div class="mt-4 pt-3 border-top">
+                        <p class="small text-muted mb-1">Member since</p>
+                        <p>{{ profile.created_at|date:"F d, Y" }}</p>
+                        
+                        <p class="small text-muted mb-1">Last updated</p>
+                        <p>{{ profile.updated_at|date:"F d, Y" }}</p>
                     </div>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Right Column - Bio and Other Details -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-info-circle mr-2"></i>About Me</h5>
+                </div>
+                <div class="card-body">
+                    {% if profile.bio %}
+                        <div class="bio-content">
+                            {{ profile.bio|safe }}
+                        </div>
+                    {% else %}
+                        <p class="text-muted">No bio information added yet. Click the Edit Profile button to add your bio.</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Profile Details -->
+            <div class="card border-0 shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-id-card mr-2"></i>Profile Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <h6 class="font-weight-bold">Username</h6>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ profile.user.username }}</p>
+                        </div>
+                    </div>
                     
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <h6 class="font-weight-bold">First Name</h6>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ profile.user.first_name }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <h6 class="font-weight-bold">Last Name</h6>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ profile.user.last_name }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <h6 class="font-weight-bold">Email</h6>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ profile.user.email }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6 class="font-weight-bold">Profile URL</h6>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="text-break">
+                                {% if request.get_host %}
+                                    {{ request.scheme }}://{{ request.get_host }}/accounts/profile/{{ profile.slug }}/
+                                {% else %}
+                                    /accounts/profile/{{ profile.slug }}/
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

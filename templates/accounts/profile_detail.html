@@ -1,39 +1,242 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block title %}{{ profile.full_name }} | Student Profile{% endblock %}
 
-{% block title %}Edit Profile{% endblock %}
+{% block extra_css %}
+<style>
+    .profile-header {
+        background-color: #f8f9fa;
+        border-radius: 0.5rem;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+    }
+    .profile-image {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border: 5px solid #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .profile-info {
+        padding-left: 2rem;
+    }
+    .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background-color: #f1f1f1;
+        color: #555;
+        margin-right: 0.5rem;
+        transition: all 0.3s;
+    }
+    .social-icon:hover {
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+    }
+    @media (max-width: 767.98px) {
+        .profile-info {
+            padding-left: 0;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .profile-image-container {
+            text-align: center;
+        }
+    }
+    .contact-info-item {
+        margin-bottom: 0.75rem;
+    }
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .bio-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+</style>
+{% endblock %}
 
 {% block content %}
-
-
-<div class="card-body">
-    <div class="text-center mb-4">
-        <h2>{{ profile.full_name }}</h2>
-    </div>
+<div class="container py-5">
+    <!-- Alert Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
     
-    <div class="card mt-3">
-        <div class="card-header">About Me</div>
-        <div class="card-body">
-            {% if profile.bio %}
-                <p>{{ profile.bio|safe }}</p>
-            {% else %}
-                <p class="text-muted">No bio provided yet. <a href="{% url 'accounts:edit_student_profile' %}">Add one now</a>.</p>
-            {% endif %}
+    <!-- Profile Header -->
+    <div class="profile-header shadow-sm">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 profile-image-container">
+                    {% if profile.profile_picture %}
+                        <img src="{{ profile.profile_picture.url }}" alt="{{ profile.full_name }}" class="profile-image rounded-circle">
+                    {% else %}
+                        <div class="profile-image rounded-circle d-flex align-items-center justify-content-center bg-light">
+                            <i class="fas fa-user fa-5x text-secondary"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-8 profile-info">
+                    <h1 class="font-weight-bold mb-1">{{ profile.full_name }}</h1>
+                    <p class="text-muted mb-3">@{{ profile.user.username }}</p>
+                    
+                    <div class="mb-3">
+                        <span class="badge badge-light mr-2 py-2 px-3">
+                            <i class="far fa-calendar-alt mr-1"></i> Joined {{ profile.created_at|date:"F Y" }}
+                        </span>
+                        <span class="badge badge-light py-2 px-3">
+                            <i class="far fa-clock mr-1"></i> Last updated {{ profile.updated_at|date:"F d, Y" }}
+                        </span>
+                    </div>
+                    
+                    <div class="d-flex flex-wrap">
+                        {% if request.user == profile.user %}
+                            <a href="{% url 'accounts:edit_student_profile' %}" class="btn btn-primary mr-2 mb-2">
+                                <i class="fas fa-edit mr-1"></i> Edit Profile
+                            </a>
+                        {% endif %}
+                        
+                        <a href="{% url 'profile_list' %}" class="btn btn-outline-secondary mr-2 mb-2">
+                            <i class="fas fa-users mr-1"></i> All Profiles
+                        </a>
+                        
+                        {% if request.user.is_authenticated and request.user != profile.user %}
+                            <a href="#" class="btn btn-outline-primary mr-2 mb-2">
+                                <i class="fas fa-envelope mr-1"></i> Contact
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    {% comment %} <h2>Recent News</h2>
-    {% if student_news %}
-        <ul>
-            {% for news in student_news %}
-                <li>
-                    <a href="{% url 'news:news_detail' news.slug %}">{{ news.title }}</a> - 
-                    {{ news.created_at }}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No news posts available.</p>
-    {% endif %} {% endcomment %}
+    
+    <div class="row">
+        <!-- Left Column - Contact Info and Meta -->
+        <div class="col-lg-4 mb-4">
+            <!-- Contact Information -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-address-card mr-2"></i>Contact Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope fa-fw text-muted mr-2"></i>
+                        <span>{{ profile.user.email }}</span>
+                    </div>
+                    
+                    <!-- If you have additional contact fields in your model, add them here -->
+                    <!-- Example:
+                    {% if profile.phone %}
+                        <div class="contact-info-item">
+                            <i class="fas fa-phone fa-fw text-muted mr-2"></i>
+                            <span>{{ profile.phone }}</span>
+                        </div>
+                    {% endif %}
+                    -->
+                    
+                    <div class="contact-info-item">
+                        <i class="fas fa-link fa-fw text-muted mr-2"></i>
+                        <span>{{ request.scheme }}://{{ request.get_host }}{% url 'profile_detail' slug=profile.slug %}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile Meta Information -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-info-circle mr-2"></i>Profile Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6 class="font-weight-bold">User Since</h6>
+                        <p>{{ profile.created_at|date:"F d, Y" }}</p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6 class="font-weight-bold">Last Updated</h6>
+                        <p>{{ profile.updated_at|date:"F d, Y" }}</p>
+                    </div>
+                    
+                    <!-- Social Media Links (if you have them in your model) -->
+                    <!-- Example:
+                    <div>
+                        <h6 class="font-weight-bold">Connect</h6>
+                        <div class="mt-2">
+                            {% if profile.twitter %}
+                                <a href="{{ profile.twitter }}" class="social-icon" target="_blank" title="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Column - Bio and Additional Info -->
+        <div class="col-lg-8">
+            <!-- Bio Section -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-user mr-2"></i>About</h5>
+                </div>
+                <div class="card-body">
+                    {% if profile.bio %}
+                        <div class="bio-content">
+                            {{ profile.bio|safe }}
+                        </div>
+                    {% else %}
+                        <p class="text-muted font-italic">No bio information available.</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- You can add additional sections here based on your model -->
+            <!-- Example: Education History, Skills, etc. -->
+            
+            {% comment %} <!-- Similar Profiles -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-users mr-2"></i>Other Profiles You May Like</h5>
+                </div>
+                <div class="card-body pb-0">
+                    <div class="row">
+                        {% for i in "123" %}
+                            <div class="col-md-4 mb-4">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body text-center">
+                                        <div class="mb-3">
+                                            <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                                <i class="fas fa-user fa-2x text-secondary"></i>
+                                            </div>
+                                        </div>
+                                        <h6 class="font-weight-bold">Student Name</h6>
+                                        <p class="small text-muted">@username</p>
+                                        <a href="#" class="btn btn-sm btn-outline-primary btn-block">View Profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </div>
 </div>
-
 {% endblock %}

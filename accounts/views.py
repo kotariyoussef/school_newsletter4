@@ -2,10 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from news.models import News
+# from news.models import News
 from .models import StudentRequest, StudentProfile
 from .forms import StudentRequestForm, StudentProfileForm
 from django.views.generic import ListView, DetailView
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
+from django.shortcuts import get_object_or_404
+
 
 
 
@@ -102,29 +107,89 @@ def edit_student_profile(request):
             "last_name": request.user.first_name,
             "first_name": request.user.last_name,})
 
-class ProfileListView(ListView):
+class ProfileListView(LoginRequiredMixin, ListView):
     model = StudentProfile
     template_name = 'accounts/profile_list.html'
     context_object_name = 'profiles'
+    paginate_by = 10  # Show 10 profiles per page
+    
+    def get_queryset(self):
+        """Optimize query and apply filters if provided."""
+        queryset = StudentProfile.objects.select_related('user')
+        
+        # Apply search filter if provided in GET parameters
+        search_term = self.request.GET.get('search')
+        if search_term:
+            queryset = queryset.filter(
+                Q(user__first_name__icontains=search_term) |
+                Q(user__last_name__icontains=search_term) |
+                Q(bio__icontains=search_term) |
+                Q(user__username__icontains=search_term)
+            )
+                
+        return queryset.order_by('-created_at')
+    
+    def get_context_data(self, **kwargs):
+        """Add additional context data."""
+        context = super().get_context_data(**kwargs)
+        
+        # Add search term to context
+        context['search_term'] = self.request.GET.get('search', '')
+        
+        # Add any extra context data
+        context['page_title'] = 'Student Profiles'
+        context['total_profiles'] = StudentProfile.objects.count()
+        
+        return context
 
-class ProfileDetailView(DetailView):
+
+class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = StudentProfile
     template_name = 'accounts/profile_detail.html'
     context_object_name = 'profile'
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
-
-    # def get_context_data(self, **kwargs):
-    #     # Get the context from the parent class
-    #     context = super().get_context_data(**kwargs)
-
-    #     # Get the current student profile instance
-    #     profile = context['profile']
-
-    #     # Filter news by this student profile
-    #     student_news = News.objects.filter(author=profile)
-
-    #     # Add the filtered news to the context
-    #     context['student_news'] = student_news
-
-    #     return context
+    
+    def get_queryset(self):
+        """Optimize the query with related data."""
+        return StudentProfile.objects.select_related('user')
+    
+    def get_object(self, queryset=None):
+        """
+        Override to add custom 404 handling or fallback to ID if slug not found.
+        """
+        if queryset is None:
+            queryset = self.get_queryset()
+            
+        # Try to find by slug
+        slug = self.kwargs.get(self.slug_url_kwarg)
+        if slug:
+            try:
+                obj = queryset.get(**{self.slug_field: slug})
+                return obj
+            except self.model.DoesNotExist:
+                pass
+                
+        # Fallback to ID if provided
+        pk = self.kwargs.get('pk')
+        if pk:
+            return get_object_or_404(queryset, pk=pk)
+            
+        return super().get_object(queryset=queryset)
+        
+    def get_context_data(self, **kwargs):
+        """Add additional context data."""
+        context = super().get_context_data(**kwargs)
+        
+        # Add profile data
+        profile = context['profile']
+        context['page_title'] = f"{profile.full_name}'s Profile"
+        context['last_updated'] = profile.updated_at
+        
+        # Add permissions context
+        context['can_edit'] = (
+            self.request.user == profile.user or 
+            self.request.user.is_staff
+        )
+        
+        return context

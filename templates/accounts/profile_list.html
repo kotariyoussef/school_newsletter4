@@ -1,30 +1,232 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}Student Profiles{% endblock %}
+
+{% block extra_css %}
+<style>
+    .profile-card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .profile-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06) !important;
+    }
+    .profile-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+    .profile-placeholder {
+        width: 100px;
+        height: 100px;
+        background-color: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .bio-preview {
+        max-height: 80px;
+        overflow: hidden;
+        position: relative;
+    }
+    .bio-preview::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30px;
+        background: linear-gradient(transparent, white);
+    }
+    .search-box {
+        border-radius: 50px;
+        padding-left: 20px;
+    }
+    .search-btn {
+        border-radius: 0 50px 50px 0;
+        margin-left: -1px;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container py-5">
-    <h1 class="text-center mb-5">Meet Our Writers</h1>
+    <!-- Page Header -->
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-6">
+            <h2 class="font-weight-bold text-primary">
+                <i class="fas fa-users mr-2"></i>Student Profiles
+            </h2>
+            <p class="text-muted">Browse all student profiles</p>
+        </div>
+        <div class="col-md-6">
+            <form method="get" action="{% url 'profile_list' %}" class="mt-3 mt-md-0">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control search-box" placeholder="Search by name..." 
+                           value="{{ request.GET.search|default:'' }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary search-btn" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {% for profile in profiles %}
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                {% if profile.profile_picture %}
-                    <img src="{{ profile.profile_picture.url }}" class="card-img-top" alt="{{ profile.name }}">
-                {% else %}
-                    <img src="{% static 'default_profile.jpg' %}" class="card-img-top" alt="{{ profile.name }}">
-                {% endif %}
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">{{ profile.full_name }}</h5>
-                    <div class="mt-auto">
-                        <a href="{% url 'profile_detail' slug=profile.slug %}" class="btn btn-primary btn-sm">View Profile</a>
+    <!-- Filter and Sort Options -->
+    <div class="card bg-light border-0 shadow-sm mb-4">
+        <div class="card-body py-3">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <span class="text-muted"><strong>{{ profiles.count }}</strong> profiles found</span>
+                </div>
+                <div class="col-md-6 text-md-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-sort mr-1"></i> Sort By
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item {% if request.GET.sort == 'name' %}active{% endif %}" 
+                               href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}sort=name">
+                               <i class="fas fa-sort-alpha-down mr-2"></i>Name (A-Z)
+                            </a>
+                            <a class="dropdown-item {% if request.GET.sort == '-name' %}active{% endif %}" 
+                               href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}sort=-name">
+                               <i class="fas fa-sort-alpha-up mr-2"></i>Name (Z-A)
+                            </a>
+                            <a class="dropdown-item {% if request.GET.sort == '-created_at' or not request.GET.sort %}active{% endif %}" 
+                               href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}sort=-created_at">
+                               <i class="fas fa-clock mr-2"></i>Newest First
+                            </a>
+                            <a class="dropdown-item {% if request.GET.sort == 'created_at' %}active{% endif %}" 
+                               href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}sort=created_at">
+                               <i class="fas fa-history mr-2"></i>Oldest First
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        {% empty %}
-            <p class="text-center">No writers found.</p>
-        {% endfor %}
     </div>
+
+    {% if profiles %}
+        <div class="row">
+            {% for profile in profiles %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card border-0 shadow-sm h-100 profile-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                {% if profile.profile_picture %}
+                                    <img src="{{ profile.profile_picture.url }}" alt="{{ profile.full_name }}" 
+                                         class="profile-image rounded-circle mr-3">
+                                {% else %}
+                                    <div class="profile-placeholder rounded-circle mr-3">
+                                        <i class="fas fa-user fa-2x text-secondary"></i>
+                                    </div>
+                                {% endif %}
+                                <div>
+                                    <h5 class="card-title mb-1">{{ profile.full_name }}</h5>
+                                    <p class="text-muted mb-0 small">
+                                        <i class="fas fa-user mr-1"></i>{{ profile.user.username }}
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            {% if profile.bio %}
+                                <div class="bio-preview mb-3">
+                                    {{ profile.bio|safe|truncatewords_html:30 }}
+                                </div>
+                            {% else %}
+                                <p class="text-muted font-italic mb-3">No bio available</p>
+                            {% endif %}
+                            
+                            <div class="text-muted small mb-3">
+                                <i class="far fa-calendar-alt mr-1"></i> Member since {{ profile.created_at|date:"M d, Y" }}
+                            </div>
+                            
+                            <a href="{% url 'profile_detail' slug=profile.slug %}" class="btn btn-outline-primary btn-sm btn-block">
+                                <i class="fas fa-user mr-1"></i> View Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        {% if is_paginated %}
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" aria-label="First">
+                                <span aria-hidden="true">&laquo;&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1"><span aria-hidden="true">&laquo;&laquo;</span></a>
+                        </li>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
+                        </li>
+                    {% endif %}
+
+                    {% for i in paginator.page_range %}
+                        {% if page_obj.number == i %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                            </li>
+                        {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ i }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">{{ i }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ paginator.num_pages }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" aria-label="Last">
+                                <span aria-hidden="true">&raquo;&raquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
+                        </li>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    {% else %}
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center py-5">
+                <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                <h4>No Profiles Found</h4>
+                <p class="text-muted">
+                    {% if request.GET.search %}
+                        No profiles match your search criteria. <a href="{% url 'profile_list' %}">Clear search</a>
+                    {% else %}
+                        There are no student profiles available at this time.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
