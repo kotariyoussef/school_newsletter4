@@ -4,8 +4,8 @@ from django.contrib import messages
 from django.utils import timezone
 from django.db.models import Count, Sum
 from django.core.paginator import Paginator
-from news.models import News, Category, Comment
-from .forms import NewsForm
+from news.models import News, Category, Comment, NewsMedia
+from .forms import NewsForm, NewsMediaFormSet
 
 @login_required
 def writer_dashboard(request):
@@ -34,6 +34,14 @@ def writer_dashboard(request):
                      .annotate(count=Count('id'))
                      .order_by('-count'))
     
+    # Media statistics
+    total_media = NewsMedia.objects.filter(news__author=student_profile).count()
+    media_type_counts = (NewsMedia.objects
+                        .filter(news__author=student_profile)
+                        .values('media_type')
+                        .annotate(count=Count('id'))
+                        .order_by('-count'))
+    
     context = {
         'total_posts': total_posts,
         'published_posts': published_posts,
@@ -43,6 +51,8 @@ def writer_dashboard(request):
         'recent_posts': recent_posts,
         'recent_comments': recent_comments,
         'category_stats': list(category_stats),
+        'total_media': total_media,
+        'media_type_counts': list(media_type_counts),
     }
     
     return render(request, 'dashboard/writer_dashboard.html', context)
@@ -88,15 +98,17 @@ def post_list(request):
 
 @login_required
 def create_post(request):
-    """View to create a new post"""
+    """View to create a new post with multiple media files"""
     if request.method == 'POST':
         form = NewsForm(request.POST, request.FILES)
-        if form.is_valid():
+        formset = NewsMediaFormSet(request.POST, request.FILES)
+        
+        if form.is_valid() and formset.is_valid():
             post = form.save(commit=False)
             post.author = request.user.profile
             
             # If publishing, set publish date
-            if post.status == 'published':
+            if post.status == 'published' and not post.publish_date:
                 post.publish_date = timezone.now()
                 
             post.save()
@@ -104,13 +116,21 @@ def create_post(request):
             # Save tags
             form.save_m2m()
             
+            # Save media files
+            media_instances = formset.save(commit=False)
+            for media in media_instances:
+                media.news = post
+                media.save()
+            
             messages.success(request, 'Your post was created successfully!')
             return redirect('dashboard:writer_dashboard')
     else:
         form = NewsForm()
+        formset = NewsMediaFormSet()
     
     context = {
         'form': form,
+        'formset': formset,
         'title': 'Create New Post',
     }
     
@@ -118,32 +138,46 @@ def create_post(request):
 
 @login_required
 def edit_post(request, slug):
-    """View to edit an existing post"""
+    """View to edit an existing post with multiple media files"""
     student_profile = request.user.profile
     post = get_object_or_404(News, slug=slug, author=student_profile)
     
     if request.method == 'POST':
         form = NewsForm(request.POST, request.FILES, instance=post)
-        if form.is_valid():
+        formset = NewsMediaFormSet(request.POST, request.FILES, instance=post)
+        
+        if form.is_valid() and formset.is_valid():
             updated_post = form.save(commit=False)
             
             # Update publish date if status changed from draft to published
             was_draft = post.status == 'draft'
             now_published = updated_post.status == 'published'
             
-            if was_draft and now_published:
+            if was_draft and now_published and not updated_post.publish_date:
                 updated_post.publish_date = timezone.now()
                 
             updated_post.save()
             form.save_m2m()  # Save tags
             
+            # Save media files
+            media_instances = formset.save(commit=False)
+            for media in media_instances:
+                media.news = updated_post
+                media.save()
+                
+            # Handle deleted media
+            for obj in formset.deleted_objects:
+                obj.delete()
+            
             messages.success(request, 'Your post was updated successfully!')
             return redirect('dashboard:post_list')
     else:
         form = NewsForm(instance=post)
+        formset = NewsMediaFormSet(instance=post)
     
     context = {
         'form': form,
+        'formset': formset,
         'post': post,
         'title': 'Edit Post',
     }
@@ -160,13 +194,19 @@ def post_analytics(request, slug):
     comment_count = post.comments.count()
     approved_comment_count = post.approved_comments().count()
     
-    # Get post view trend (dummy data - would need to implement view tracking by date)
-    # For a real implementation, you would need a model to track daily views
+    # Get media statistics
+    media_count = post.media_files.count()
+    media_by_type = (post.media_files
+                    .values('media_type')
+                    .annotate(count=Count('id'))
+                    .order_by('-count'))
     
     context = {
         'post': post,
         'comment_count': comment_count,
         'approved_comment_count': approved_comment_count,
+        'media_count': media_count,
+        'media_by_type': media_by_type,
     }
     
     return render(request, 'dashboard/post_analytics.html', context)
@@ -220,3 +260,35 @@ def delete_comment(request, comment_id):
     
     messages.success(request, 'Comment deleted successfully!')
     return redirect('dashboard:manage_comments')
+
+@login_required
+def manage_media(request, slug):
+    """View to manage media files for a specific post"""
+    student_profile = request.user.profile
+    post = get_object_or_404(News, slug=slug, author=student_profile)
+    
+    if request.method == 'POST':
+        formset = NewsMediaFormSet(request.POST, request.FILES, instance=post)
+        if formset.is_valid():
+            # Save media files
+            media_instances = formset.save(commit=False)
+            for media in media_instances:
+                media.news = post
+                media.save()
+                
+            # Handle deleted media
+            for obj in formset.deleted_objects:
+                obj.delete()
+                
+            messages.success(request, 'Media files updated successfully!')
+            return redirect('dashboard:post_list')
+    else:
+        formset = NewsMediaFormSet(instance=post)
+    
+    context = {
+        'post': post,
+        'formset': formset,
+        'title': f'Manage Media for: {post.title}',
+    }
+    
+    return render(request, 'dashboard/manage_media.html', context)

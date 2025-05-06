@@ -11,6 +11,7 @@ urlpatterns = [
     path('posts/create/', views.create_post, name='create_post'),
     path('posts/<slug:slug>/edit/', views.edit_post, name='edit_post'),
     path('posts/<slug:slug>/analytics/', views.post_analytics, name='post_analytics'),
+    path('posts/<slug:slug>/media/', views.manage_media, name='manage_media'),  # <-- Added line
     path('comments/', views.manage_comments, name='manage_comments'),
     path('comments/<int:comment_id>/approve/', views.approve_comment, name='approve_comment'),
     path('comments/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),

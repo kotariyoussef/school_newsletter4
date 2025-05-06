@@ -1,6 +1,6 @@
-# forms.py
 from django import forms
-from news.models import News, Category
+from news.models import News, Category, NewsMedia
+from django.forms import inlineformset_factory
 from django.utils.text import slugify
 from taggit.forms import TagWidget
 from django_ckeditor_5.widgets import CKEditor5Widget
@@ -46,7 +46,7 @@ class NewsForm(forms.ModelForm):
         fields = ['title', 'category', 'featured_image', 'summary', 'content', 
                   'is_featured', 'status', 'tags']
         widgets = {
-            'summary': forms.Textarea(attrs={'rows': 3}),
+            'summary': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
             'featured_image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
@@ -59,3 +59,23 @@ class NewsForm(forms.ModelForm):
                 raise forms.ValidationError('A post with this title already exists. Please choose a different title.')
         return title
 
+class NewsMediaForm(forms.ModelForm):
+    class Meta:
+        model = NewsMedia
+        fields = ['media_type', 'file', 'title', 'description', 'is_featured', 'order']
+        widgets = {
+            'media_type': forms.Select(attrs={'class': 'form-control'}),
+            'file': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'rows': 2, 'class': 'form-control'}),
+            'is_featured': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'order': forms.NumberInput(attrs={'class': 'form-control'})
+        }
+
+# Create formset for multiple media files
+NewsMediaFormSet = inlineformset_factory(
+    News, NewsMedia, 
+    form=NewsMediaForm,
+    extra=3,  # Number of empty forms to display
+    can_delete=True
+)

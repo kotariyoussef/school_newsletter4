@@ -5,6 +5,7 @@
 
 {% block extra_css %}
     {{ form.media }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
     <style>
         .custom-file-label::after {
             content: "Browse";
@@ -14,6 +15,38 @@
         }
         .select2-container--default .select2-selection--multiple {
             border-color: #ced4da;
+        }
+        .bootstrap-tagsinput {
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .bootstrap-tagsinput .tag {
+            margin-right: 2px;
+            color: white;
+            background-color: #007bff;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            display: inline-block;
+        }
+        .form-section {
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card-header-tabs {
+            margin-right: -1rem;
+            margin-bottom: -0.75rem;
+            margin-left: -1rem;
+            border-bottom: 0;
+        }
+        .border-top-4 {
+            border-top-width: 4px !important;
         }
     </style>
 {% endblock %}
@@ -36,10 +69,28 @@
     <!-- Form Card -->
     <div class="card shadow-sm rounded">
         <div class="card-header bg-white py-3">
-            <h5 class="mb-0">
-                <i class="fas fa-edit mr-2"></i>
-                {% if post %}Edit Post Details{% else %}Post Details{% endif %}
-            </h5>
+            <ul class="nav nav-tabs card-header-tabs" id="postFormTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">
+                        <i class="fas fa-edit mr-2"></i>Basic Details
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="content-tab" data-toggle="tab" href="#content" role="tab" aria-controls="content" aria-selected="false">
+                        <i class="fas fa-newspaper mr-2"></i>Content
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="media-tab" data-toggle="tab" href="#media" role="tab" aria-controls="media" aria-selected="false">
+                        <i class="fas fa-images mr-2"></i>Media Files
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">
+                        <i class="fas fa-cog mr-2"></i>Settings
+                    </a>
+                </li>
+            </ul>
         </div>
         <div class="card-body">
             <form method="post" enctype="multipart/form-data">
@@ -57,149 +108,336 @@
                 </div>
                 {% endif %}
                 
-                <!-- Title and Category Row -->
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="form-group">
-                            <label for="{{ form.title.id_for_label }}" class="form-label font-weight-medium">
-                                <i class="fas fa-heading mr-1 text-muted"></i> Title
-                            </label>
-                            {% if form.title.errors %}
-                            <div class="text-danger small mb-2">
-                                {% for error in form.title.errors %}
-                                <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                            {% endif %}
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-light border-right-0">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </span>
+                <div class="tab-content" id="postFormTabsContent">
+                    <!-- Basic Details Tab -->
+                    <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+                        <!-- Title and Category Row -->
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="{{ form.title.id_for_label }}" class="form-label font-weight-medium">
+                                        <i class="fas fa-heading mr-1 text-muted"></i> Title
+                                    </label>
+                                    {% if form.title.errors %}
+                                    <div class="text-danger small mb-2">
+                                        {% for error in form.title.errors %}
+                                        <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-light border-right-0">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control border-left-0 {% if form.title.errors %}is-invalid{% endif %}" 
+                                            id="{{ form.title.id_for_label }}" name="{{ form.title.name }}" 
+                                            value="{{ form.title.value|default:'' }}" placeholder="Enter post title">
+                                    </div>
                                 </div>
-                                <input type="text" class="form-control border-left-0 {% if form.title.errors %}is-invalid{% endif %}" 
-                                       id="{{ form.title.id_for_label }}" name="{{ form.title.name }}" 
-                                       value="{{ form.title.value|default:'' }}" placeholder="Enter post title">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="{{ form.category.id_for_label }}" class="form-label font-weight-medium">
+                                        <i class="fas fa-folder mr-1 text-muted"></i> Category
+                                    </label>
+                                    {% if form.category.errors %}
+                                    <div class="text-danger small mb-2">
+                                        {% for error in form.category.errors %}
+                                        <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-light border-right-0">
+                                                <i class="fas fa-th-list"></i>
+                                            </span>
+                                        </div>
+                                        {{ form.category }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
+                        
+                        <!-- Summary Section -->
                         <div class="form-group">
-                            <label for="{{ form.category.id_for_label }}" class="form-label font-weight-medium">
-                                <i class="fas fa-folder mr-1 text-muted"></i> Category
+                            <label for="{{ form.summary.id_for_label }}" class="form-label font-weight-medium">
+                                <i class="fas fa-align-left mr-1 text-muted"></i> Summary
                             </label>
-                            {% if form.category.errors %}
+                            {% if form.summary.errors %}
                             <div class="text-danger small mb-2">
-                                {% for error in form.category.errors %}
+                                {% for error in form.summary.errors %}
                                 <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
                                 {% endfor %}
                             </div>
                             {% endif %}
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-light border-right-0">
-                                        <i class="fas fa-th-list"></i>
-                                    </span>
-                                </div>
-                                {{ form.category }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Summary Section -->
-                <div class="form-group">
-                    <label for="{{ form.summary.id_for_label }}" class="form-label font-weight-medium">
-                        <i class="fas fa-align-left mr-1 text-muted"></i> Summary
-                    </label>
-                    {% if form.summary.errors %}
-                    <div class="text-danger small mb-2">
-                        {% for error in form.summary.errors %}
-                        <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    <textarea class="form-control {% if form.summary.errors %}is-invalid{% endif %}" 
-                              id="{{ form.summary.id_for_label }}" name="{{ form.summary.name }}" 
-                              rows="3" placeholder="Brief description of your post">{{ form.summary.value|default:'' }}</textarea>
-                    <small class="form-text text-muted">
-                        <i class="fas fa-info-circle mr-1"></i>
-                        A good summary helps readers understand what your post is about and improves SEO.
-                    </small>
-                </div>
-
-                <div class="mb-3">
-                    <label for="{{ form.featured_image.id_for_label }}" class="form-label">Featured Image</label>
-                    {{ form.featured_image.errors }}
-                    {{ form.featured_image }}
-                    {% if post and post.featured_image %}
-                    <div class="mt-2">
-                        <p>Current image: <a href="{{ post.featured_image.url }}" target="_blank">View</a></p>
-                    </div>
-                    {% endif %}
-                </div>
-                
-                <!-- Content Editor Section -->
-                <div class="form-group">
-                    <label for="{{ form.content.id_for_label }}" class="form-label font-weight-medium">
-                        <i class="fas fa-newspaper mr-1 text-muted"></i> Content
-                    </label>
-                    {% if form.content.errors %}
-                    <div class="text-danger small mb-2">
-                        {% for error in form.content.errors %}
-                        <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    <div class="border rounded p-2 bg-light">
-                        {{ form.content }}
-                    </div>
-                </div>
-                
-                <!-- Status and Tags Row -->
-                <div class="row mb-3">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="{{ form.status.id_for_label }}" class="form-label font-weight-medium">
-                                <i class="fas fa-toggle-on mr-1 text-muted"></i> Status
-                            </label>
-                            {% if form.status.errors %}
-                            <div class="text-danger small mb-2">
-                                {% for error in form.status.errors %}
-                                <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                            {% endif %}
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-light border-right-0">
-                                        <i class="fas fa-tag"></i>
-                                    </span>
-                                </div>
-                                {{ form.status }}
-                            </div>
-                            <small class="form-text text-muted">
-                                Draft posts are not visible to readers.
-                            </small>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="form-group">
-                            <label for="{{ form.tags.id_for_label }}" class="form-label font-weight-medium">
-                                <i class="fas fa-tags mr-1 text-muted"></i> Tags
-                            </label>
-                            {% if form.tags.errors %}
-                            <div class="text-danger small mb-2">
-                                {% for error in form.tags.errors %}
-                                <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                            {% endif %}
-                            {{ form.tags }}
+                            <textarea class="form-control {% if form.summary.errors %}is-invalid{% endif %}" 
+                                    id="{{ form.summary.id_for_label }}" name="{{ form.summary.name }}" 
+                                    rows="3" placeholder="Brief description of your post">{{ form.summary.value|default:'' }}</textarea>
                             <small class="form-text text-muted">
                                 <i class="fas fa-info-circle mr-1"></i>
-                                Add relevant tags to help readers find your content.
+                                A good summary helps readers understand what your post is about and improves SEO.
                             </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.featured_image.id_for_label }}" class="form-label font-weight-medium">
+                                <i class="fas fa-image mr-1 text-muted"></i> Featured Image
+                            </label>
+                            {% if form.featured_image.errors %}
+                            <div class="text-danger small mb-2">
+                                {% for error in form.featured_image.errors %}
+                                <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="{{ form.featured_image.id_for_label }}" name="{{ form.featured_image.name }}">
+                                <label class="custom-file-label" for="{{ form.featured_image.id_for_label }}">Choose file...</label>
+                            </div>
+                            {% if post and post.featured_image %}
+                            <div class="mt-2 d-flex align-items-center">
+                                <span class="mr-2">Current image:</span> 
+                                <div class="position-relative">
+                                    <img src="{{ post.featured_image.url }}" class="img-thumbnail" style="max-height: 80px;">
+                                    <a href="{{ post.featured_image.url }}" target="_blank" class="btn btn-sm btn-info position-absolute" style="right: 5px; top: 5px;">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <small class="form-text text-muted">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Recommended size: 1200 x 630 pixels. Max size: 2MB.
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <!-- Content Tab -->
+                    <div class="tab-pane fade" id="content" role="tabpanel" aria-labelledby="content-tab">
+                        <!-- Content Editor Section -->
+                        <div class="form-group">
+                            <label for="{{ form.content.id_for_label }}" class="form-label font-weight-medium">
+                                <i class="fas fa-newspaper mr-1 text-muted"></i> Article Content
+                            </label>
+                            {% if form.content.errors %}
+                            <div class="text-danger small mb-2">
+                                {% for error in form.content.errors %}
+                                <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="border rounded p-2 bg-light">
+                                {{ form.content }}
+                            </div>
+                            <small class="form-text text-muted mt-2">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Use the editor toolbar to format text, add images, tables, and other elements.
+                            </small>
+                        </div>
+
+                        <div class="card bg-light border-0 mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title mb-2">
+                                    <i class="fas fa-lightbulb text-warning mr-2"></i>Writing Tips
+                                </h6>
+                                <ul class="card-text mb-0 pl-4">
+                                    <li>Use headings (H2, H3) to structure your content</li>
+                                    <li>Keep paragraphs short for better readability</li>
+                                    <li>Add relevant images throughout your article</li>
+                                    <li>Use bullet points to highlight key information</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Media Files Tab -->
+                    <div class="tab-pane fade" id="media" role="tabpanel" aria-labelledby="media-tab">
+                        <p class="text-muted mb-4">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            Add multiple media files to include in your post. You can upload images, videos, or documents.
+                        </p>
+                        
+                        {{ formset.management_form }}
+                        
+                        <div id="media-formset">
+                            {% for media_form in formset %}
+                                <div class="card mb-3 formset-row">
+                                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                        <h6 class="mb-0">Media Item #{{ forloop.counter }}</h6>
+                                        {% if media_form.instance.pk %}
+                                            <div class="custom-control custom-checkbox">
+                                                {{ media_form.DELETE }}
+                                                <label class="custom-control-label text-danger" for="{{ media_form.DELETE.id_for_label }}">Delete this item</label>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="card-body">
+                                        {% for hidden_field in media_form.hidden_fields %}
+                                            {{ hidden_field }}
+                                        {% endfor %}
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="{{ media_form.media_type.id_for_label }}">Media Type</label>
+                                                    {% if media_form.media_type.errors %}
+                                                        <div class="text-danger small">{{ media_form.media_type.errors }}</div>
+                                                    {% endif %}
+                                                    {{ media_form.media_type }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="{{ media_form.file.id_for_label }}">File</label>
+                                                    {% if media_form.file.errors %}
+                                                        <div class="text-danger small">{{ media_form.file.errors }}</div>
+                                                    {% endif %}
+                                                    {{ media_form.file }}
+                                                    {% if media_form.instance.file %}
+                                                        <div class="mt-2">
+                                                            <span class="badge badge-info">Current file: {{ media_form.instance.file.name }}</span>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="{{ media_form.title.id_for_label }}">Title</label>
+                                                    {% if media_form.title.errors %}
+                                                        <div class="text-danger small">{{ media_form.title.errors }}</div>
+                                                    {% endif %}
+                                                    {{ media_form.title }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="{{ media_form.order.id_for_label }}">Display Order</label>
+                                                    {% if media_form.order.errors %}
+                                                        <div class="text-danger small">{{ media_form.order.errors }}</div>
+                                                    {% endif %}
+                                                    {{ media_form.order }}
+                                                    <small class="form-text text-muted">Lower numbers appear first</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="{{ media_form.description.id_for_label }}">Description</label>
+                                            {% if media_form.description.errors %}
+                                                <div class="text-danger small">{{ media_form.description.errors }}</div>
+                                            {% endif %}
+                                            {{ media_form.description }}
+                                        </div>
+                                        
+                                        <div class="form-check">
+                                            {{ media_form.is_featured }}
+                                            <label class="form-check-label" for="{{ media_form.is_featured.id_for_label }}">
+                                                Feature this media item
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <!-- Settings Tab -->
+                    <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.status.id_for_label }}" class="form-label font-weight-medium">
+                                        <i class="fas fa-toggle-on mr-1 text-muted"></i> Publication Status
+                                    </label>
+                                    {% if form.status.errors %}
+                                    <div class="text-danger small mb-2">
+                                        {% for error in form.status.errors %}
+                                        <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-light border-right-0">
+                                                <i class="fas fa-tag"></i>
+                                            </span>
+                                        </div>
+                                        {{ form.status }}
+                                    </div>
+                                    <small class="form-text text-muted">
+                                        <i class="fas fa-info-circle mr-1"></i>
+                                        Draft posts are not visible to readers.
+                                    </small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="{{ form.publish_date.id_for_label }}" class="form-label font-weight-medium">
+                                        <i class="fas fa-calendar-alt mr-1 text-muted"></i> Publish Date
+                                    </label>
+                                    {% if form.publish_date.errors %}
+                                    <div class="text-danger small mb-2">
+                                        {% for error in form.publish_date.errors %}
+                                        <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    {{ form.publish_date }}
+                                    <small class="form-text text-muted">
+                                        <i class="fas fa-info-circle mr-1"></i>
+                                        {{ form.publish_date.help_text }}
+                                    </small>
+                                </div>
+                                
+                                <div class="form-check mb-3">
+                                    {{ form.is_featured }}
+                                    <label class="form-check-label" for="{{ form.is_featured.id_for_label }}">
+                                        Feature on homepage
+                                    </label>
+                                    <small class="form-text text-muted">
+                                        <i class="fas fa-info-circle mr-1"></i>
+                                        Featured posts get special placement on the homepage.
+                                    </small>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.tags.id_for_label }}" class="form-label font-weight-medium">
+                                        <i class="fas fa-tags mr-1 text-muted"></i> Tags
+                                    </label>
+                                    {% if form.tags.errors %}
+                                    <div class="text-danger small mb-2">
+                                        {% for error in form.tags.errors %}
+                                        <span><i class="fas fa-exclamation-circle mr-1"></i>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    {{ form.tags }}
+                                    <small class="form-text text-muted">
+                                        <i class="fas fa-info-circle mr-1"></i>
+                                        Type tags and press Enter to add them. Tags help users find related content.
+                                    </small>
+                                </div>
+                                
+                                <div class="card bg-light border-0 mb-3">
+                                    <div class="card-body">
+                                        <h6 class="card-title">
+                                            <i class="fas fa-lightbulb text-warning mr-2"></i>SEO Tips
+                                        </h6>
+                                        <ul class="card-text mb-0 small pl-4">
+                                            <li>Use relevant tags to improve discoverability</li>
+                                            <li>Include target keywords in your title and summary</li>
+                                            <li>Fill out all metadata fields for better indexing</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -211,7 +449,10 @@
                     </button>
                     
                     <div>
-                        <button type="submit" class="btn btn-primary">Save Post</button>
+                        <button type="submit" class="btn btn-primary rounded-pill px-4">
+                            <i class="fas fa-save mr-2"></i>
+                            {% if post %}Update{% else %}Save{% endif %} Post
+                        </button>
                     </div>
                 </div>
             </form>
@@ -267,9 +508,10 @@
 </div>
 
 {% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 <script>
-    // Initialize tooltips
     $(function() {
+        // Initialize tooltips
         $('[data-toggle="tooltip"]').tooltip();
         
         // Update custom file input label with filename
@@ -289,6 +531,26 @@
         
         // Add form-control class to category and status selects if not already styled
         $('#{{ form.category.id_for_label }}, #{{ form.status.id_for_label }}').addClass('form-control border-left-0');
+        
+        // Make tab navigation persistent
+        $('a[data-toggle="tab"]').on('click', function (e) {
+            localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+        
+        // Check for stored active tab and show it
+        var activeTab = localStorage.getItem('activeTab');
+        if(activeTab) {
+            $('#postFormTabs a[href="' + activeTab + '"]').tab('show');
+        }
+        
+        // Highlight form errors by switching to the tab with errors
+        $('.text-danger').each(function() {
+            var tabId = $(this).closest('.tab-pane').attr('id');
+            if (tabId) {
+                $('#postFormTabs a[href="#' + tabId + '"]').tab('show');
+                return false; // Break after finding first error tab
+            }
+        });
     });
 </script>
 {% endblock %}

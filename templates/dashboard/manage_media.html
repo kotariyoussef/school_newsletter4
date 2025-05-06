@@ -1,0 +1,600 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dropzone.min.css' %}">
+<style>
+    .media-card {
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .media-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .media-preview {
+        position: relative;
+        height: 180px;
+        background-color: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    
+    .media-preview img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: cover;
+    }
+    
+    .media-preview video {
+        max-height: 100%;
+        max-width: 100%;
+    }
+    
+    .media-preview audio {
+        width: 90%;
+    }
+    
+    .media-preview .document-preview {
+        text-align: center;
+    }
+    
+    .media-preview .document-preview i {
+        font-size: 3.5rem;
+    }
+    
+    .media-badges {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .media-order {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 30px;
+        height: 30px;
+        background-color: rgba(0,0,0,0.5);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+    
+    .media-description {
+        max-height: 80px;
+        overflow-y: auto;
+    }
+    
+    .form-header {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .formset-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+    
+    .formset-item {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    
+    .formset-item:hover {
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .delete-formset {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 2;
+    }
+    
+    .media-type-icon {
+        font-size: 1.2rem;
+        margin-right: 5px;
+    }
+    
+    /* File input styling */
+    .custom-file-button {
+        position: relative;
+    }
+    
+    .custom-file-button label {
+        display: block;
+        padding: 8px 15px;
+        color: #fff;
+        background-color: #007bff;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.3s;
+    }
+    
+    .custom-file-button label:hover {
+        background-color: #0069d9;
+    }
+    
+    .custom-file-button input[type="file"] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+    
+    .preview-container {
+        border: 2px dashed #ddd;
+        border-radius: 6px;
+        padding: 10px;
+        margin-top: 10px;
+        min-height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    
+    .preview-container img, 
+    .preview-container video {
+        max-width: 100%;
+        max-height: 150px;
+    }
+    
+    .clear-preview {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: rgba(255,255,255,0.7);
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+        cursor: pointer;
+    }
+    
+    .delete-checkbox-container {
+        padding: 10px;
+        background-color: #fee;
+        border-radius: 5px;
+        margin-top: 15px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Breadcrumb and Post Info -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-light p-3 rounded">
+                    <li class="breadcrumb-item"><a href="{% url 'dashboard:writer_dashboard' %}"><i class="fas fa-tachometer-alt mr-1"></i>Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'dashboard:post_list' %}"><i class="fas fa-list mr-1"></i>My Posts</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-images mr-1"></i>Manage Media</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Post Header -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h3 class="mb-1">{{ post.title }}</h3>
+                            <div class="text-muted">
+                                <span class="mr-3"><i class="fas fa-tag mr-1"></i>{{ post.category.name }}</span>
+                                <span class="mr-3"><i class="fas fa-calendar-alt mr-1"></i>{{ post.created_at|date:"M d, Y" }}</span>
+                                {% if post.status == 'published' %}
+                                <span class="badge badge-success"><i class="fas fa-check-circle mr-1"></i>Published</span>
+                                {% else %}
+                                <span class="badge badge-secondary"><i class="fas fa-pencil-alt mr-1"></i>Draft</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div>
+                            <a href="{% url 'dashboard:post_analytics' post.slug %}" class="btn btn-outline-info mr-2">
+                                <i class="fas fa-chart-pie mr-1"></i>Analytics
+                            </a>
+                            <a href="{% url 'dashboard:edit_post' post.slug %}" class="btn btn-outline-primary">
+                                <i class="fas fa-edit mr-1"></i>Edit Post
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Current Media Files -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-photo-video text-primary mr-2"></i>Current Media Files
+                            <span class="badge badge-pill badge-primary ml-2">{{ post.media_files.count }}</span>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-success" id="showFormBtn">
+                            <i class="fas fa-plus-circle mr-1"></i>Add New Media
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% if post.media_files.all %}
+                    <div class="row">
+                        {% for media in post.media_files.all %}
+                        <div class="col-md-4 col-lg-3 mb-4">
+                            <div class="card media-card h-100">
+                                <div class="media-preview">
+                                    {% if media.order %}
+                                    <div class="media-order">{{ media.order }}</div>
+                                    {% endif %}
+                                    
+                                    <div class="media-badges">
+                                        {% if media.is_featured %}
+                                        <span class="badge badge-warning"><i class="fas fa-star mr-1"></i>Featured</span>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    {% if media.media_type == 'image' %}
+                                        <img src="{{ media.file.url }}" alt="{{ media.title }}" class="img-fluid">
+                                    {% elif media.media_type == 'video' %}
+                                        <video controls>
+                                            <source src="{{ media.file.url }}" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    {% elif media.media_type == 'audio' %}
+                                        <audio controls>
+                                            <source src="{{ media.file.url }}" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                    {% else %}
+                                        <div class="document-preview">
+                                            <i class="fas fa-file-alt text-secondary"></i>
+                                            <p class="mt-2 mb-0">{{ media.file.name|slice:"-20:" }}</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="card-title text-truncate" title="{{ media.title }}">
+                                        {% if media.media_type == 'image' %}
+                                            <i class="fas fa-image text-success media-type-icon"></i>
+                                        {% elif media.media_type == 'video' %}
+                                            <i class="fas fa-video text-danger media-type-icon"></i>
+                                        {% elif media.media_type == 'audio' %}
+                                            <i class="fas fa-music text-warning media-type-icon"></i>
+                                        {% elif media.media_type == 'document' %}
+                                            <i class="fas fa-file-alt text-primary media-type-icon"></i>
+                                        {% else %}
+                                            <i class="fas fa-file text-secondary media-type-icon"></i>
+                                        {% endif %}
+                                        {{ media.title|default:"Untitled" }}
+                                    </h6>
+                                    <p class="card-text small media-description">{{ media.description|default:"No description" }}</p>
+                                </div>
+                                <div class="card-footer bg-light d-flex justify-content-between">
+                                    <small class="text-muted">{{ media.media_type|title }}</small>
+                                    <div>
+                                        <a href="{{ media.file.url }}" target="_blank" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5">
+                        <div class="empty-state">
+                            <i class="fas fa-photo-video fa-4x text-muted mb-3"></i>
+                            <h5>No Media Files Yet</h5>
+                            <p class="text-muted">This post doesn't have any media files. Add some by clicking the button above.</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Media Form -->
+    <div class="row mb-4" id="mediaFormSection" style="display: none;">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <i class="fas fa-plus-circle text-success mr-2"></i>Manage Media Files
+                </div>
+                <div class="card-body">
+                    <div class="form-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0"><i class="fas fa-info-circle mr-2"></i>Instructions</h5>
+                        </div>
+                        <hr>
+                        <ul class="mb-0">
+                            <li>You can add multiple media files to your post</li>
+                            <li>For each media file, select the type and upload the file</li>
+                            <li>Add a title and description to help readers understand your media</li>
+                            <li>Use the order field to control the display sequence</li>
+                            <li>Check "Featured" to highlight important media</li>
+                        </ul>
+                    </div>
+                    
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ formset.management_form }}
+                        
+                        <div class="formset-header">
+                            <i class="fas fa-photo-video mr-2"></i>Media Files
+                        </div>
+                        
+                        {% for form in formset %}
+                        <div class="formset-item">
+                            <!-- Hidden Fields -->
+                            {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                            {% endfor %}
+                            
+                            <!-- Delete Checkbox -->
+                            {% if form.instance.pk %}
+                            <div class="delete-formset">
+                                <div class="delete-checkbox-container">
+                                    {{ form.DELETE.label_tag }}
+                                    {{ form.DELETE }}
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            <div class="row">
+                                <!-- Media Type -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="{{ form.media_type.id_for_label }}">
+                                            <i class="fas fa-tag mr-1"></i>{{ form.media_type.label }}
+                                        </label>
+                                        {{ form.media_type }}
+                                        {% if form.media_type.errors %}
+                                        <div class="text-danger small">{{ form.media_type.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                <!-- Order -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="{{ form.order.id_for_label }}">
+                                            <i class="fas fa-sort-numeric-down mr-1"></i>{{ form.order.label }}
+                                        </label>
+                                        {{ form.order }}
+                                        {% if form.order.errors %}
+                                        <div class="text-danger small">{{ form.order.errors }}</div>
+                                        {% endif %}
+                                        <small class="form-text text-muted">Lower numbers appear first</small>
+                                    </div>
+                                </div>
+                                
+                                <!-- File Upload -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="{{ form.file.id_for_label }}">
+                                            <i class="fas fa-file-upload mr-1"></i>{{ form.file.label }}
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                {{ form.file }}
+                                                {% if form.file.errors %}
+                                                <div class="text-danger small">{{ form.file.errors }}</div>
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    {{ form.is_featured }}
+                                                    <label class="form-check-label" for="{{ form.is_featured.id_for_label }}">
+                                                        <i class="fas fa-star mr-1 text-warning"></i>{{ form.is_featured.label }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- File Preview -->
+                                        {% if form.instance.pk and form.instance.file %}
+                                        <div class="preview-container mt-2">
+                                            {% if 'image' in form.instance.file.url %}
+                                            <img src="{{ form.instance.file.url }}" alt="Preview" class="img-fluid">
+                                            {% elif 'video' in form.instance.file.url %}
+                                            <video controls>
+                                                <source src="{{ form.instance.file.url }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            {% elif 'audio' in form.instance.file.url %}
+                                            <audio controls>
+                                                <source src="{{ form.instance.file.url }}" type="audio/mpeg">
+                                                Your browser does not support the audio element.
+                                            </audio>
+                                            {% else %}
+                                            <div class="text-center">
+                                                <i class="fas fa-file fa-3x text-secondary"></i>
+                                                <p class="mt-2">{{ form.instance.file.name|slice:"-20:" }}</p>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                <!-- Title and Description -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="{{ form.title.id_for_label }}">
+                                            <i class="fas fa-heading mr-1"></i>{{ form.title.label }}
+                                        </label>
+                                        {{ form.title }}
+                                        {% if form.title.errors %}
+                                        <div class="text-danger small">{{ form.title.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="{{ form.description.id_for_label }}">
+                                            <i class="fas fa-align-left mr-1"></i>{{ form.description.label }}
+                                        </label>
+                                        {{ form.description }}
+                                        {% if form.description.errors %}
+                                        <div class="text-danger small">{{ form.description.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                        <div class="form-group text-center mt-4">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save mr-1"></i>Save Changes
+                            </button>
+                            <a href="{% url 'dashboard:post_list' %}" class="btn btn-outline-secondary ml-2">
+                                <i class="fas fa-times mr-1"></i>Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/dropzone.min.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        // Initialize tooltips
+        $('[data-toggle="tooltip"]').tooltip();
+        
+        // Toggle media form visibility
+        $('#showFormBtn').click(function() {
+            $('#mediaFormSection').toggle();
+            $(this).text(function(i, text) {
+                return text === "Add New Media" ? "Hide Form" : "Add New Media";
+            });
+            $(this).html(function(i, html) {
+                if (html.includes('fas fa-plus-circle')) {
+                    return '<i class="fas fa-minus-circle mr-1"></i>Hide Form';
+                } else {
+                    return '<i class="fas fa-plus-circle mr-1"></i>Add New Media';
+                }
+            });
+        });
+        
+        // File input preview for new uploads
+        $('input[type="file"]').change(function() {
+            const file = this.files[0];
+            const formGroup = $(this).closest('.form-group');
+            let previewContainer = formGroup.find('.preview-container');
+            
+            if (!previewContainer.length) {
+                previewContainer = $('<div class="preview-container"></div>');
+                formGroup.append(previewContainer);
+            }
+            
+            previewContainer.empty();
+            
+            if (file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const fileType = file.type.split('/')[0];
+                    
+                    if (fileType === 'image') {
+                        const img = $('<img class="img-fluid" alt="Preview">');
+                        img.attr('src', e.target.result);
+                        previewContainer.append(img);
+                    } else if (fileType === 'video') {
+                        const video = $('<video controls class="img-fluid"><source type="' + file.type + '">Your browser does not support the video tag.</video>');
+                        video.find('source').attr('src', e.target.result);
+                        previewContainer.append(video);
+                    } else if (fileType === 'audio') {
+                        const audio = $('<audio controls><source type="' + file.type + '">Your browser does not support the audio element.</audio>');
+                        audio.find('source').attr('src', e.target.result);
+                        previewContainer.append(audio);
+                    } else {
+                        const fileIcon = $('<div class="text-center"><i class="fas fa-file fa-3x text-secondary"></i><p class="mt-2">' + file.name + '</p></div>');
+                        previewContainer.append(fileIcon);
+                    }
+                    
+                    // Add clear button
+                    const clearBtn = $('<div class="clear-preview"><i class="fas fa-times"></i></div>');
+                    previewContainer.append(clearBtn);
+                    
+                    clearBtn.click(function() {
+                        $(this).closest('.form-group').find('input[type="file"]').val('');
+                        previewContainer.remove();
+                    });
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Media type icon mapping
+        const mediaTypeIcons = {
+            'image': '<i class="fas fa-image text-success media-type-icon"></i>',
+            'video': '<i class="fas fa-video text-danger media-type-icon"></i>',
+            'audio': '<i class="fas fa-music text-warning media-type-icon"></i>',
+            'document': '<i class="fas fa-file-alt text-primary media-type-icon"></i>',
+            'other': '<i class="fas fa-file text-secondary media-type-icon"></i>'
+        };
+        
+        // Update icon when media type changes
+        $('select[name$="-media_type"]').change(function() {
+            const selectedType = $(this).val();
+            const mediaIcon = mediaTypeIcons[selectedType] || mediaTypeIcons.other;
+            $(this).closest('.formset-item').find('.media-type-icon').replaceWith(mediaIcon);
+        });
+        
+        // Confirm deletion
+        $('form').submit(function() {
+            const deleteChecked = $('input[name$="-DELETE"]:checked').length;
+            if (deleteChecked > 0) {
+                return confirm(`Are you sure you want to delete ${deleteChecked} media file(s)?`);
+            }
+            return true;
+        });
+    });
+</script>
+{% endblock %}

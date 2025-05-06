@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static cache %}
+{% load static cache news_detail %}
 
 {% block title %}{{ news.title }} | LBC{% endblock %}
 
@@ -38,9 +38,145 @@
         }
       }
     }
-    </script>
+</script>
 {% endblock %}
     
+
+{% block extra_css %}
+<!-- Add media viewers and lightbox -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelementplayer.min.css">
+<style>
+    .article-body {
+        line-height: 1.8;
+    }
+    .article-body img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 1.5rem auto;
+        border-radius: 0.25rem;
+    }
+    .article-body figure {
+        margin: 2rem 0;
+    }
+    .article-body figure figcaption {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #6c757d;
+        margin-top: 0.5rem;
+    }
+    .article-body iframe {
+        max-width: 100%;
+        width: 100%;
+        min-height: 400px;
+        margin: 1.5rem auto;
+    }
+    .article-body blockquote {
+        padding: 1rem 1.5rem;
+        border-left: 5px solid #007bff;
+        background-color: #f8f9fa;
+        margin: 1.5rem 0;
+    }
+    .article-body .twitter-tweet,
+    .article-body .instagram-media {
+        margin: 1.5rem auto !important;
+    }
+    .article-body .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
+        margin: 1.5rem 0;
+    }
+    .article-body .video-container iframe,
+    .article-body .video-container object,
+    .article-body .video-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .article-body .file-attachment {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        margin: 1rem 0;
+    }
+    .article-body .file-attachment .file-icon {
+        margin-right: 1rem;
+        font-size: 2rem;
+        color: #6c757d;
+    }
+    .article-body .file-attachment .file-info {
+        flex-grow: 1;
+    }
+    .article-body .file-attachment .file-name {
+        font-weight: bold;
+        margin-bottom: 0.25rem;
+    }
+    .article-body .file-attachment .file-meta {
+        font-size: 0.875rem;
+        color: #6c757d;
+    }
+    .article-body .file-attachment .file-download {
+        margin-left: 1rem;
+    }
+    /* Media Galleries */
+    .media-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+        margin: 1.5rem 0;
+    }
+    .media-gallery-item {
+        position: relative;
+        padding-top: 75%; /* 4:3 Aspect Ratio */
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .media-gallery-item img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    .media-gallery-item:hover img {
+        transform: scale(1.05);
+    }
+    /* Audio player styling */
+    .audio-player {
+        background: #f8f9fa;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+    .audio-player audio {
+        width: 100%;
+    }
+    @media (max-width: 768px) {
+        .article-body iframe {
+            min-height: 300px;
+        }
+        .media-gallery {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media (max-width: 576px) {
+        .media-gallery {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -61,30 +197,87 @@
                 
                 <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap">
                     <div class="d-flex align-items-center mb-2">
-                        <span class="badge bg-primary me-2">{{ news.category.name }}</span>
-                        <span class="text-muted"><i class="far fa-calendar-alt me-1"></i> {{ news.publish_date|date:"F d, Y" }}</span>
+                        <span class="badge badge-primary mr-2">{{ news.category.name }}</span>
+                        <span class="text-muted"><i class="far fa-calendar-alt mr-1"></i> {{ news.publish_date|date:"F d, Y" }}</span>
                     </div>
                     <div class="mb-2">
-                        <span class="text-muted me-3"><i class="fas fa-eye me-1"></i> {{ news.views }} views</span>
-                        <span class="text-muted"><i class="far fa-comments me-1"></i> {{ comments.count }} comments</span>
+                        <span class="text-muted mr-3"><i class="fas fa-eye mr-1"></i> {{ news.views }} views</span>
+                        <span class="text-muted"><i class="far fa-comments mr-1"></i> {{ comments.count }} comments</span>
                     </div>
                 </div>
                 
                 <!-- Author Info -->
                 <div class="d-flex align-items-center mb-4">
-                    <div class="author-img me-3">
-                        {% comment %}Replace with actual author image if available{% endcomment %}
-                        <img src="https://via.placeholder.com/50" class="rounded-circle" alt="Author" width="50" height="50">
+                    <div class="author-img mr-3">
+                        {% if news.author.profile.profile_picture %}
+                            <img src="{{ news.author.profile.profile_picture.url }}" class="rounded-circle" alt="{{ news.author.get_full_name }}" width="50" height="50">
+                        {% else %}
+                            <img src="{% static 'profile_pictures/default.png' %}" class="rounded-circle" alt="Author" width="50" height="50">
+                        {% endif %}
                     </div>
                     <div>
-                        <h6 class="mb-0">{{ news.author.user.get_full_name|default:news.author.user.username }}</h6>
+                        <h6 class="mb-0">{{ news.author.full_name }}</h6>
                         <small class="text-muted">Author</small>
                     </div>
                 </div>
                 
-                <!-- Featured Image -->
+                <!-- Featured Media Section -->
                 <div class="mb-4">
-                    <img src="{{ news.featured_image.url }}" class="img-fluid rounded" alt="{{ news.title }}" style="width: 100%; max-height: 500px; object-fit: cover;">
+                    {% if featured_media %}
+                        {% if featured_media.media_type == 'video' %}
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="{{ featured_media.file_url }}" allowfullscreen></iframe>
+                            </div>
+                            {% if featured_media.caption %}
+                                <div class="text-center text-muted mt-2">
+                                    {{ featured_media.caption }}
+                                </div>
+                            {% endif %}
+                        {% elif featured_media.media_type == 'image' %}
+                            <a href="{{ featured_media.file.url }}" data-lightbox="featured">
+                                <img src="{{ featured_media.file.url }}" class="img-fluid rounded" alt="{{ featured_media.caption|default:news.title }}" style="width: 100%; max-height: 500px; object-fit: cover;">
+                            </a>
+                            {% if featured_media.caption %}
+                                <div class="text-center text-muted mt-2">
+                                    {{ featured_media.caption }}
+                                </div>
+                            {% endif %}
+                        {% elif featured_media.media_type == 'audio' %}
+                            <div class="card audio-player">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="fas fa-headphones mr-2"></i>Audio</h5>
+                                    <audio controls class="w-100">
+                                        <source src="{{ featured_media.file.url }}" type="audio/{{ featured_media.file.url|filename|file_extension }}">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                    {% if featured_media.caption %}
+                                        <div class="text-muted mt-2">
+                                            {{ featured_media.caption }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% elif featured_media.media_type == 'document' %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="file-attachment">
+                                        <div class="file-icon">
+                                            <i class="{{ featured_media.file.url|filename|file_extension|get_icon_class }}"></i>
+                                        </div>
+                                        <div class="file-info">
+                                            <div class="file-name">{{ featured_media.caption|default:"Featured Document" }}</div>
+                                            <div class="file-meta">{{ featured_media.file.url|filename }}</div>
+                                        </div>
+                                        <a href="{{ featured_media.file.url }}" class="btn btn-sm btn-primary file-download" target="_blank">
+                                            <i class="fas fa-download mr-1"></i> Download
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% elif news.featured_image %}
+                        <img src="{{ news.featured_image.url }}" class="img-fluid rounded" alt="{{ news.title }}" style="width: 100%; max-height: 500px; object-fit: cover;">
+                    {% endif %}
                 </div>
                 
                 <!-- Summary -->
@@ -94,19 +287,147 @@
                 
                 <!-- Content -->
                 <div class="news-content mb-5 p-4 bg-light rounded shadow-sm">
-                    <div class="fs-5 lh-lg">
-                        {{ news.content|safe }}
+                    <div class="article-body">
+                        {% if news.content %}
+                            {{ news.content|safe }}
+                        {% endif %}
+                        
+                        <!-- Additional Media Files -->
+                        {% if images|length > 0 or videos|length > 0 or audio_files|length > 0 or documents|length > 0 %}
+                            <div class="mt-5">
+                                {# Images #}
+                                {% if images|length == 1 %}
+                                {% with img=images.0 %}
+                                <div class="mb-4">
+                                    <h5 class="border-bottom pb-2"><i class="fas fa-image mr-2"></i>Image</h5>
+                                    <a href="{{ img.file.url }}" data-lightbox="image" data-title="{{ img.caption|default:'' }}">
+                                        <img src="{{ img.file.url }}" alt="{{ img.caption|default:'Image' }}">
+                                    </a>
+                                </div>
+                                {% endwith %}
+                                {% elif images|length > 1 %}
+                                <div class="mb-4">
+                                    <h5 class="border-bottom pb-2"><i class="fas fa-images mr-2"></i>Image Gallery</h5>
+                                    <div class="media-gallery">
+                                        {% for img in images %}
+                                            {% if not img.is_featured or img != featured_media %}
+                                            <div class="media-gallery-item">
+                                                <a href="{{ img.file.url }}" data-lightbox="gallery" data-title="{{ img.caption|default:'' }}">
+                                                    <img src="{{ img.file.url }}" alt="{{ img.caption|default:'Gallery image' }}">
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {# Videos #}
+                                {% if videos|length == 1 %}
+                                {% with video=videos.0 %}
+                                <div class="mb-4">
+                                <h5 class="border-bottom pb-2"><i class="fas fa-video mr-2"></i>Video</h5>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="{{ video.file_url|default:video.file.url }}" allowfullscreen></iframe>
+                                </div>
+                                {% if video.caption %}
+                                <p class="mt-2 text-muted">{{ video.caption }}</p>
+                                {% endif %}
+                                </div>
+                                {% endwith %}
+                                {% elif videos|length > 1 %}
+                                <div class="mb-4">
+                                    <h5 class="border-bottom pb-2"><i class="fas fa-video mr-2"></i>Videos</h5>
+                                    <div class="row">
+                                        {% for video in videos %}
+                                            {% if not video.is_featured or video != featured_media %}
+                                            <div class="col-md-6 mb-3">
+                                                <div class="card h-100">
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <iframe class="embed-responsive-item" src="{{ video.file_url }}" allowfullscreen></iframe>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <p class="card-text">{{ video.caption|default:"Video" }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {# Audio #}
+                                {% if audio_files|length == 1 %}
+                                {% with audio=audio_files.0 %}
+                                <div class="mb-4">
+                                    <h5 class="border-bottom pb-2"><i class="fas fa-headphones mr-2"></i>Audio</h5>
+                                    <div class="card audio-player">
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{ audio.caption|default:"Audio" }}</h6>
+                                            <audio controls class="w-100">
+                                                <source src="{{ audio.file.url }}" type="audio/{{ audio.file.url|filename|file_extension }}">
+                                                Your browser does not support the audio element.
+                                            </audio>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endwith %}
+                                {% elif audio_files|length > 1 %}
+                                <div class="mb-4">
+                                    <h5 class="border-bottom pb-2"><i class="fas fa-headphones mr-2"></i>Audio Files</h5>
+                                    {% for audio in audio_files %}
+                                        {% if not audio.is_featured or audio != featured_media %}
+                                        <div class="card mb-3 audio-player">
+                                            <div class="card-body">
+                                                <h6 class="card-title">{{ audio.caption|default:"Audio" }}</h6>
+                                                <audio controls class="w-100">
+                                                    <source src="{{ audio.file.url }}" type="audio/{{ audio.file.url|filename|file_extension }}">
+                                                    Your browser does not support the audio element.
+                                                </audio>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+
+                                {# Documents #}
+                                {% if documents|length == 1 %}
+                                {% with doc=documents.0 %}
+                                <div class="mb-4">
+                                    <h5 class="border-bottom pb-2"><i class="fas fa-file-alt mr-2"></i>Document</h5>
+                                    <a href="{{ doc.file.url }}" class="list-group-item list-group-item-action" target="_blank">
+                                        <i class="{{ doc.file.url|filename|file_extension|get_icon_class }} mr-2"></i>
+                                        {{ doc.caption|default:doc.file.url|filename }}
+                                        <span class="badge badge-primary badge-pill"><i class="fas fa-download"></i></span>
+                                    </a>
+                                </div>
+                                {% endwith %}
+                                {% elif documents|length > 1 %}
+                                <div class="mb-4">
+                                    <h5 class="border-bottom pb-2"><i class="fas fa-file-alt mr-2"></i>Documents</h5>
+                                    <div class="list-group">
+                                        {% for doc in documents %}
+                                            {% if not doc.is_featured or doc != featured_media %}
+                                            <a href="{{ doc.file.url }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" target="_blank">
+                                                <div>
+                                                    <i class="{{ doc.file.url|filename|file_extension|get_icon_class }} mr-2"></i>
+                                                    {{ doc.caption|default:doc.file.url|filename }}
+                                                </div>
+                                                <span class="badge badge-primary badge-pill">
+                                                    <i class="fas fa-download"></i>
+                                                </span>
+                                            </a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
-                
-                <style>
-                .news-content img {
-                    max-width: 100%;
-                    height: auto;
-                    display: block;
-                    margin: 1rem auto; /* Optional: centers images nicely */
-                }
-                </style>
                 
                 <!-- Tags -->
                 <div class="mb-4">
@@ -114,7 +435,7 @@
                     <div class="tags">
                         {% for tag in news.tags.all %}
                             {% if tag.slug %}
-                                <a href="{% url 'news:news_search' %}?q={{ tag.name }}" class="badge bg-secondary text-decoration-none me-1">{{ tag.name }}</a>
+                                <a href="{% url 'news:news_search' %}?q={{ tag.name }}" class="badge badge-secondary text-decoration-none mr-1">{{ tag.name }}</a>
                             {% endif %}
                         {% empty %}
                             <span class="text-muted">No tags</span>
@@ -126,13 +447,13 @@
                 <div class="mb-5">
                     <h5>Share this:</h5>
                     <div class="social-share">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-primary me-2">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-primary mr-2">
                             <i class="fab fa-facebook-f"></i> Facebook
                         </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ news.title }}" target="_blank" class="btn btn-outline-info me-2">
+                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ news.title }}" target="_blank" class="btn btn-outline-info mr-2">
                             <i class="fab fa-twitter"></i> Twitter
                         </a>
-                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-secondary me-2">
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-secondary mr-2">
                             <i class="fab fa-linkedin-in"></i> LinkedIn
                         </a>
                         <a href="https://api.whatsapp.com/send?text={{ news.title }} {{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-success">
@@ -150,10 +471,14 @@
                         {% for related in related_news %}
                         <div class="col-md-4 mb-3">
                             <div class="card h-100 shadow-sm">
-                                <img src="{{ related.featured_image.url }}" class="card-img-top" alt="{{ related.title }}" style="height: 150px; object-fit: cover;">
+                                {% if related.featured_image %}
+                                    <img src="{{ related.featured_image.url }}" class="card-img-top" alt="{{ related.title }}" style="height: 150px; object-fit: cover;">
+                                {% else %}
+                                    <img src="{% static 'images/placeholder.jpg' %}" class="card-img-top" alt="{{ related.title }}" style="height: 150px; object-fit: cover;">
+                                {% endif %}
                                 <div class="card-body">
                                     <h6 class="card-title"><a href="{{ related.get_absolute_url }}" class="text-decoration-none text-dark">{{ related.title }}</a></h6>
-                                    <small class="text-muted"><i class="far fa-calendar-alt me-1"></i> {{ related.publish_date|date:"M d, Y" }}</small>
+                                    <small class="text-muted"><i class="far fa-calendar-alt mr-1"></i> {{ related.publish_date|date:"M d, Y" }}</small>
                                 </div>
                             </div>
                         </div>
@@ -173,11 +498,14 @@
                         {% for comment in comments %}
                         <div class="comment mb-4">
                             <div class="d-flex">
-                                <div class="flex-shrink-0">
-                                    {% comment %}Replace with actual user image if available{% endcomment %}
-                                    <img src="{% if comment.user.profile.profile_picture %}{{ comment.user.profile.profile_picture.url }}{% else %}{% static 'profile_pictures/default.png' %}{% endif %}" class="rounded-circle" alt="{{ comment.user.username }}" width="50" height="50">
+                                <div class="flex-shrink-0 mr-3">
+                                    {% if comment.user.profile.profile_picture %}
+                                        <img src="{{ comment.user.profile.profile_picture.url }}" class="rounded-circle" alt="{{ comment.user.username }}" width="50" height="50">
+                                    {% else %}
+                                        <img src="{% static 'profile_pictures/default.png' %}" class="rounded-circle" alt="{{ comment.user.username }}" width="50" height="50">
+                                    {% endif %}
                                 </div>
-                                <div class="flex-grow-1 ms-3">
+                                <div class="flex-grow-1">
                                     <div class="bg-light p-3 rounded">
                                         <div class="d-flex justify-content-between align-items-center mb-2">
                                             <h6 class="mb-0">{{ comment.user.get_full_name|default:comment.user.username }}</h6>
@@ -202,7 +530,7 @@
                         <h4 class="mb-3">Leave a Comment</h4>
                         <form action="{% url 'news:add_comment' news.slug %}" method="post">
                             {% csrf_token %}
-                            <div class="mb-3">
+                            <div class="form-group mb-3">
                                 {{ comment_form.content }}
                             </div>
                             <button type="submit" class="btn btn-primary">Post Comment</button>
@@ -216,7 +544,55 @@
                 </div>
             </article>
         </div>
-        {% include 'partitials\news_sidebar.html' %}
+        
+        <!-- Fixed sidebar path -->
+        {% include 'partitials/news_sidebar.html' %}
     </div>
 </div>
+
+{% endblock %}
+
+{% block extra_js %}
+<!-- Media handling scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelement-and-player.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Initialize media players
+        $('audio, video').mediaelementplayer({
+            stretching: 'responsive',
+            features: ['playpause', 'current', 'progress', 'duration', 'volume', 'fullscreen']
+        });
+        
+        // Process inline embeds in content
+        $('.article-body iframe').each(function() {
+            if (!$(this).parent().hasClass('video-container') && 
+                !$(this).parent().hasClass('embed-responsive')) {
+                $(this).wrap('<div class="video-container"></div>');
+            }
+        });
+        
+        // Initialize lightbox for images
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'albumLabel': "Image %1 of %2"
+        });
+        
+        // Add lightbox to content images that aren't already in a link
+        $('.article-body img').each(function() {
+            if (!$(this).parent().is('a')) {
+                var imgSrc = $(this).attr('src');
+                $(this).wrap('<a href="' + imgSrc + '" data-lightbox="article-images"></a>');
+            }
+        });
+
+        // Custom filter for Django template
+        if (typeof String.prototype.endsWith !== 'function') {
+            String.prototype.endsWith = function(suffix) {
+                return this.indexOf(suffix, this.length - suffix.length) !== -1;
+            };
+        }
+    });
+</script>
 {% endblock %}

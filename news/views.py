@@ -76,8 +76,21 @@ class NewsDetail(DetailView):
         # Popular news for sidebar
         context['popular_news'] = News.objects.filter(status='published').order_by('-views')[:5]
         
+        # Media files
+        context['media_files'] = news.media_files.all().order_by('order')
+        
+        # Organize media files by type for easy access in templates
+        context['images'] = news.media_files.filter(media_type='image').order_by('order')
+        context['videos'] = news.media_files.filter(media_type='video').order_by('order')
+        context['documents'] = news.media_files.filter(media_type='document').order_by('order')
+        context['audio_files'] = news.media_files.filter(media_type='audio').order_by('order')
+        
+        # Get featured media if any
+        context['featured_media'] = news.media_files.filter(is_featured=True).first()
+        
         return context
-
+    
+    
 @login_required
 def add_comment(request, slug):
     news = get_object_or_404(News, slug=slug)
@@ -115,7 +128,7 @@ def search_news(request):
                 pass  # Ignore invalid category_id
         
         # Search in multiple fields with OR condition
-        search_fields = ['title', 'content', 'summary', 'tags__name']
+        search_fields = ['title', 'content', 'summary', 'tags__name', 'author__user__first_name', 'author__user__last_name']
         
         # Handle complex queries with multiple keywords
         if len(keywords) > 1:

@@ -294,3 +294,4 @@ CKEDITOR_5_FILE_UPLOAD_PERMISSION = "authenticated"
 ADMIN_EMAIL = "ko.youssef.public@gmail.com"
 
 # news api key : 0020da03e9b44fa1b8396f187c21fd2b
+

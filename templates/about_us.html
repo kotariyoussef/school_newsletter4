@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - LBC{% endblock %}
+
+{% block content %}
+<!-- About Us Hero Section -->
+<section class="py-5 bg-primary text-white">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 mx-auto text-center">
+        <h1 class="display-4 mb-3">About LBC</h1>
+        <p class="lead">Student voices shaping tomorrow's journalism</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission Statement Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="mb-4">Our Mission</h2>
+        <p class="lead">LBC is a student-run publication dedicated to providing a platform for young journalists to develop their skills, share diverse perspectives, and report on stories that matter to our community.</p>
+        <hr class="my-4">
+        <p>Founded in {{ 2025 }}, we believe in the power of student voices and are committed to journalistic excellence, integrity, and innovation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Values Section -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Our Values</h2>
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-search fa-3x text-primary mb-3"></i>
+            <h3 class="h4 card-title">Truth</h3>
+            <p class="card-text">We are committed to factual reporting and thorough research, ensuring our readers receive accurate and reliable information.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-users fa-3x text-primary mb-3"></i>
+            <h3 class="h4 card-title">Diversity</h3>
+            <p class="card-text">We celebrate diverse perspectives and strive to represent all voices within our community and beyond.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-pencil-alt fa-3x text-primary mb-3"></i>
+            <h3 class="h4 card-title">Growth</h3>
+            <p class="card-text">We provide a supportive environment for students to develop their journalistic and creative writing skills.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Our Story Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+        <img src="{% static 'images/newspaper_history.png' %}" alt="Our History" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <h2 class="mb-4">Our Story</h2>
+        <p>LBC was established in 2025 by a group of passionate students who wanted to create a platform where young writers could share their voices and develop professional journalistic skills.</p>
+        <p>Since then, we have grown from a small club into a recognized publication with a dedicated team of student writers, editors, photographers, and designers. Our alumni have gone on to work at major news outlets and publications around the world.</p>
+        <p>Today, we continue to uphold our founding principles while embracing new technologies and storytelling formats to engage with our readers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %} <!-- Awards and Recognition -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-5">Awards & Recognition</h2>
+    <div class="row">
+      {% for award in awards %}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fas fa-trophy text-primary mr-3"></i>
+              <h3 class="h5 card-title mb-0">{{ award.title }}</h3>
+            </div>
+            <p class="card-text">{{ award.description }}</p>
+            <p class="card-text"><small class="text-muted">{{ award.year }}</small></p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section> {% endcomment %}
+
+<!-- Join Us Section -->
+<section class="py-5 bg-primary text-white">
+  <div class="container text-center">
+    <h2 class="mb-4">Join Our Team</h2>
+    <p class="lead mb-4">We're always looking for passionate student writers, photographers, editors, and designers to join our team.</p>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="card bg-white text-dark h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-pen-nib fa-3x text-primary mb-3"></i>
+                <h3 class="h4">Writers</h3>
+                <p>Cover news, features, opinions, arts, sports, and more.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="card bg-white text-dark h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-camera fa-3x text-primary mb-3"></i>
+                <h3 class="h4">Photographers</h3>
+                <p>Capture moments and tell stories through images.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6 mb-3">
+            <div class="card bg-white text-dark h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-edit fa-3x text-primary mb-3"></i>
+                <h3 class="h4">Editors</h3>
+                <p>Help polish content and maintain journalistic standards.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="card bg-white text-dark h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-paint-brush fa-3x text-primary mb-3"></i>
+                <h3 class="h4">Designers</h3>
+                <p>Create visual elements and improve user experience.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="{% url 'account_signup' %}" class="btn btn-lg btn-outline-light mt-4">Apply Now</a>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Frequently Asked Questions</h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion" id="aboutFAQ">
+          <div class="card mb-3 border-0 shadow-sm">
+            <div class="card-header bg-white" id="headingOne">
+              <h3 class="mb-0">
+                <button class="btn btn-link btn-block text-left text-dark" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <i class="fas fa-question-circle text-primary mr-2"></i> How can I contribute to the newspaper?
+                </button>
+              </h3>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#aboutFAQ">
+              <div class="card-body">
+                We welcome contributions from all students! You can apply to join our team as a regular writer, or submit one-time pieces. Visit our "Join Us" page for application details or email us at info@dailytruth.com.
+              </div>
+            </div>
+          </div>
+          
+          <div class="card mb-3 border-0 shadow-sm">
+            <div class="card-header bg-white" id="headingTwo">
+              <h3 class="mb-0">
+                <button class="btn btn-link btn-block text-left text-dark collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <i class="fas fa-question-circle text-primary mr-2"></i> Do I need prior experience to join?
+                </button>
+              </h3>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#aboutFAQ">
+              <div class="card-body">
+                No prior experience is required! We provide training and mentorship for all new team members. We're looking for passion, dedication, and a willingness to learn.
+              </div>
+            </div>
+          </div>
+          
+          <div class="card mb-3 border-0 shadow-sm">
+            <div class="card-header bg-white" id="headingThree">
+              <h3 class="mb-0">
+                <button class="btn btn-link btn-block text-left text-dark collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <i class="fas fa-question-circle text-primary mr-2"></i> How often do you publish new content?
+                </button>
+              </h3>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#aboutFAQ">
+              <div class="card-body">
+                We publish new articles daily on our website, with special featured content every week..
+              </div>
+            </div>
+          </div>
+          
+          <div class="card mb-3 border-0 shadow-sm">
+            <div class="card-header bg-white" id="headingFour">
+              <h3 class="mb-0">
+                <button class="btn btn-link btn-block text-left text-dark collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  <i class="fas fa-question-circle text-primary mr-2"></i> Can I suggest a story idea?
+                </button>
+              </h3>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#aboutFAQ">
+              <div class="card-body">
+                Absolutely! We welcome story ideas from our readers. You can submit your suggestions through our Contact Us page or email them directly to ideas@dailytruth.com.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

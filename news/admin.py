@@ -1,51 +1,57 @@
 from django.contrib import admin
-from .models import News, Category, Comment
+from .models import Category, News, NewsMedia, Comment
 
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
-    prepopulated_fields = {'slug': ('name',)}
-    search_fields = ('name',)
+class NewsMediaInline(admin.TabularInline):
+    model = NewsMedia
+    extra = 1
 
 class CommentInline(admin.TabularInline):
     model = Comment
     extra = 0
-    readonly_fields = ('user', 'content', 'created_at')
-    can_delete = True
+    readonly_fields = ('user', 'created_at')
+    
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
+    search_fields = ['name']
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'status', 'category', 'publish_date', 'is_featured', 'views')
-    list_filter = ('status', 'created_at', 'publish_date', 'category', 'is_featured')
-    search_fields = ('title', 'content', 'summary')
+    list_display = ['title', 'author', 'category', 'status', 'publish_date', 'views']
+    list_filter = ['status', 'category', 'is_featured', 'created_at', 'publish_date']
+    search_fields = ['title', 'summary', 'content']
     prepopulated_fields = {'slug': ('title',)}
-    raw_id_fields = ('author',)
     date_hierarchy = 'publish_date'
-    ordering = ('-publish_date',)
-    inlines = [CommentInline]
-    actions = ('featured_news',)
+    raw_id_fields = ['author']
+    inlines = [NewsMediaInline, CommentInline]
+    list_per_page = 20
     
-    def get_readonly_fields(self, request, obj=None):
-        if not request.user.is_superuser and not obj.author == request.user.userprofile:
-            return ('author', 'status', 'is_featured')
-        return super().get_readonly_fields(request, obj)
-    
-    def save_model(self, request, obj, form, change):
-        if not obj.pk and not obj.author:
-            obj.author = request.user.userprofile
-        super().save_model(request, obj, form, change)
-    
-    def featured_news(self, request, queryset):
-        queryset.update(is_featured=True)
-    featured_news.short_description = "Feature selected news"
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'slug', 'author', 'category')
+        }),
+        ('Content', {
+            'fields': ('featured_image', 'summary', 'content', 'tags')
+        }),
+        ('Publication', {
+            'fields': ('status', 'is_featured', 'publish_date')
+        }),
+    )
 
+@admin.register(NewsMedia)
+class NewsMediaAdmin(admin.ModelAdmin):
+    list_display = ['news', 'media_type', 'title', 'is_featured', 'order', 'upload_date']
+    list_filter = ['media_type', 'is_featured', 'upload_date']
+    search_fields = ['title', 'description', 'news__title']
+    raw_id_fields = ['news']
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('user', 'news', 'created_at', 'is_approved')
-    list_filter = ('is_approved', 'created_at')
-    search_fields = ('user__user__username', 'content', 'news__title')
-    actions = ('approve_comments',)
+    list_display = ['user', 'news', 'created_at', 'is_approved']
+    list_filter = ['is_approved', 'created_at']
+    search_fields = ['content', 'user__username', 'news__title']
+    actions = ['approve_comments']
     
     def approve_comments(self, request, queryset):
         queryset.update(is_approved=True)

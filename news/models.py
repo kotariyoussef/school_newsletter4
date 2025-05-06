@@ -66,6 +66,34 @@ class News(models.Model):
     def approved_comments(self):
         return self.comments.filter(is_approved=True)
 
+class NewsMedia(models.Model):
+    """Model for storing multiple media files for a news article"""
+    MEDIA_TYPE_CHOICES = (
+        ('image', 'Image'),
+        ('video', 'Video'),
+        ('document', 'Document'),
+        ('audio', 'Audio'),
+    )
+    
+    news = models.ForeignKey(News, on_delete=models.CASCADE, related_name='media_files')
+    media_type = models.CharField(max_length=10, choices=MEDIA_TYPE_CHOICES, default='image')
+    file = models.FileField(upload_to='news/media/')
+    title = models.CharField(max_length=100, blank=True)
+    description = models.TextField(blank=True)
+    is_featured = models.BooleanField(default=False)
+    upload_date = models.DateTimeField(auto_now_add=True)
+    order = models.PositiveIntegerField(default=0)
+    
+    class Meta:
+        verbose_name_plural = "News Media"
+        ordering = ["order", "upload_date"]
+    
+    def __str__(self):
+        return f"{self.get_media_type_display()} for {self.news.title}"
+    
+    def get_file_url(self):
+        return self.file.url if self.file else None
+
 class Comment(models.Model):
     news = models.ForeignKey(News, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -78,3 +106,9 @@ class Comment(models.Model):
     
     def __str__(self):
         return f'Comment by {self.user} on {self.news}'
+    
+    def get_media_files(self):
+        """Return all media files associated with this news article"""
+        return self.media_files.all()
+
+

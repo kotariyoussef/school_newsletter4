@@ -55,7 +55,7 @@
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
             <a href="{% url 'home' %}" class="navbar-brand d-block d-lg-none">
                 <h1 class="m-0 display-4 text-uppercase text-primary">
-                    Stu<span class="text-white font-weight-normal">Press</span>
+                    LBC<span class="text-white font-weight-normal"></span>
                 </h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -75,26 +75,15 @@
                     <a href="{% url 'contact' %}" class="nav-item nav-link {% active 'contact' %}">
                         <i class="fas fa-envelope mr-1"></i>Contact
                     </a>
-
-                    {% if user.is_authenticated %}
-                        {% if user.profile %}
-                            <a href="{% url 'dashboard:writer_dashboard' %}" class="nav-item nav-link {% active 'writer_dashboard' %}">
-                                <i class="fas fa-pen-nib mr-1"></i>Dashboard
-                            </a>
-                        {% else %}
-                            <a href="{% url 'accounts:student_request' %}" class="nav-item nav-link {% active 'student_request' %}">
-                                <i class="fas fa-user-edit mr-1"></i>Student Request
-                            </a>
-                        {% endif %}
-                    {% else %}
-                        <a href="{% url 'account_login' %}" class="nav-item nav-link {% active 'account_login' %}">
-                            <i class="fas fa-sign-in-alt mr-1"></i>Login
+                    {% if user.is_authenticated and user.profile %}
+                        <a href="{% url 'dashboard:writer_dashboard' %}" class="nav-item nav-link {% active 'writer_dashboard' %}">
+                            <i class="fas fa-pen-nib mr-1"></i>Dashboard
                         </a>
                     {% endif %}
                 </div>
 
                 <!-- Search bar -->
-                <div class="input-group d-none d-lg-flex ml-auto" style="max-width: 300px;">
+                <div class="input-group ml-auto my-2 my-lg-0" style="max-width: 300px;">
                     <form action="{% url 'news:news_search' %}" method="get" class="w-100">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search stories..." name="q" value="{{ query }}" required>
@@ -105,6 +94,39 @@
                             </div>
                         </div>
                     </form>
+                </div>
+
+                <!-- User icon dropdown -->
+                <div class="nav-item dropdown ml-3">
+                    <a href="#" class="nav-link dropdown-toggle text-white" data-toggle="dropdown">
+                        <i class="fas fa-user-circle fa-lg"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        {% if user.is_authenticated %}
+                            <a class="dropdown-item" href="{% url 'account_logout' %}">
+                                <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                            </a>
+                            <a class="dropdown-item" href="{% url 'account_email' %}">
+                                <i class="fas fa-envelope mr-2"></i>Email Settings
+                            </a>
+                        {% if user.profile %}
+                            <a class="dropdown-item" href="{% url 'dashboard:writer_dashboard' %}">
+                                <i class="fas fa-pen-nib mr-1"></i>Dashboard
+                            </a>
+                        {% else %}
+                            <a class="dropdown-item" href="{% url 'accounts:student_request' %}">
+                                <i class="fas fa-user-edit mr-1"></i>Student Request
+                            </a>
+                        {% endif %}
+                        {% else %}
+                            <a class="dropdown-item" href="{% url 'account_login' %}">
+                                <i class="fas fa-sign-in-alt mr-2"></i>Login
+                            </a>
+                            <a class="dropdown-item" href="{% url 'account_signup' %}">
+                                <i class="fas fa-user-plus mr-2"></i>Sign Up
+                            </a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </nav>
@@ -168,6 +190,7 @@
     <script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
     <script src="{% static "lib/easing/easing.min.js" %}"></script>
     <script src="{% static "lib/owlcarousel/owl.carousel.min.js" %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="{% static "js/main.js" %}"></script>
