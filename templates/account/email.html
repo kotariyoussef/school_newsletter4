@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n form_tags %}
 
 {% block title %}{% trans "Email Addresses" %}{% endblock %}
 
@@ -69,7 +69,7 @@
               <div class="col-md-8">
                 <div class="input-group">
                   <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                  {{ form.email }}
+                  {{ form.email|add_class:"form-control" }}
                   {% if form.email.errors %}
                     <div class="text-danger small">{{ form.email.errors }}</div>
                   {% endif %}

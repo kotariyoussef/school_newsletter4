@@ -108,17 +108,19 @@
                 }
                 </style>
                 
-                {% comment %} <!-- Tags -->
+                <!-- Tags -->
                 <div class="mb-4">
                     <h5>Tags:</h5>
                     <div class="tags">
                         {% for tag in news.tags.all %}
-                        <a href="#" class="badge bg-secondary text-decoration-none me-1">{{ tag.name }}</a>
+                            {% if tag.slug %}
+                                <a href="{% url 'news:news_search' %}?q={{ tag.name }}" class="badge bg-secondary text-decoration-none me-1">{{ tag.name }}</a>
+                            {% endif %}
                         {% empty %}
-                        <span class="text-muted">No tags</span>
+                            <span class="text-muted">No tags</span>
                         {% endfor %}
                     </div>
-                </div> {% endcomment %}
+                </div>
                 
                 <!-- Social Share -->
                 <div class="mb-5">
@@ -173,7 +175,7 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0">
                                     {% comment %}Replace with actual user image if available{% endcomment %}
-                                    <img src="https://via.placeholder.com/50" class="rounded-circle" alt="{{ comment.user.username }}" width="50" height="50">
+                                    <img src="{% if comment.user.profile.profile_picture %}{{ comment.user.profile.profile_picture.url }}{% else %}{% static 'profile_pictures/default.png' %}{% endif %}" class="rounded-circle" alt="{{ comment.user.username }}" width="50" height="50">
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <div class="bg-light p-3 rounded">

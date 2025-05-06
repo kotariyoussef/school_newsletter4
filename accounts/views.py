@@ -7,7 +7,6 @@ from .models import StudentRequest, StudentProfile
 from .forms import StudentRequestForm, StudentProfileForm
 from django.views.generic import ListView, DetailView
 
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
@@ -107,7 +106,7 @@ def edit_student_profile(request):
             "last_name": request.user.first_name,
             "first_name": request.user.last_name,})
 
-class ProfileListView(LoginRequiredMixin, ListView):
+class ProfileListView(ListView):
     model = StudentProfile
     template_name = 'accounts/profile_list.html'
     context_object_name = 'profiles'
@@ -126,8 +125,21 @@ class ProfileListView(LoginRequiredMixin, ListView):
                 Q(bio__icontains=search_term) |
                 Q(user__username__icontains=search_term)
             )
+            
+            # Apply sorting based on the 'sort' parameter
+        sort = self.request.GET.get('sort', '-created_at')  # Default to 'created_at' descending
+        
+        # Handle sorting based on the 'sort' query param
+        if sort == 'name':
+            queryset = queryset.order_by('user__first_name')  # Sort by first_name
+        elif sort == '-name':
+            queryset = queryset.order_by('-user__first_name')  # Sort by first_name descending
+        elif sort == 'created_at':
+            queryset = queryset.order_by('created_at')  # Sort by created_at ascending
+        elif sort == '-created_at':
+            queryset = queryset.order_by('-created_at')  # Sort by created_at descending
                 
-        return queryset.order_by('-created_at')
+        return queryset
     
     def get_context_data(self, **kwargs):
         """Add additional context data."""
@@ -143,7 +155,7 @@ class ProfileListView(LoginRequiredMixin, ListView):
         return context
 
 
-class ProfileDetailView(LoginRequiredMixin, DetailView):
+class ProfileDetailView(DetailView):
     model = StudentProfile
     template_name = 'accounts/profile_detail.html'
     context_object_name = 'profile'

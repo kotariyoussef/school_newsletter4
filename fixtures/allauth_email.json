@@ -1,0 +1,1112 @@
+[
+  {
+    "model": "account.emailaddress",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "email": "admin1@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "email": "admin2@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "email": "staff1@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "email": "staff2@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 5,
+    "fields": {
+      "user": 5,
+      "email": "staff3@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 6,
+    "fields": {
+      "user": 6,
+      "email": "staff4@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 7,
+    "fields": {
+      "user": 7,
+      "email": "staff5@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 8,
+    "fields": {
+      "user": 8,
+      "email": "george26@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 9,
+    "fields": {
+      "user": 9,
+      "email": "heidi24@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 10,
+    "fields": {
+      "user": 10,
+      "email": "leecynthia@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 11,
+    "fields": {
+      "user": 11,
+      "email": "jacqueline35@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 12,
+    "fields": {
+      "user": 12,
+      "email": "uhahn@example.com",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailconfirmation",
+    "pk": 12,
+    "fields": {
+      "email_address": 12,
+      "created": "2025-04-19T00:04:56+00:00",
+      "sent": "2025-04-19T00:04:56+00:00",
+      "key": "d38f3694302f4d4440229671466878dc"
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 13,
+    "fields": {
+      "user": 13,
+      "email": "allisontyler@example.net",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailconfirmation",
+    "pk": 13,
+    "fields": {
+      "email_address": 13,
+      "created": "2025-01-25T23:10:49+00:00",
+      "sent": "2025-01-25T23:10:49+00:00",
+      "key": "929c7742de06cef97a4923ea5c981ee3"
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 14,
+    "fields": {
+      "user": 14,
+      "email": "charleswarren@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 15,
+    "fields": {
+      "user": 15,
+      "email": "swelch@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 16,
+    "fields": {
+      "user": 16,
+      "email": "smithangela@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 17,
+    "fields": {
+      "user": 17,
+      "email": "rebecca54@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 18,
+    "fields": {
+      "user": 18,
+      "email": "markguerra@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 19,
+    "fields": {
+      "user": 19,
+      "email": "matthewjones@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 20,
+    "fields": {
+      "user": 20,
+      "email": "roybentley@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 21,
+    "fields": {
+      "user": 21,
+      "email": "englishcody@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 22,
+    "fields": {
+      "user": 22,
+      "email": "williamtran@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 23,
+    "fields": {
+      "user": 23,
+      "email": "jimenezalison@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 24,
+    "fields": {
+      "user": 24,
+      "email": "ncook@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 25,
+    "fields": {
+      "user": 25,
+      "email": "michael81@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 26,
+    "fields": {
+      "user": 26,
+      "email": "griffinmegan@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 27,
+    "fields": {
+      "user": 27,
+      "email": "samanthawarren@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 28,
+    "fields": {
+      "user": 28,
+      "email": "bonniehoward@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 29,
+    "fields": {
+      "user": 29,
+      "email": "erin90@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 30,
+    "fields": {
+      "user": 30,
+      "email": "jeffrey43@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 31,
+    "fields": {
+      "user": 31,
+      "email": "dillonelizabeth@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 32,
+    "fields": {
+      "user": 32,
+      "email": "simstina@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 33,
+    "fields": {
+      "user": 33,
+      "email": "dominguezjennifer@example.com",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailconfirmation",
+    "pk": 33,
+    "fields": {
+      "email_address": 33,
+      "created": "2024-07-18T18:53:15+00:00",
+      "sent": "2024-07-18T18:53:15+00:00",
+      "key": "8d184982de31d37fc74dda918e8690af"
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 34,
+    "fields": {
+      "user": 34,
+      "email": "houstonjulie@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 35,
+    "fields": {
+      "user": 35,
+      "email": "victoria47@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 36,
+    "fields": {
+      "user": 36,
+      "email": "manuelsilva@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 37,
+    "fields": {
+      "user": 37,
+      "email": "dunnabigail@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 38,
+    "fields": {
+      "user": 38,
+      "email": "johnsonrobert@example.com",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailconfirmation",
+    "pk": 38,
+    "fields": {
+      "email_address": 38,
+      "created": "2025-04-03T12:39:20+00:00",
+      "sent": "2025-04-03T12:39:20+00:00",
+      "key": "433f7bfb493767159584b1b7a3ca84e6"
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 39,
+    "fields": {
+      "user": 39,
+      "email": "conniethomas@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 40,
+    "fields": {
+      "user": 40,
+      "email": "pwu@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 41,
+    "fields": {
+      "user": 41,
+      "email": "meganarias@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 42,
+    "fields": {
+      "user": 42,
+      "email": "joseph07@example.org",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailconfirmation",
+    "pk": 42,
+    "fields": {
+      "email_address": 42,
+      "created": "2025-01-11T17:14:45+00:00",
+      "sent": "2025-01-11T17:14:45+00:00",
+      "key": "b86636bf04abec500e253ab334902a47"
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 43,
+    "fields": {
+      "user": 43,
+      "email": "eric72@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 44,
+    "fields": {
+      "user": 44,
+      "email": "victorlopez@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 45,
+    "fields": {
+      "user": 45,
+      "email": "josephscott@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 46,
+    "fields": {
+      "user": 46,
+      "email": "jessicasosa@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 47,
+    "fields": {
+      "user": 47,
+      "email": "jonathan81@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 48,
+    "fields": {
+      "user": 48,
+      "email": "kathrynjohnson@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 49,
+    "fields": {
+      "user": 49,
+      "email": "mollyjordan@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 50,
+    "fields": {
+      "user": 50,
+      "email": "anthonywatkins@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 51,
+    "fields": {
+      "user": 51,
+      "email": "camachosarah@example.org",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailconfirmation",
+    "pk": 51,
+    "fields": {
+      "email_address": 51,
+      "created": "2025-04-08T10:25:35+00:00",
+      "sent": "2025-04-08T10:25:35+00:00",
+      "key": "baa2d1dfdc1d83368970754c7dc19506"
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 52,
+    "fields": {
+      "user": 52,
+      "email": "david77@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 53,
+    "fields": {
+      "user": 53,
+      "email": "daniel90@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 54,
+    "fields": {
+      "user": 54,
+      "email": "josephsmith@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 55,
+    "fields": {
+      "user": 55,
+      "email": "brandongrant@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 56,
+    "fields": {
+      "user": 56,
+      "email": "gabriel25@example.net",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailconfirmation",
+    "pk": 56,
+    "fields": {
+      "email_address": 56,
+      "created": "2023-06-14T17:23:42+00:00",
+      "sent": "2023-06-14T17:23:42+00:00",
+      "key": "28602872f07b5faaddb93a53a801e83e"
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 57,
+    "fields": {
+      "user": 57,
+      "email": "vphelps@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 58,
+    "fields": {
+      "user": 58,
+      "email": "bhodge@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 59,
+    "fields": {
+      "user": 59,
+      "email": "alansanchez@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 60,
+    "fields": {
+      "user": 60,
+      "email": "plittle@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 61,
+    "fields": {
+      "user": 61,
+      "email": "xcain@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 62,
+    "fields": {
+      "user": 62,
+      "email": "amanda90@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 63,
+    "fields": {
+      "user": 63,
+      "email": "tony42@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 64,
+    "fields": {
+      "user": 64,
+      "email": "hyang@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 65,
+    "fields": {
+      "user": 65,
+      "email": "simonrichard@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 66,
+    "fields": {
+      "user": 66,
+      "email": "paul98@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 67,
+    "fields": {
+      "user": 67,
+      "email": "paulamathews@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 68,
+    "fields": {
+      "user": 68,
+      "email": "ritterangela@example.net",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailconfirmation",
+    "pk": 68,
+    "fields": {
+      "email_address": 68,
+      "created": "2024-04-18T08:01:00+00:00",
+      "sent": "2024-04-18T08:01:00+00:00",
+      "key": "10ed2de74633bb8118553bded0d68df7"
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 69,
+    "fields": {
+      "user": 69,
+      "email": "jamesavila@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 70,
+    "fields": {
+      "user": 70,
+      "email": "omoore@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 71,
+    "fields": {
+      "user": 71,
+      "email": "daniel65@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 72,
+    "fields": {
+      "user": 72,
+      "email": "davisholly@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 73,
+    "fields": {
+      "user": 73,
+      "email": "john98@example.com",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailconfirmation",
+    "pk": 73,
+    "fields": {
+      "email_address": 73,
+      "created": "2025-04-30T10:30:05+00:00",
+      "sent": "2025-04-30T10:30:05+00:00",
+      "key": "66e5adcc0d2c969e3eeece802e4a9d39"
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 74,
+    "fields": {
+      "user": 74,
+      "email": "sharon87@example.org",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailconfirmation",
+    "pk": 74,
+    "fields": {
+      "email_address": 74,
+      "created": "2024-09-28T10:48:38+00:00",
+      "sent": "2024-09-28T10:48:38+00:00",
+      "key": "09acf32d81c79e06c12b2147f9a93e9c"
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 75,
+    "fields": {
+      "user": 75,
+      "email": "bryanbrown@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 76,
+    "fields": {
+      "user": 76,
+      "email": "wphillips@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 77,
+    "fields": {
+      "user": 77,
+      "email": "rangeljose@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 78,
+    "fields": {
+      "user": 78,
+      "email": "wesleyjohnson@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 79,
+    "fields": {
+      "user": 79,
+      "email": "lacosta@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 80,
+    "fields": {
+      "user": 80,
+      "email": "vincentwagner@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 81,
+    "fields": {
+      "user": 81,
+      "email": "derekbrown@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 82,
+    "fields": {
+      "user": 82,
+      "email": "pmyers@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 83,
+    "fields": {
+      "user": 83,
+      "email": "hugheskimberly@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 84,
+    "fields": {
+      "user": 84,
+      "email": "mannkathleen@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 85,
+    "fields": {
+      "user": 85,
+      "email": "pparker@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 86,
+    "fields": {
+      "user": 86,
+      "email": "huntermichelle@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 87,
+    "fields": {
+      "user": 87,
+      "email": "jeremiah40@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 88,
+    "fields": {
+      "user": 88,
+      "email": "carriemorgan@example.org",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailconfirmation",
+    "pk": 88,
+    "fields": {
+      "email_address": 88,
+      "created": "2025-05-02T21:25:18+00:00",
+      "sent": "2025-05-02T21:25:18+00:00",
+      "key": "3a75b6ec0f6e20ee93f6c67b89ea2bec"
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 89,
+    "fields": {
+      "user": 89,
+      "email": "gharvey@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 90,
+    "fields": {
+      "user": 90,
+      "email": "briansims@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 91,
+    "fields": {
+      "user": 91,
+      "email": "samanthakaiser@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 92,
+    "fields": {
+      "user": 92,
+      "email": "johnsutton@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 93,
+    "fields": {
+      "user": 93,
+      "email": "mcdanielmelissa@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 94,
+    "fields": {
+      "user": 94,
+      "email": "frederick76@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 95,
+    "fields": {
+      "user": 95,
+      "email": "rayjohn@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 96,
+    "fields": {
+      "user": 96,
+      "email": "samuel23@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 97,
+    "fields": {
+      "user": 97,
+      "email": "jillian60@example.org",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 98,
+    "fields": {
+      "user": 98,
+      "email": "derekbrewer@example.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 99,
+    "fields": {
+      "user": 99,
+      "email": "qwilliams@example.net",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 100,
+    "fields": {
+      "user": 100,
+      "email": "ilee@example.net",
+      "verified": true,
+      "primary": true
+    }
+  }
+]

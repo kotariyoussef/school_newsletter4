@@ -122,9 +122,9 @@
                         <div class="col-md-8">
                             <p class="text-break">
                                 {% if request.get_host %}
-                                    {{ request.scheme }}://{{ request.get_host }}/accounts/profile/{{ profile.slug }}/
+                                    {{ request.scheme }}://{{ request.get_host }}/{{ profile.slug }}/
                                 {% else %}
-                                    /accounts/profile/{{ profile.slug }}/
+                                    /{{ profile.slug }}/
                                 {% endif %}
                             </p>
                         </div>

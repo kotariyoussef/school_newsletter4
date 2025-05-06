@@ -10,7 +10,7 @@ __pycache__/
 venv/
 env/
 ENV/
-# *.env
+*.env
 
 # Ignore SQLite database file (if using SQLite)
 db.sqlite3

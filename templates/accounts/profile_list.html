@@ -89,20 +89,20 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item {% if request.GET.sort == 'name' %}active{% endif %}" 
-                               href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}sort=name">
-                               <i class="fas fa-sort-alpha-down mr-2"></i>Name (A-Z)
+                            href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}sort=name">
+                            <i class="fas fa-sort-alpha-down mr-2"></i>Name (A-Z)
                             </a>
                             <a class="dropdown-item {% if request.GET.sort == '-name' %}active{% endif %}" 
-                               href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}sort=-name">
-                               <i class="fas fa-sort-alpha-up mr-2"></i>Name (Z-A)
+                            href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}sort=-name">
+                            <i class="fas fa-sort-alpha-up mr-2"></i>Name (Z-A)
                             </a>
                             <a class="dropdown-item {% if request.GET.sort == '-created_at' or not request.GET.sort %}active{% endif %}" 
-                               href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}sort=-created_at">
-                               <i class="fas fa-clock mr-2"></i>Newest First
+                            href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}sort=-created_at">
+                            <i class="fas fa-clock mr-2"></i>Newest First
                             </a>
                             <a class="dropdown-item {% if request.GET.sort == 'created_at' %}active{% endif %}" 
-                               href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}sort=created_at">
-                               <i class="fas fa-history mr-2"></i>Oldest First
+                            href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}sort=created_at">
+                            <i class="fas fa-history mr-2"></i>Oldest First
                             </a>
                         </div>
                     </div>
