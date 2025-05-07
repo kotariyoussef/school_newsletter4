@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView
 from django.contrib import messages
@@ -6,6 +6,50 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .forms import ContactForm
 from django.conf import settings
+
+
+def error_404_view(request, exception=None):
+    """
+    Handle 404 page not found errors
+    """
+    # Get popular news and categories for the footer
+    # You may need to adjust these imports and queries based on your project structure
+    from news.models import News, Category
+    
+    popular_news = News.objects.filter(status='published').order_by('-views')[:3]
+    categories = Category.objects.all()
+    
+    context = {
+        'popular_news': popular_news,
+        'categories': categories,
+    }
+    return render(request, '404.html', context, status=404)
+
+
+def error_500_view(request):
+    """
+    Handle 500 server error
+    """
+    # For 500 errors, we might not be able to query the database reliably
+    # so we'll render the template without additional context
+    return render(request, '500.html', {}, status=500)
+
+
+def error_403_view(request, exception=None):
+    """
+    Handle 403 permission denied errors
+    """
+    # Get popular news and categories for the footer
+    from news.models import News, Category
+    
+    popular_news = News.objects.filter(status='published').order_by('-views')[:3]
+    categories = Category.objects.all()
+    
+    context = {
+        'popular_news': popular_news,
+        'categories': categories,
+    }
+    return render(request, '403.html', context, status=403)
 
 class AboutUsView(TemplateView):
     template_name = "about_us.html"

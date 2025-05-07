@@ -9,6 +9,13 @@ from django.contrib.sitemaps.views import sitemap
 from django.views.decorators.cache import cache_page
 from .robots import robots_txt
 
+from django.urls import path
+
+# Custom error handler
+handler404 = 'subscription.views.error_404_view'
+handler500 = 'subscription.views.error_500_view'
+handler403 = 'subscription.views.error_403_view'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
@@ -31,3 +38,4 @@ urlpatterns = [
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -6,7 +6,7 @@ from .models import StudentProfile, StudentRequest
 class StudentRequestAdmin(admin.ModelAdmin):
     list_display = ('user', 'created_at', 'approved')
     list_filter = ('approved',)
-    search_fields = ('user_username', 'user_email')
+    search_fields = ('user__username', 'user__email')
     actions = ['approve_requests']
     
     def approve_requests(self, request, queryset):

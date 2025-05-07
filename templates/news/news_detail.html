@@ -15,7 +15,7 @@
 {% block twitter_image %}{{ news.featured_image.url }}{% endblock %}
 
 
-{% block extra_seo %}
+{% block extra_css %}
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -38,12 +38,8 @@
         }
       }
     }
-</script>
-{% endblock %}
-    
+</script>    
 
-{% block extra_css %}
-<!-- Add media viewers and lightbox -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelementplayer.min.css">
 <style>
@@ -326,13 +322,16 @@
                                 {% if videos|length == 1 %}
                                 {% with video=videos.0 %}
                                 <div class="mb-4">
-                                <h5 class="border-bottom pb-2"><i class="fas fa-video mr-2"></i>Video</h5>
-                                <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="{{ video.file_url|default:video.file.url }}" allowfullscreen></iframe>
-                                </div>
-                                {% if video.caption %}
-                                <p class="mt-2 text-muted">{{ video.caption }}</p>
-                                {% endif %}
+                                    <h5 class="border-bottom pb-2"><i class="fas fa-video mr-2"></i>Video</h5>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <video class="embed-responsive-item" controls>
+                                            <source src="{{ video.file.url }}" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    {% if video.caption %}
+                                        <p class="mt-2 text-muted">{{ video.caption }}</p>
+                                    {% endif %}
                                 </div>
                                 {% endwith %}
                                 {% elif videos|length > 1 %}
@@ -344,7 +343,10 @@
                                             <div class="col-md-6 mb-3">
                                                 <div class="card h-100">
                                                     <div class="embed-responsive embed-responsive-16by9">
-                                                        <iframe class="embed-responsive-item" src="{{ video.file_url }}" allowfullscreen></iframe>
+                                                        <video class="embed-responsive-item" controls>
+                                                            <source src="{{ video.file.url }}" type="video/mp4">
+                                                            Your browser does not support the video tag.
+                                                        </video>
                                                     </div>
                                                     <div class="card-body">
                                                         <p class="card-text">{{ video.caption|default:"Video" }}</p>

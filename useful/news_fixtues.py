@@ -13,7 +13,7 @@ SOURCES = ['bbc-news', 'cnn', 'al-jazeera-english', 'bloomberg', 'ars-technica',
 MEDIA_DIR = 'media/news/images/'
 FIXTURE_FILE = 'fixtures/news_fixtures.json'
 STUDENT_PROFILES_FIXTURE = 'fixtures/student_profiles.json'
-NEWS_LIMIT = 100  # Number of articles per source
+NEWS_LIMIT = 10  # Number of articles per source
 
 # Create necessary directories
 os.makedirs(MEDIA_DIR, exist_ok=True)

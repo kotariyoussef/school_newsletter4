@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'taggit',
     'allauth.socialaccount',
     'django_ckeditor_5',
-    
+
     'accounts',
     'dashboard',
     'news',
@@ -164,12 +164,19 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 # Email settings (for development - update for production)
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'ko.youssef.public@gmail.com')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'mkumczlmeijtqtus')
+
+DEFAULT_FROM_EMAIL = 'Your App Name <ko.youssef.public@gmail.com>'
+EMAIL_SUBJECT_PREFIX = '[LBC] '
+
+SERVER_EMAIL = 'inginessef@gmail.com'
+ADMINS = [('Youssef Kotari', os.getenv('ADMIN_EMAIL', 'inginessef@gmail.com'))]
+MANAGERS = [('Yacine', os.getenv('MANAGER_EMAIL', 'inginessef@gmail.com'))]
 
 # django-allauth configuration
 ACCOUNT_EMAIL_VERIFICATION = 'none'  # Force email verification
@@ -186,7 +193,24 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/news/'
 LOGOUT_REDIRECT_URL = '/'
 
-# CKEditor Settings
+# LOGGING Settings
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
 
 # CKEditor 5 settings
 
